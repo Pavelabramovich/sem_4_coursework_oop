@@ -20,20 +20,27 @@ namespace CourseProjectOpp;
 /// </summary>
 /// 
 
-public partial class TestPage : Page
+public partial class LoginPage : Page
 {
     private MainWindow _mainWindow;
 
-    public TestPage(MainWindow mainWindow)
+    private UserDb _userDb;
+
+    public LoginPage(MainWindow mainWindow)
     {
         InitializeComponent();
 
         _mainWindow = mainWindow;
+        _userDb = UserDb.Instance;
     }
 
     private void Button_Click_1(object sender, RoutedEventArgs e)
     {
+        string login = loginTextBox.Text;
+        string password = passwordTextBox.Password;
 
+        if (_userDb.Users.FirstOrDefault(u => u.Login == login && u.Password == password) != null)
+            _mainWindow.OpenSecondPage();
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)

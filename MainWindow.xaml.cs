@@ -13,58 +13,52 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CourseProjectOpp
+namespace CourseProjectOpp;
+
+/// <summary>
+/// Interaction logic for MainWindow.xaml
+/// </summary>
+public partial class MainWindow : Window
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
+    private LoginPage _testPage;
+    private MainPage _testPage2;
+
+    public MainWindow()
     {
-        private TestPage _testPage;
-        private TestPage2 _testPage2;
+        InitializeComponent();
 
-        public MainWindow()
-        {
-            InitializeComponent();
+        _testPage = new LoginPage(this);
+        _testPage2 = new MainPage(this);
 
-            _testPage = new TestPage(this);
-            _testPage2 = new TestPage2(this);
-
-            OpenFirstPage();
-        }
-
-        public enum pages
-        {
-            login,
-            regin
-        }
-
-        private void OpenPage(Page page)
-        {
-            frame.Navigate(page);     
-        }
-
-        internal void OpenFirstPage()
-        {
-            OpenPage(_testPage);
-        }
-
-        internal void OpenSecondPage()
-        {
-            OpenPage(_testPage2);
-        }
-
-        internal void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //Random rnd = new Random();
-
-            //int r = rnd.Next(0,2);
-
-            //if (r == 0)
-            //    OpenPages(pages.login);
-            //else
-            //    OpenPages(pages.regin);
-        }
-
+        OpenFirstPage();
     }
+
+    private void OpenPage(Page page)
+    {
+        frame.Navigate(page);     
+    }
+
+    internal void OpenFirstPage()
+    {
+        OpenPage(_testPage);
+    }
+
+    internal void OpenSecondPage()
+    {
+        OpenPage(_testPage2);
+    }
+
+    // Password verify button
+    internal void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        //Random rnd = new Random();
+
+        //int r = rnd.Next(0,2);
+
+        //if (r == 0)
+        //    OpenPages(pages.login);
+        //else
+        //    OpenPages(pages.regin);
+    }
+
 }

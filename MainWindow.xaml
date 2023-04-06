@@ -15,6 +15,5 @@
             Grid.RowSpan="3" 
             NavigationUIVisibility="Hidden"/>
 
-        
     </Grid>
 </Window>

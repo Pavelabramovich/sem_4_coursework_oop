@@ -1,4 +1,4 @@
-﻿<Page x:Class="CourseProjectOpp.TestPage"
+﻿<Page x:Class="CourseProjectOpp.LoginPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CourseProjectOpp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="TestPage">
+      Title="LoginPage">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -36,10 +36,26 @@
             <Label 
                 Content="Password"/>
 
-            <PasswordBox
-                x:Name="passwordTextBox"
-                MaxLength="16" 
-                PasswordChar="*" />
+            <DockPanel 
+                LastChildFill="True">
+              
+
+   
+                <Button
+                    Content="click" 
+                    DockPanel.Dock="Right"/>
+
+                <PasswordBox
+                    x:Name="passwordTextBox"
+                    MaxLength="16" 
+                    PasswordChar="•" 
+                    DockPanel.Dock="Left" 
+                    />
+
+
+            </DockPanel>
+
+
 
         </StackPanel>
 
