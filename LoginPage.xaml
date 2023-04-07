@@ -10,9 +10,9 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="55*" />
+            <RowDefinition Height="96*" />
+            <RowDefinition Height="74*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -22,40 +22,59 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel 
-            Margin="10"
+            Margin="10,10,10,10"
             Grid.Row="1"
             Grid.Column="1">
 
-            <Label 
-                Content="Login"/>
+            <Label Content="Login"/>
 
             <TextBox 
                 x:Name="loginTextBox" 
-                MaxLength="16"/>
+                MaxLength="16"
+                 PreviewTextInput ="PasswordUnmask_PreviewTextInput"/>
 
             <Label 
-                Content="Password"/>
+                x:Name="invalidLoginLabel"
+                Content=""
+                FontSize="10"
+                Foreground="Red"/>
+
+            <Label Content="Password"/>
 
             <DockPanel 
                 LastChildFill="True">
-              
 
-   
-                <Button
-                    Content="click" 
-                    DockPanel.Dock="Right"/>
+                <CheckBox
+                    x:Name="hidePasswordCheckBox"             
+                    DockPanel.Dock="Right" 
+                    Checked="hidePasswordCheckBox_Checked"
+                    Unchecked="hidePasswordCheckBox_Unchecked"
+                     />
 
-                <PasswordBox
-                    x:Name="passwordTextBox"
-                    MaxLength="16" 
-                    PasswordChar="•" 
-                    DockPanel.Dock="Left" 
-                    />
+                <Grid
+                    DockPanel.Dock="Left">
 
+                    <TextBox 
+                        x:Name="PasswordUnmask"     
+                        Visibility="Collapsed"
+                        PreviewTextInput ="PasswordUnmask_PreviewTextInput"
+                        
+                         />
 
+                    <PasswordBox
+                        x:Name="PasswordHidden"
+                        MaxLength="16" 
+                        PasswordChar="•" 
+                        PreviewTextInput ="PasswordHidden_PreviewTextInput"
+                        />
+                </Grid>
             </DockPanel>
 
-
+            <Label 
+                x:Name="invalidPasswordLabel"
+                Content="" 
+                Foreground="Red"
+                FontSize="10"/>
 
         </StackPanel>
 
@@ -64,11 +83,10 @@
             Content="Button" 
             HorizontalAlignment="Left" 
             Margin="101,134,0,0" 
-            Grid.RowSpan="2" 
             Grid.Row="1" 
             VerticalAlignment="Top" 
-            Click="Button_Click_1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="194,58,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+            Click="Button_Click_1" Height="20" Width="39"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="194,58,0,0" VerticalAlignment="Top" Click="Button_Click" Height="20" Width="40"/>
 
     </Grid>
 </Page>
