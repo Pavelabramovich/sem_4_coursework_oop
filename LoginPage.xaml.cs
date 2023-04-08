@@ -54,14 +54,22 @@ public partial class LoginPage : Page
         string login = loginTextBox.Text;
         string password = Password;
 
-        if (_userDb.Users.FirstOrDefault(u => u.Login == login && u.Password == password) != null)
+        var user = _userDb.Users.FirstOrDefault(u => u.Login == login);
+
+        if (user != null)
         {
-            _mainWindow.OpenSecondPage();
+            if (user.Password == password)
+            {
+                _mainWindow.OpenSecondPage();
+            }
+            else
+            {
+                invalidPasswordLabel.Content = "Invalid password";
+            }
         }
         else
         {
             invalidLoginLabel.Content = "Invalid login";
-            invalidPasswordLabel.Content = "Invalid password";
         }
     }
 
