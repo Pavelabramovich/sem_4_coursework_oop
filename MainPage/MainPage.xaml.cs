@@ -18,23 +18,21 @@ namespace CourseProjectOpp;
 /// <summary>
 /// Логика взаимодействия для TestPage2.xaml
 /// </summary>
-public partial class MainPage : Page
+public partial class MainPage : UserControl
 {
-    private MainWindow _mainWindow;
+   // private MainWindow _mainWindow;
 
-    public MainPage(MainWindow mainWindow, string? userName = null)
+    public MainPage()
     {
         InitializeComponent();
 
-        DataContext = new MainPageViewModel(userName);
-
-        _mainWindow = mainWindow;
+        DataContext = new MainPageViewModel("");  
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
-        _mainWindow.OpenFirstPage();
+        //_mainWindow.OpenFirstPage();
 
-        var db = UserDb.Instance;
+        //var db = UserDb.Instance;
     }
 }

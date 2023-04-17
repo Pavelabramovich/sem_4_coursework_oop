@@ -7,10 +7,11 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace CourseProjectOpp;
 
-class LoginPageViewModel : INotifyPropertyChanged
+class LoginPageViewModel : ViewModelBase //, IViewModel
 {
     private string _login;
 
@@ -37,26 +38,30 @@ class LoginPageViewModel : INotifyPropertyChanged
         _securePassword = new SecureString();
 
         _isPasswordUnmasked = false;
-        IsPasswordMasked = !_isPasswordUnmasked;
 
         _isInvalidLogin = false;
         _isInvalidPassword = false;
 
         _db = UserDb.Instance;
+
+
+        _nextCommand = new DelegateCommand(OnNextCommand, CanNextCommand);
     }
+
+
 
     public string Login
     {
         get => _login;
         set
         {
-            if (value != _login)
-            {
-                _login = value;
-                OnPropertyChanged("Login");
+            if (value == _login)
+                return;
 
-                ClearInvalidWarnings();
-            }
+            _login = value;
+            OnPropertyChanged();
+
+            ClearInvalidWarnings();
         }
     }
 
@@ -65,13 +70,13 @@ class LoginPageViewModel : INotifyPropertyChanged
         get => _securePassword;
         set
         {
-            if (value != _securePassword)
-            {
-                _securePassword = value;
-                OnPropertyChanged("SecurePassword");
+            if (value == _securePassword)
+                return;
 
-                ClearInvalidWarnings();
-            }
+            _securePassword = value;
+            OnPropertyChanged();
+
+            ClearInvalidWarnings();
         }
     }
     public string UnsecurePassword
@@ -79,13 +84,13 @@ class LoginPageViewModel : INotifyPropertyChanged
         get => _unsecurePassword;
         set
         {
-            if (value != _unsecurePassword)
-            {
-                _unsecurePassword = value;
-                OnPropertyChanged("UnsecurePassword");
+            if (value == _unsecurePassword)
+                return;
 
-                ClearInvalidWarnings();
-            }
+            _unsecurePassword = value;
+            OnPropertyChanged();
+
+            ClearInvalidWarnings();
         }  
     }
 
@@ -94,26 +99,25 @@ class LoginPageViewModel : INotifyPropertyChanged
         get => _isPasswordUnmasked;
         set
         {
-            if (value != _isPasswordUnmasked)
+            if (value == _isPasswordUnmasked)
+                return;
+
+            _isPasswordUnmasked = value;
+              
+            if (value)
             {
-                _isPasswordUnmasked = value;
-                IsPasswordMasked = !value;
-
-                if (value)
-                {
-                    UnsecurePassword = SecurePassword.ToUnsecureString();
-                }
-                else
-                {
-                    SecurePassword = UnsecurePassword.ToSecureString();
-                }
-
-                OnPropertyChanged("IsPasswordUnmasked");
-                OnPropertyChanged("IsPasswordMasked");
+                UnsecurePassword = SecurePassword.ToUnsecureString();
             }
+            else
+            {
+                SecurePassword = UnsecurePassword.ToSecureString();
+            }
+
+            OnPropertyChanged(nameof(IsPasswordMasked));
+            OnPropertyChanged(nameof(IsPasswordUnmasked));      
         }
     }
-    public bool IsPasswordMasked { get; set; } 
+    public bool IsPasswordMasked => !IsPasswordUnmasked;
 
     public string InvalidLoginWarning
     {
@@ -127,26 +131,37 @@ class LoginPageViewModel : INotifyPropertyChanged
 
 
 
-
-
-
     private void ClearInvalidWarnings()
     {
-        _isInvalidLogin = false;
-        _isInvalidPassword = false;
+        if (_isInvalidLogin)
+        {
+            _isInvalidLogin = false;
+            OnPropertyChanged(nameof(InvalidLoginWarning));
+        }
 
-        OnPropertyChanged("InvalidLoginWarning");
-        OnPropertyChanged("InvalidPasswordWarning");
+        if (_isInvalidPassword)
+        {
+            _isInvalidPassword = false;
+            OnPropertyChanged(nameof(InvalidPasswordWarning));
+        }        
     }
 
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-    public void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+
+
+    private readonly DelegateCommand _nextCommand;
+
+    public ICommand NextCommand => _nextCommand;
+
+
+    private bool CanNextCommand(object parameter)
     {
-        if (string.IsNullOrEmpty(propertyName))   
-            return;
-        
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        return true;
+    }
+
+    public void OnNextCommand(object parameter)
+    {
+        _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainPageViewModel(""));
     }
 }
 

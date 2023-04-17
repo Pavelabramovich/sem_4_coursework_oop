@@ -8,8 +8,12 @@ using System.Threading.Tasks;
 
 namespace CourseProjectOpp;
 
-public class MainPageViewModel : INotifyPropertyChanged
+public class MainPageViewModel : ViewModelBase//, IViewModel
 {
+
+
+
+
     private string? _selectedUser;
     private UserDb _db;
 
@@ -39,15 +43,5 @@ public class MainPageViewModel : INotifyPropertyChanged
             var login = _db.Users.FirstOrDefault(u => u.Name == _selectedUser)?.Login ?? "no users";
             return login ?? "null login";
         }
-    }
-
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    public void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-    {
-        if (string.IsNullOrEmpty(propertyName))
-            return;
-
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

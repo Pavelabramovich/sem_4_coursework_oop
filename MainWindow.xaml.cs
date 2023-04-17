@@ -27,25 +27,29 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        _testPage = new LoginPage(this);
-        _testPage2 = new MainPage(this);
 
-        OpenFirstPage();
+        var viewModel = new MainWindowViewModel();
+
+        DataContext = viewModel;
+        //_testPage = new LoginPage(this);
+        //_testPage2 = new MainPage(this);
+
+        //OpenFirstPage();
     }
 
     private void OpenPage(Page page)
     {
-        frame.Navigate(page);     
+        //frame.Navigate(page);     
     }
 
     internal void OpenFirstPage()
     {
-        OpenPage(_testPage);
+       // OpenPage(_testPage);
     }
 
     internal void OpenSecondPage()
     {
-        OpenPage(_testPage2);
+       // OpenPage(_testPage2);
     }
 
     // Password verify button

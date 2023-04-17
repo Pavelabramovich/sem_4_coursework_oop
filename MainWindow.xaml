@@ -7,13 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:LoginPageViewModel}">
+            <local:LoginPage/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:MainPageViewModel}">
+            <local:MainPage/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <Grid>
-        
-        <Frame 
-            x:Name="frame"
-            Grid.ColumnSpan="3" 
-            Grid.RowSpan="3" 
-            NavigationUIVisibility="Hidden"/>
-
+        <ContentControl Content="{Binding CurrentViewModel}"/>
     </Grid>
+    
 </Window>
