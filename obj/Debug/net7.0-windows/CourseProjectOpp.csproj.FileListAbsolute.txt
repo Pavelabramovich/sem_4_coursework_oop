@@ -38,10 +38,9 @@ E:\NewRepos\CourseProjectOpp\bin\Debug\net7.0-windows\runtimes\win-x86\native\e_
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.csproj.CopyComplete
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 E:\NewRepos\CourseProjectOpp\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\MainWindow.g.cs
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\MainWindow.baml
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\LoginPage\LoginPage.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\MainPage\MainPage.g.cs
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\LoginPage\LoginPage.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\MainPage\MainPage.baml
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\App.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\MainWindow\MainWindow.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\MainWindow\MainWindow.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Authorization\Authorization.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Authorization\Authorization.View.baml

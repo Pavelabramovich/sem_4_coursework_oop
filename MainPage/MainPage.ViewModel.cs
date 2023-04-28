@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourseProjectOpp;
 
-public class MainPageViewModel : ViewModelBase//, IViewModel
+public class MainPageViewModel : BaseViewModel//, IViewModel
 {
 
 
@@ -40,7 +40,7 @@ public class MainPageViewModel : ViewModelBase//, IViewModel
     {
         get
         {
-            var login = _db.Users.FirstOrDefault(u => u.Name == _selectedUser)?.Login ?? "no users";
+            var login = _db.GetName(_selectedUser) ?? "no users";
             return login ?? "null login";
         }
     }

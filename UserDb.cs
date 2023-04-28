@@ -19,18 +19,13 @@ public class User
 
     [Column("Name")]
     public string Name { get; set; }
-
-    //public override string ToString()
-    //{
-    //    return $"{Id} \t {Name} \t {TrainerName}";
-    //}
 }
 
 public class UserDb : IDisposable
 {
     private static UserDb? _instance = null;
 
-    private SQLiteConnection _db;
+    private SQLiteConnection _conn;
     private bool _disposed;
 
 
@@ -39,19 +34,43 @@ public class UserDb : IDisposable
         var flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create;
         var filePath = "Users.db";
 
-        _db = new SQLiteConnection(filePath, flags);
-        _db.CreateTable<User>();
+        _conn = new SQLiteConnection(filePath, flags);
+        _conn.CreateTable<User>();
     }
 
     public static UserDb Instance => _instance ??= new UserDb();
 
 
-    public IEnumerable<User> Users => _db!.Table<User>();
+    public void Add(User user) => _conn!.InsertOrReplace(user);
+    public void Remove(string login) => _conn!.Delete<User>(login);
 
-    public void Add(User user) => _db!.InsertOrReplace(user);
+    public bool Contains(string login) => _conn.ExecuteScalar<string>($"SELECT Name FROM Users WHERE Login = '{login}'") is not null;
 
-    public void Remove(string login) => _db!.Delete<User>(login);
 
+    public IEnumerable<char> GetPassword(string login)
+    {
+        for (int i = 1; ; i++)
+        {
+            string s = _conn.ExecuteScalar<string>($"SELECT substr(Password,{i},1) FROM Users WHERE Login = '{login}'");
+
+            if (string.IsNullOrEmpty(s))
+            {
+                yield break;
+            }
+            else
+            {
+                yield return Convert.ToChar(s);
+            }
+        }
+    }
+    public bool ValidatePassword(string login, IEnumerable<char> password)
+    {
+        var dbPassword = GetPassword(login);
+
+        return password.SequenceEqual(dbPassword);
+    }
+
+    public string GetName(string login) => _conn.ExecuteScalar<string>($"SELECT Name FROM Users WHERE Login = '{login}'");
 
 
     public void Dispose()
@@ -66,7 +85,7 @@ public class UserDb : IDisposable
             return;
 
         if (disposing)
-            _db?.Dispose();
+            _conn?.Dispose();
 
         _disposed = true;
     }

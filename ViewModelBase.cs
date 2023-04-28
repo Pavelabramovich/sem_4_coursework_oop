@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 namespace CourseProjectOpp;
 
 
-public abstract class ViewModelBase : INotifyPropertyChanged
+public abstract class BaseViewModel : INotifyPropertyChanged
 {
     protected Messenger _messenger;
 
-    public ViewModelBase()
+    public BaseViewModel()
     {
         _messenger = Messenger.Instance;
     }
