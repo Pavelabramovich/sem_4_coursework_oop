@@ -44,7 +44,7 @@ public class UserDb : IDisposable
     public void Add(User user) => _conn!.InsertOrReplace(user);
     public void Remove(string login) => _conn!.Delete<User>(login);
 
-    public bool Contains(string login) => _conn.ExecuteScalar<string>($"SELECT Name FROM Users WHERE Login = '{login}'") is not null;
+    public bool Contains(string login) => GetName(login) is not null;
 
 
     public IEnumerable<char> GetPassword(string login)

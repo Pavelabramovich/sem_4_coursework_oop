@@ -12,11 +12,11 @@ namespace CourseProjectOpp;
 
 
 
-public class MainWindowViewModel : BaseViewModel
+public class WindowViewModel : BaseViewModel
 {
     private BaseViewModel _currentViewModel;
 
-    public MainWindowViewModel()
+    public WindowViewModel()
     {
         _messenger.MessageValueChanged += OnMessengerValueChanged;
 

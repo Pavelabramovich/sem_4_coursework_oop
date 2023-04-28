@@ -21,6 +21,9 @@ class AuthorizationViewModel : BaseViewModel
         InvalidPassword = 2,
     }
 
+    private AuthorizationModel _model;
+
+
     private string _login;
 
     private string _unsecurePassword;
@@ -37,11 +40,11 @@ class AuthorizationViewModel : BaseViewModel
     private readonly DelegateCommand _signInCommand;
 
 
-    private UserDb _db;
-
-
     public AuthorizationViewModel()
     {
+        _model = new AuthorizationModel(UserDb.Instance);
+
+
         _login = string.Empty;
 
         _unsecurePassword = string.Empty;
@@ -50,8 +53,6 @@ class AuthorizationViewModel : BaseViewModel
         _isPasswordUnmasked = false;
 
         _warningState = AuthorizationWarningState.NoWarnings;
-
-        _db = UserDb.Instance;
 
         _signInCommand = new DelegateCommand(OnSignInCommand);
     }
@@ -160,22 +161,22 @@ class AuthorizationViewModel : BaseViewModel
 
     public void OnSignInCommand(object? parametr)
     {
-        if (!_db.Contains(Login))
+        if (!_model.Contains(Login))
         {
             WarningState = AuthorizationWarningState.InvalidLogin;
         }
-        else if (!_db.ValidatePassword(Login, Password))
+        else if (!_model.ValidatePassword(Login, Password))
         {
             WarningState = AuthorizationWarningState.InvalidPassword;
         }
         else
         {
-            string name = _db.GetName(Login);
-            SwitchToMainPaige(name);
+            string name = _model.GetName(Login);
+            SwitchToMainPage(name);
         }
     }
 
-    private void SwitchToMainPaige(string userName) => _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainPageViewModel(userName));
+    private void SwitchToMainPage(string userName) => _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainViewModel(userName));
 }
 
 

@@ -15,8 +15,18 @@ public class AuthorizationModel
         _db = db;
     }
 
-    
+    public bool Contains(string login)
+    {
+        return _db.Contains(login);
+    }
 
+    public string GetName(string login)
+    {
+        return _db.GetName(login);
+    }
 
-
+    public bool ValidatePassword(string login, IEnumerable<char> password)
+    {
+        return _db.ValidatePassword(login, password);
+    }
 }

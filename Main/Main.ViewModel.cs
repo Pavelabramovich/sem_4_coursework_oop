@@ -8,16 +8,12 @@ using System.Threading.Tasks;
 
 namespace CourseProjectOpp;
 
-public class MainPageViewModel : BaseViewModel//, IViewModel
+public class MainViewModel : BaseViewModel
 {
-
-
-
-
     private string? _selectedUser;
     private UserDb _db;
 
-    public MainPageViewModel(string? userName)
+    public MainViewModel(string? userName)
     {
         _selectedUser = userName;
         _db = UserDb.Instance;

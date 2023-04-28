@@ -16,12 +16,12 @@ using System.Windows.Shapes;
 namespace CourseProjectOpp;
 
 
-public partial class MainPage : UserControl
+public partial class WindowView : Window
 {
-    public MainPage()
+    public WindowView()
     {
         InitializeComponent();
 
-        DataContext = new MainPageViewModel("");  
+        DataContext = new WindowViewModel();
     }
 }
