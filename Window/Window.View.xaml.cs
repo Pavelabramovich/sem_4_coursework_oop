@@ -18,10 +18,5 @@ namespace CourseProjectOpp;
 
 public partial class WindowView : Window
 {
-    public WindowView()
-    {
-        InitializeComponent();
-
-        DataContext = new WindowViewModel();
-    }
+    public WindowView() => InitializeComponent();
 }

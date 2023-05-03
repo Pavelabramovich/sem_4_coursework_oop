@@ -18,10 +18,5 @@ namespace CourseProjectOpp;
 
 public partial class MainView : UserControl
 {
-    public MainView()
-    {
-        InitializeComponent();
-
-        DataContext = new MainViewModel("");  
-    }
+    public MainView() => InitializeComponent();
 }

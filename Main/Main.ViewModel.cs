@@ -11,12 +11,14 @@ namespace CourseProjectOpp;
 public class MainViewModel : BaseViewModel
 {
     private string? _selectedUser;
-    private UserDb _db;
+    private MainModel _model;
 
     public MainViewModel(string? userName)
     {
         _selectedUser = userName;
-        _db = UserDb.Instance;
+        _model = new MainModel();
+
+        OnPropertyChanged("SelectedUser");
     }
 
     public string SelectedUser
@@ -29,15 +31,6 @@ public class MainViewModel : BaseViewModel
                 _selectedUser = 1 + value;
                 OnPropertyChanged("SelectedUser");
             }
-        }
-    }
-
-    public string SelectedLogin
-    {
-        get
-        {
-            var login = _db.GetName(_selectedUser) ?? "no users";
-            return login ?? "null login";
         }
     }
 }

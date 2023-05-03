@@ -8,7 +8,10 @@ namespace CourseProjectOpp;
 
 public class MainModel
 {
-
+    public string GetName(string name)
+    {
+        return "lal";
+    }
 
 
 

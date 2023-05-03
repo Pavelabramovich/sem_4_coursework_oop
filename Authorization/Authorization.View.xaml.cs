@@ -19,10 +19,5 @@ namespace CourseProjectOpp;
 
 public partial class AuthorizationView : UserControl
 {
-    public AuthorizationView()
-    {
-        InitializeComponent();
-
-        DataContext = new AuthorizationViewModel();
-    }
+    public AuthorizationView() => InitializeComponent();
 }
