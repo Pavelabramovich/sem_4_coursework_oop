@@ -38,6 +38,7 @@ class AuthorizationViewModel : BaseViewModel
 
 
     private readonly DelegateCommand _signInCommand;
+    private readonly DelegateCommand _backCommand;
 
 
     public AuthorizationViewModel()
@@ -55,6 +56,7 @@ class AuthorizationViewModel : BaseViewModel
         _warningState = AuthorizationWarningState.NoWarnings;
 
         _signInCommand = new DelegateCommand(OnSignInCommand);
+        _backCommand = new DelegateCommand(OnBackCommand);
     }
 
 
@@ -177,6 +179,17 @@ class AuthorizationViewModel : BaseViewModel
     }
 
     private void SwitchToMainPage(string userName) => _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainViewModel(userName));
+
+
+
+    public ICommand BackCommand => _backCommand;
+
+    public void OnBackCommand(object? parametr)
+    {
+        SwitchToMainPage();
+    }
+
+    private void SwitchToMainPage() => _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainViewModel());
 }
 
 

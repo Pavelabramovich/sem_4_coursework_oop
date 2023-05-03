@@ -8,10 +8,10 @@
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800" >
 
-    <!--<UserControl.DataContext>
-        <local:WindowViewModel/>
-    </UserControl.DataContext>-->
-
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis" />
+    </UserControl.Resources>
+    
     <Grid>
 
         <WrapPanel
@@ -23,7 +23,23 @@
             <Button Background="Aquamarine" Content="Кнопка 3"/>
             <Button Background="DarkGreen" Content="Кнопка 4"/>
             <Button Background="LightGreen" Content="Кнопка 5"/>
-            <Button Background="RosyBrown" Content="Кнопка 6" />
+          
+            <Grid>
+
+                <Button 
+                    Background="RosyBrown" 
+                    Content="Sign In"
+                    Command="{Binding AuthorizationCommand}" 
+                    Visibility="{Binding IsAnonimus, Converter={StaticResource boolToVis}}"/>
+
+                <Button 
+                    Background="RosyBrown" 
+                    Content="Sign Out"
+                    Command="{Binding UnAuthorizationCommand}" 
+                    Visibility="{Binding IsAuthorized, Converter={StaticResource boolToVis}}"/>
+              
+            </Grid>
+
         </WrapPanel>
 
 
@@ -34,10 +50,11 @@
             VerticalAlignment="Top" />
         
         <TextBox 
+            IsReadOnly="True"
             HorizontalAlignment="Left" 
             Margin="649,83,0,0" 
             TextWrapping="Wrap" 
-            Text="{Binding SelectedUser, UpdateSourceTrigger=PropertyChanged}"
+            Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
             VerticalAlignment="Top" 
             Width="120"/>
 

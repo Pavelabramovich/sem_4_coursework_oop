@@ -20,7 +20,7 @@ public class WindowViewModel : BaseViewModel
     {
         _messenger.MessageValueChanged += OnMessengerValueChanged;
 
-        _currentViewModel = new AuthorizationViewModel();
+        _currentViewModel = new MainViewModel();
     }
 
     public BaseViewModel CurrentViewModel

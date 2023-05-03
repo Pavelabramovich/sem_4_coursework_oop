@@ -10,11 +10,11 @@
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800" >
 
-   
+
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="55*" />
@@ -76,13 +76,12 @@
                             MaxLength="16" 
                             PasswordChar="•" 
                             Visibility="{Binding IsPasswordMasked, Converter = {StaticResource boolToVis}}" >
-                            
+
                             <i:Interaction.Behaviors>
                                 <local:PasswordBehavior SecurePassword="{Binding SecurePassword, Mode=TwoWay}" />
                             </i:Interaction.Behaviors>
-                            
-                        </PasswordBox>
 
+                        </PasswordBox>
 
                     </Grid>
                 </DockPanel>
@@ -97,20 +96,18 @@
                     Content="Sign in"
                     HorizontalAlignment="Center"
                     Padding="2"
-                    Command="{Binding SignInCommand}"
-                     />
+                    Command="{Binding SignInCommand}" />
 
             </StackPanel>
         </Grid>
-
-        <!--<Button 
-            Content="Button" 
+        
+        <Button 
+            Content="Back" 
             HorizontalAlignment="Left" 
-            Margin="57,35,0,0" 
-            VerticalAlignment="Top" 
-            Height="20" 
-            Width="40"
-            Command="{Binding NextCommand}"/>-->
+            Margin="96,0,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Center"
+            Command="{Binding BackCommand}"/>
 
     </Grid>
 </UserControl>
