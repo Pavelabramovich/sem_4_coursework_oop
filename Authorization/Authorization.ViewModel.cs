@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace CourseProjectOpp;
 
-class AuthorizationViewModel : BaseViewModel
+class AuthorizationViewModel : SwitchebleViewModel
 {
     private enum AuthorizationWarningState
     {
@@ -75,7 +75,7 @@ class AuthorizationViewModel : BaseViewModel
         }
     }
 
-    public SecureString SecurePassword 
+    public SecureString SecurePassword
     {
         get => _securePassword;
         set
@@ -101,10 +101,10 @@ class AuthorizationViewModel : BaseViewModel
             OnPropertyChanged();
 
             WarningState = AuthorizationWarningState.NoWarnings;
-        }  
+        }
     }
 
-    public IEnumerable<char> Password
+    private IEnumerable<char> Password
     {
         get => IsPasswordMasked ? SecurePassword.GetCharSequance() : UnsecurePassword;
     }
@@ -118,7 +118,7 @@ class AuthorizationViewModel : BaseViewModel
                 return;
 
             _isPasswordUnmasked = value;
-              
+
             if (value)
             {
                 UnsecurePassword = SecurePassword.ToUnsecureString();
@@ -129,17 +129,17 @@ class AuthorizationViewModel : BaseViewModel
             }
 
             OnPropertyChanged(nameof(IsPasswordMasked));
-            OnPropertyChanged(nameof(IsPasswordUnmasked));      
+            OnPropertyChanged(nameof(IsPasswordUnmasked));
         }
     }
     public bool IsPasswordMasked => !IsPasswordUnmasked;
 
     private AuthorizationWarningState WarningState
-    { 
+    {
         get => _warningState;
         set
         {
-            if (value == _warningState) 
+            if (value == _warningState)
                 return;
 
             _warningState = value;
@@ -151,13 +151,12 @@ class AuthorizationViewModel : BaseViewModel
 
     public string InvalidLoginWarning
     {
-        get =>  (WarningState == AuthorizationWarningState.InvalidLogin) ? INVALID_LOGIN_WARNING : string.Empty;
+        get => (WarningState == AuthorizationWarningState.InvalidLogin) ? INVALID_LOGIN_WARNING : string.Empty;
     }
     public string InvalidPasswordWarning
     {
         get => (WarningState == AuthorizationWarningState.InvalidPassword) ? INVALID_PASSWORD_WARNING : string.Empty;
     }
-
 
     public ICommand SignInCommand => _signInCommand;
 
@@ -173,23 +172,16 @@ class AuthorizationViewModel : BaseViewModel
         }
         else
         {
-            string name = _model.GetName(Login);
-            SwitchToMainPage(name);
+            SwitchToPage(new MainViewModel(Login));
         }
     }
-
-    private void SwitchToMainPage(string userName) => _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainViewModel(userName));
-
-
-
+    
     public ICommand BackCommand => _backCommand;
 
     public void OnBackCommand(object? parametr)
     {
-        SwitchToMainPage();
+        SwitchToPage(new MainViewModel());
     }
-
-    private void SwitchToMainPage() => _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainViewModel());
 }
 
 

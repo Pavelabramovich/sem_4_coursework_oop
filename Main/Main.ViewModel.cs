@@ -9,95 +9,30 @@ using System.Windows.Input;
 
 namespace CourseProjectOpp;
 
-public class MainViewModel : BaseViewModel
+public partial class MainViewModel : SwitchebleViewModel
 {
-    private MainModel _model;
-
-    private BaseState _state;
-
-    private DelegateCommand _authorizationCommand;
-    private DelegateCommand _unAuthorizationCommand;
+    private BaseStrategy _strategy;
 
     public MainViewModel()
     {
-        _model = new MainModel();
-        _state = new AnonimusState();
-
-        _authorizationCommand = new DelegateCommand(OnAuthorizationCommand);
-        _unAuthorizationCommand = new DelegateCommand(OnUnAuthorizationCommand);
+        var model = new MainModel();
+        _strategy = new AnonymousStrategy(model);
     }
-    public MainViewModel(string userName)
+    public MainViewModel(string login)
     {
-        if (string.IsNullOrEmpty(userName))
-            throw new ArgumentNullException();
-
-        _model = new MainModel();
-        _state = new AuthorizedState(userName);
-
-        _authorizationCommand = new DelegateCommand(OnAuthorizationCommand);
-        _unAuthorizationCommand = new DelegateCommand(OnUnAuthorizationCommand);
-
-
-        //OnPropertyChanged(nameof(UserName));
+        var model = new MainModel();
+        _strategy = new UserStrategy(model, login);
     }
-
-
 
     public string UserName
     {
-        get => _state switch
-        {
-            AuthorizedState aurhorizedState => aurhorizedState.UserName,
-
-            AnonimusState => string.Empty,
-
-            BaseState => throw new ArgumentException("Unknown state")
-        };
+        get => _strategy.UserName;
     }
 
-    public bool IsAuthorized => _state is AuthorizedState;
-    public bool IsAnonimus => _state is AnonimusState;
+    public bool IsAuthorized => _strategy is AuthorizedStrategy;
+    public bool IsAnonimus => _strategy is AnonymousStrategy;
 
+    public ICommand AuthorizationCommand => _strategy.AuthorizationCommand;
 
-
-    public ICommand AuthorizationCommand => _authorizationCommand;
-
-    public void OnAuthorizationCommand(object? parametr)
-    {
-        SwitchToAuthorization();
-    }
-
-    private void SwitchToAuthorization() => _messenger.RaiseMessageValueChanged("CurrentViewModel", new AuthorizationViewModel());
-
-
-    public ICommand UnAuthorizationCommand => _unAuthorizationCommand;
-
-    public void OnUnAuthorizationCommand(object? parametr)
-    {
-        SwitchToLogOut();
-    }
-
-    private void SwitchToLogOut() => _messenger.RaiseMessageValueChanged("CurrentViewModel", new MainViewModel());
-
-
-    private abstract class BaseState
-    {
-
-    }
-
-    private class AuthorizedState : BaseState
-    {
-        public string UserName { get; init; }
-
-        public AuthorizedState(string userName)
-        {
-            UserName = userName;
-        }
-    }
-
-    private class AnonimusState : BaseState
-    {
-
-    }
-
+    public ICommand ToFlowersCommand => _strategy.ToFlowersCommand;
 }

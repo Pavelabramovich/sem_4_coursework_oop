@@ -44,3 +44,5 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Main\Main.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Window\Window.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Main\Main.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Window\Window.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Flowers\Flowers.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Flowers\Flowers.View.baml

@@ -1,5 +1,5 @@
 ﻿<Window 
-    x:Name="root"
+    x:Name="window"
     x:Class="CourseProjectOpp.WindowView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -19,7 +19,7 @@
         <Style x:Key="ViewModelDataTemplate">
             <Setter Property="UserControl.DataContext" 
                     Value="{Binding Path=DataContext.CurrentViewModel, 
-                                    ElementName=root}" />
+                                    ElementName=window}"/>
         </Style>
 
         <DataTemplate DataType="{x:Type local:AuthorizationViewModel}">
@@ -29,6 +29,11 @@
 
         <DataTemplate DataType="{x:Type local:MainViewModel}">
             <local:MainView
+                Style="{StaticResource ViewModelDataTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:FlowersViewModel}">
+            <local:FlowersView
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 

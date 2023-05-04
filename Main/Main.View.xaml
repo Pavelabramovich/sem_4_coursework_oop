@@ -11,19 +11,40 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
     </UserControl.Resources>
-    
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*" />
+            <RowDefinition Height="96*" />
+            <RowDefinition Height="74*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button 
+            Content="Flowers" 
+            HorizontalAlignment="Center" 
+            Height="114" VerticalAlignment="Center" 
+            Width="181"
+            Grid.Column="0"
+            Grid.Row="1"
+            Command="{Binding ToFlowersCommand}"/>
 
         <WrapPanel
+            Grid.ColumnSpan="3"
             ItemHeight="50"
             ItemWidth="100">
-            
+
             <Button Background="AliceBlue" Content="Кнопка 1" />
             <Button Background="Blue" Content="Кнопка 2" />
             <Button Background="Aquamarine" Content="Кнопка 3"/>
             <Button Background="DarkGreen" Content="Кнопка 4"/>
             <Button Background="LightGreen" Content="Кнопка 5"/>
-          
+
             <Grid>
 
                 <Button 
@@ -35,9 +56,9 @@
                 <Button 
                     Background="RosyBrown" 
                     Content="Sign Out"
-                    Command="{Binding UnAuthorizationCommand}" 
+                    Command="{Binding AuthorizationCommand}" 
                     Visibility="{Binding IsAuthorized, Converter={StaticResource boolToVis}}"/>
-              
+
             </Grid>
 
         </WrapPanel>
@@ -48,16 +69,16 @@
             HorizontalAlignment="Left" 
             Margin="76,324,0,0" 
             VerticalAlignment="Top" />
-        
+
         <TextBox 
             IsReadOnly="True"
             HorizontalAlignment="Left" 
-            Margin="649,83,0,0" 
+            Margin="134,55,0,0" 
             TextWrapping="Wrap" 
             Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
             VerticalAlignment="Top" 
-            Width="120"/>
+            Width="120" Grid.Column="2"/>
 
     </Grid>
-    
+
 </UserControl>

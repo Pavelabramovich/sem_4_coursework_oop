@@ -12,6 +12,8 @@ public class Messenger
 
     public static Messenger Instance => _instance ??= new Messenger();
 
+    private Messenger() { }
+
 
     public event EventHandler<MessageValueChangedEventArgs>? MessageValueChanged;
 
