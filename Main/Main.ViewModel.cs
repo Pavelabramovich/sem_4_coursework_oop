@@ -34,5 +34,12 @@ public partial class MainViewModel : SwitchebleViewModel
 
     public ICommand AuthorizationCommand => _strategy.AuthorizationCommand;
 
-    public ICommand ToFlowersCommand => _strategy.ToFlowersCommand;
+    public ICommand ToFlowersCommand => SwitchToPageCommand(new FlowersViewModel(this));
+
+
+    protected DelegateCommand SwitchToPageCommand(BaseViewModel otherPage)
+    {
+        return new DelegateCommand((o) => SwitchToPage(otherPage));
+    }
+
 }

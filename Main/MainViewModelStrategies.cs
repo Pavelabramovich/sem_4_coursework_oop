@@ -22,7 +22,6 @@ public partial class MainViewModel
         public abstract string UserName { get; }
         public abstract ICommand AuthorizationCommand { get; }
 
-        public ICommand ToFlowersCommand => SwitchToPageCommand(new FlowersViewModel());
 
 
         protected void SwitchToPage(BaseViewModel otherPage)
