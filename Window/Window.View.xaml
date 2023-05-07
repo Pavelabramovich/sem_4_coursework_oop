@@ -27,8 +27,8 @@
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type local:MainViewModel}">
-            <local:MainView
+        <DataTemplate DataType="{x:Type local:UserViewModel}">
+            <local:UserView
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 

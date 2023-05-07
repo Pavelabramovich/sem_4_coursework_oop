@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ObjectiveC;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,18 +21,16 @@ public class Messenger
 
     public class MessageValueChangedEventArgs : EventArgs
     {
-        public MessageValueChangedEventArgs(string propertyName, object newValue)
+        public MessageValueChangedEventArgs(object message)
         {
-            PropertyName = propertyName;
-            NewValue = newValue;
+            Message = message;
         }
 
-        public string PropertyName { get; set; }
-        public object NewValue { get; set; }
+        public object Message { get; set; }
     }
 
-    public void RaiseMessageValueChanged(string propertyName, object value)
+    public void RaiseMessageValueChanged(object message)
     {
-        MessageValueChanged?.Invoke(this, new MessageValueChangedEventArgs(propertyName, value));
+        MessageValueChanged?.Invoke(this, new MessageValueChangedEventArgs(message));
     }
 }

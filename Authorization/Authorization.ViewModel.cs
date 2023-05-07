@@ -172,7 +172,8 @@ class AuthorizationViewModel : SwitchebleViewModel
         }
         else
         {
-            SwitchToPage(new MainViewModel(Login));
+            UpdatePage(new UserViewModel(Login));
+            SwitchToPage<UserViewModel>();
         }
     }
     
@@ -180,7 +181,7 @@ class AuthorizationViewModel : SwitchebleViewModel
 
     public void OnBackCommand(object? parametr)
     {
-        SwitchToPage(new MainViewModel());
+        SwitchToPage<UserViewModel>();
     }
 }
 

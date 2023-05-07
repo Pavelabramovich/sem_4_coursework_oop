@@ -9,8 +9,16 @@ namespace CourseProjectOpp;
 
 public class SwitchebleViewModel : BaseViewModel
 {
-    protected void SwitchToPage(BaseViewModel otherPage)
+    protected void UpdatePage(BaseViewModel otherPage)
     {
-        _messenger.RaiseMessageValueChanged("CurrentViewModel", otherPage);
+        _messenger.RaiseMessageValueChanged(new UpdateViewModelMessage(otherPage));
     }
+
+    protected void SwitchToPage<T>() where T : BaseViewModel
+    {
+        _messenger.RaiseMessageValueChanged(new SwitchViewModelMessage(typeof(T)));
+    }
+
+
+
 }

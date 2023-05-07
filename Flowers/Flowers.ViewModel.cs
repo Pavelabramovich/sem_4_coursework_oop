@@ -10,15 +10,13 @@ namespace CourseProjectOpp;
 public class FlowersViewModel : SwitchebleViewModel
 {
     private FlowersModel _model;
-    private BaseViewModel _previosViewModel;
 
     private DelegateCommand _backCommand;
 
 
-    public FlowersViewModel(BaseViewModel previosViewModel)
+    public FlowersViewModel()
     {
         _model = new FlowersModel();
-        _previosViewModel = previosViewModel;
 
         _backCommand = new DelegateCommand(OnBackCommand);
     }
@@ -28,11 +26,10 @@ public class FlowersViewModel : SwitchebleViewModel
         get => _model.Flowers;
     }
 
-
     public ICommand BackCommand => _backCommand;
 
     public void OnBackCommand(object? parametr)
     {
-        SwitchToPage(_previosViewModel);
+        _messenger.RaiseMessageValueChanged(new SwitchViewModelMessage<UserViewModel>());
     }
 }

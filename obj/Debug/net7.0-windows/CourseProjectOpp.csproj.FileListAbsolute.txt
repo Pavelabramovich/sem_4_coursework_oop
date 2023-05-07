@@ -40,9 +40,9 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\GeneratedInternalTypeHelpe
 E:\NewRepos\CourseProjectOpp\bin\Debug\net7.0-windows\Microsoft.Xaml.Behaviors.dll
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Authorization\Authorization.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Authorization\Authorization.View.baml
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Main\Main.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Window\Window.View.g.cs
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Main\Main.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Window\Window.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Flowers\Flowers.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Flowers\Flowers.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\User\User.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\User\User.View.baml

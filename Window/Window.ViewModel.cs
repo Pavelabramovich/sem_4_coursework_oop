@@ -14,33 +14,54 @@ namespace CourseProjectOpp;
 
 public class WindowViewModel : BaseViewModel
 {
-    private BaseViewModel _currentViewModel;
+    private Dictionary<string, BaseViewModel> _viewModels;
+    private string _currentViewModelName;
 
     public WindowViewModel()
     {
         _messenger.MessageValueChanged += OnMessengerValueChanged;
 
-        _currentViewModel = new MainViewModel();
+        _currentViewModelName = nameof(UserViewModel);
+        _viewModels = new();
+
+        _viewModels[_currentViewModelName] = new UserViewModel();
     }
 
-    public BaseViewModel CurrentViewModel
+    private string CurrentViewModelName
     {
-        get => _currentViewModel;
+        get => _currentViewModelName;
         set
         {
-            if (_currentViewModel == value)
-                return;
+            // if (_currentViewModelName == value)
+            //    return;
 
-            _currentViewModel = value;
-            OnPropertyChanged();
+            _currentViewModelName = value;
+
+            OnPropertyChanged(nameof(CurrentViewModel));
         }
+    }
+    public BaseViewModel CurrentViewModel
+    {
+        get => _viewModels[_currentViewModelName];
     }
 
     private void OnMessengerValueChanged(object? sender, Messenger.MessageValueChangedEventArgs e)
     {
-        if (e.PropertyName == "CurrentViewModel" && e.NewValue is BaseViewModel newViewModel)
+        if (e.Message is BaseViewModelMessage viewModelMessage)
         {
-            CurrentViewModel = newViewModel;
+            if (viewModelMessage is UpdateViewModelMessage updateMessage)
+            {
+                string viewModelName = viewModelMessage.ViewModelName;
+
+                _viewModels[viewModelName] = updateMessage.ViewModel;
+            }
+            else if (viewModelMessage is SwitchViewModelMessage switchMessage)
+            {
+                string viewModelName = switchMessage.ViewModelName;
+                CurrentViewModelName = viewModelName;
+            }
         }
+        else
+            throw null;
     }
 }
