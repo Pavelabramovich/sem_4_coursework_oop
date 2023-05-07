@@ -11,14 +11,10 @@ public class FlowersViewModel : SwitchebleViewModel
 {
     private FlowersModel _model;
 
-    private DelegateCommand _backCommand;
-
 
     public FlowersViewModel()
     {
         _model = new FlowersModel();
-
-        _backCommand = new DelegateCommand(OnBackCommand);
     }
 
     public IEnumerable<Flower> Flowers
@@ -26,10 +22,8 @@ public class FlowersViewModel : SwitchebleViewModel
         get => _model.Flowers;
     }
 
-    public ICommand BackCommand => _backCommand;
-
-    public void OnBackCommand(object? parametr)
+    public ICommand BackCommand => new DelegateCommand(o =>
     {
-        _messenger.RaiseMessageValueChanged(new SwitchViewModelMessage<UserViewModel>());
-    }
+        SwitchToPage<UserViewModel>();
+    });
 }

@@ -28,10 +28,6 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="Resources/153505_logo.png" />
-        </Grid.Background>-->
-
         <Grid
             Grid.Row="1"
             Grid.Column="1"

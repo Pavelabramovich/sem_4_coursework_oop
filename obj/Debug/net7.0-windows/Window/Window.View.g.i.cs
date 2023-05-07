@@ -61,7 +61,7 @@ namespace CourseProjectOpp {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/CourseProjectOpp;V1.0.0.0;component/window/window.view.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/CourseProjectOpp;component/window/window.view.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Window\Window.View.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

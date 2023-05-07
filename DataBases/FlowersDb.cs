@@ -18,11 +18,11 @@ public class Flower
     [Column("Price")]
     public string Price { get; set; }
 
-    [Column("ImageId")]
-    public string ImageId { get; set; }
-
     [Column("Description")]
     public string Description { get; set; }
+
+    [Column("ImagePath")]
+    public string ImagePath { get; set; }
 }
 
 public class FlowersDb : IDisposable

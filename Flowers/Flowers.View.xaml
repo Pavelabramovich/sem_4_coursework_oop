@@ -11,46 +11,58 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="94*" />
-            <RowDefinition Height="263*" />
-            <RowDefinition Height="93*" />
+            <RowDefinition Height="301*" />
+            <RowDefinition Height="55*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="164*" />
-            <ColumnDefinition Width="459*" />
-            <ColumnDefinition Width="177*" />
+            <ColumnDefinition Width="102*" />
+            <ColumnDefinition Width="635*" />
+            <ColumnDefinition Width="63*" />
         </Grid.ColumnDefinitions>
 
         <ListView
-            Grid.Row="1"
-            Grid.Column="1"
-            ItemsSource="{Binding Flowers}">
+            ItemsSource="{Binding Flowers}"
+            ScrollViewer.CanContentScroll="False" 
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            Grid.Column="1" 
+            Grid.Row="1">
+
             <ListView.ItemTemplate>
                 <DataTemplate 
                     DataType="local:Flower">
 
                     <Expander>
-                        
+
                         <Expander.Header>
                             <TextBlock Text="{Binding Name}"/>
                         </Expander.Header>
-                        
+
                         <StackPanel>
+                           
+                            <Image 
+                                Source="{Binding ImagePath}"
+                                Stretch="Fill"
+                                Margin="25"/>
+
                             <TextBlock Text="{Binding Price}"/>
                             <TextBlock Text="{Binding Description}"/>
+
+                            <Button 
+                                Content="Order"/>
+
                         </StackPanel>
-                        
+
                     </Expander>
 
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-
         <Button
             Content="Back"
             HorizontalAlignment="Left"
-            Padding="2" Width="39" Margin="43,34,0,34"
+            Padding="2" Width="39" Margin="27,21,0,47"
             Command="{Binding BackCommand}"/>
 
     </Grid>
