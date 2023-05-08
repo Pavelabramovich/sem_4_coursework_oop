@@ -43,7 +43,7 @@
                             <Image 
                                 Source="{Binding ImagePath}"
                                 Stretch="Fill"
-                                Margin="25"/>
+                                Margin="45"/>
 
                             <TextBlock Text="{Binding Price}"/>
                             <TextBlock Text="{Binding Description}"/>
