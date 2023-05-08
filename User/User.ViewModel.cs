@@ -32,5 +32,7 @@ public class UserViewModel : SwitchebleViewModel
 
     public ICommand AuthorizationCommand => _strategy.AuthorizationCommand;
 
+    public ICommand ToOrdersCommand => _strategy.ToOrdersCommand;
+
     public ICommand ToFlowersCommand => _strategy.ToFlowersCommand;
 }

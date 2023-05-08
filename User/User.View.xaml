@@ -43,7 +43,11 @@
             <Button Background="Blue" Content="Кнопка 2" />
             <Button Background="Aquamarine" Content="Кнопка 3"/>
             <Button Background="DarkGreen" Content="Кнопка 4"/>
-            <Button Background="LightGreen" Content="Кнопка 5"/>
+            
+            <Button 
+                Background="LightGreen" 
+                Content="Orders"
+                Command="{Binding ToOrdersCommand}"/>
 
             <Grid>
 

@@ -19,6 +19,8 @@ public abstract class BaseUserViewModel : SwitchebleViewModel, IUserViewModel
     public abstract string Name { get; }
     public abstract ICommand AuthorizationCommand { get; }
 
+    public abstract ICommand ToOrdersCommand { get; }
+
     public ICommand ToFlowersCommand => new DelegateCommand(o =>
     {
         UpdatePage(new FlowersViewModel());

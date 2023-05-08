@@ -20,6 +20,11 @@ public class AnonymousViewModel : BaseUserViewModel, IUserViewModel
 
     public override string Name => string.Empty;
 
+    public override ICommand ToOrdersCommand => new DelegateCommand(o =>
+    {
+        throw null;
+    });
+
     public override ICommand AuthorizationCommand => new DelegateCommand(o =>
     {
         UpdatePage(new AuthorizationViewModel());

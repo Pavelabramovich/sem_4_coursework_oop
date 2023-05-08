@@ -13,16 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CourseProjectOpp.Orders
+namespace CourseProjectOpp;
+
+public partial class OrdersView : UserControl
 {
-    /// <summary>
-    /// Логика взаимодействия для Orders.xaml
-    /// </summary>
-    public partial class Orders : UserControl
+    public OrdersView()
     {
-        public Orders()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

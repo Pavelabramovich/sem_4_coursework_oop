@@ -13,5 +13,7 @@ public interface IUserViewModel
 
     ICommand AuthorizationCommand { get; }
 
+    ICommand ToOrdersCommand { get; }
+
     ICommand ToFlowersCommand { get; }
 } 
