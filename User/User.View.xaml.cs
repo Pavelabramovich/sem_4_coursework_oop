@@ -19,4 +19,13 @@ namespace CourseProjectOpp;
 public partial class UserView : UserControl
 {
     public UserView() => InitializeComponent();
+
+
+    public void AnonymousWarning(object sender,  RoutedEventArgs e)
+    {
+        if (DataContext is not null and UserViewModel viewModel && viewModel.IsAnonymous)
+        {
+            MessageBox.Show("Please login first", "Warning", MessageBoxButton.OK);
+        }     
+    }
 }

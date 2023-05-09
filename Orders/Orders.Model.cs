@@ -29,8 +29,8 @@ public class OrdersModel
         return _ordersDb.GetOrdersByLogin(login);
     }
 
-    public int GetUserRole(string login)
+    public UserRole GetUserRole(string login)
     {
-        return _userDb.Contains(login) ? 1 : 0;
+        return _userDb.GetRole(login);
     }
 }

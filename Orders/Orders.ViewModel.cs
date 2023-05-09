@@ -19,14 +19,13 @@ public class OrdersViewModel : SwitchebleViewModel
         _login = login;
     }
 
+    public bool IsAdmin => _model.GetUserRole(_login) == UserRole.Admin;
 
     public IEnumerable<Order> Orders
     {
         get
         {
-            int role = _model.GetUserRole(_login);
-
-            if (role == 0)
+            if (IsAdmin)
                 return _model.Orders;
             else
                 return _model.GetOrdersByLogin(_login);

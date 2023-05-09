@@ -8,6 +8,13 @@ using SQLite;
 
 namespace CourseProjectOpp;
 
+public enum UserRole
+{
+    Customer = 0,
+    Provider,
+    Admin,
+}
+
 [Table("Users")]
 public class User
 {
@@ -19,6 +26,9 @@ public class User
 
     [Column("Name")]
     public string Name { get; set; }
+
+    [Column("Role")]
+    public UserRole Role { get; set; }
 }
 
 public class UserDb : IDisposable
@@ -72,6 +82,7 @@ public class UserDb : IDisposable
 
     public string GetName(string login) => _conn.ExecuteScalar<string>($"SELECT Name FROM Users WHERE Login = '{login}'");
 
+    public UserRole GetRole(string login) => _conn.ExecuteScalar<UserRole>($"SELECT Role FROM Users WHERE Login = '{login}'");
 
     public void Dispose()
     {

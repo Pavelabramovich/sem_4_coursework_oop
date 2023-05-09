@@ -28,7 +28,7 @@ public class UserViewModel : SwitchebleViewModel
     }
 
     public bool IsAuthorized => _strategy is CustomerViewModel;
-    public bool IsAnonimus => _strategy is AnonymousViewModel;
+    public bool IsAnonymous => _strategy is AnonymousViewModel;
 
     public ICommand AuthorizationCommand => _strategy.AuthorizationCommand;
 
