@@ -21,9 +21,5 @@ public abstract class BaseUserViewModel : SwitchebleViewModel, IUserViewModel
 
     public abstract ICommand ToOrdersCommand { get; }
 
-    public ICommand ToFlowersCommand => new DelegateCommand(o =>
-    {
-        UpdatePage(new FlowersViewModel());
-        SwitchToPage<FlowersViewModel>();
-    });
+    public abstract ICommand ToFlowersCommand { get; }
 }

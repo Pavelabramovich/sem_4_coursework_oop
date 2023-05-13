@@ -25,6 +25,12 @@ public class CustomerViewModel : BaseUserViewModel, IUserViewModel
         get => _model.GetName(_login);
     }
 
+    public override ICommand ToFlowersCommand => new DelegateCommand(o =>
+    {
+        UpdatePage(new FlowersViewModel(_login));
+        SwitchToPage<FlowersViewModel>();
+    });
+
     public override ICommand ToOrdersCommand => new DelegateCommand(o =>
     {
         UpdatePage(new OrdersViewModel(_login));

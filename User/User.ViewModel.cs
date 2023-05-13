@@ -19,6 +19,9 @@ public class UserViewModel : SwitchebleViewModel
     }
     public UserViewModel(string login)
     {
+        if (string.IsNullOrEmpty(login))
+            throw new ArgumentException("Null or empty login");
+
         _strategy = new CustomerViewModel(login);
     }
 
