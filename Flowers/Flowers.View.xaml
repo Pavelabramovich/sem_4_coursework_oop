@@ -7,7 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d" 
-    d:DesignHeight="450" d:DesignWidth="800">
+    d:DesignHeight="450" d:DesignWidth="800"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
@@ -31,15 +32,58 @@
             Grid.Column="1" 
             Grid.Row="1"
             Panel.ZIndex="1"
+            Background="Red"
             Visibility="{Binding Path=DataContext.IsCreatingOrder, 
                                  ElementName=root, 
                                  Converter={StaticResource boolToVis}}">
 
-            <Button
-                Content="lol" 
-                Panel.ZIndex="10"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46*" />
+                <RowDefinition Height="87*" />
+                <RowDefinition Height="46*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="51*" />
+                <ColumnDefinition Width="121*" />
+                <ColumnDefinition Width="62*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Text="Card number: "
+                Grid.Column="0"
+                Grid.Row="0"/>
+            
+            <TextBlock
+                Text="Cout: "
+                Grid.Column="0"
+                Grid.Row="1"/>
+
+            <xctk:IntegerUpDown 
+                Name="myUpDownControl"
+                Grid.Column="1"
+                Grid.Row="1"
+                Value="{Binding Count}"
+                Minimum="{Binding Min}"
+                Maximum="{Binding Max}"/>
+
+            <TextBox
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding CardNumber}"/>
 
 
+            <Button 
+                Content="Cancel"
+                Grid.Column="1"
+                Grid.Row="2" 
+                Command="{Binding CancelCommand}"/>
+
+            <Button 
+                Content="Create order"
+                Grid.Column="2"
+                Grid.Row="2" 
+                Command="{Binding OrderApprovalCommand}"/>
 
         </Grid>
 
@@ -83,8 +127,10 @@
 
                             <Button 
                                 Content="Order"
-                                Command="{Binding Path=DataContext.TestCommand, 
-                                                  ElementName=root}"/>
+                                Command="{Binding Path=DataContext.OrderCreatingCommand, 
+                                                  ElementName=root}"
+                                
+                                Click="AnonymousWarning"/>
 
                         </StackPanel>
 

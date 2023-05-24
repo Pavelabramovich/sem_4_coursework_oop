@@ -21,5 +21,7 @@ public abstract class BaseUserViewModel : SwitchebleViewModel, IUserViewModel
 
     public abstract ICommand ToOrdersCommand { get; }
 
+    public abstract ICommand ToSpecialAbilitiesCommand { get; }
+
     public abstract ICommand ToFlowersCommand { get; }
 }

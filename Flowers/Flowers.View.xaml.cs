@@ -18,5 +18,13 @@ namespace CourseProjectOpp;
 public partial class FlowersView : UserControl
 {
     public FlowersView() => InitializeComponent();
+
+    public void AnonymousWarning(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not null and FlowersViewModel viewModel && viewModel.IsAnonymous)
+        {
+            MessageBox.Show("Please login first", "Warning", MessageBoxButton.OK);
+        }
+    }
 }
 

@@ -28,6 +28,11 @@ public class AnonymousViewModel : BaseUserViewModel, IUserViewModel
         SwitchToPage<FlowersViewModel>();
     });
 
+    public override ICommand ToSpecialAbilitiesCommand => new DelegateCommand(o =>
+    {
+
+    });
+
     public override ICommand AuthorizationCommand => new DelegateCommand(o =>
     {
         UpdatePage(new AuthorizationViewModel());

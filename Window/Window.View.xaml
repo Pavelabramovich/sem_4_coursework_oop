@@ -19,7 +19,7 @@
         <Style x:Key="ViewModelDataTemplate">
             <Setter Property="UserControl.DataContext" 
                     Value="{Binding Path=DataContext.CurrentViewModel, 
-                                    ElementName=window}"/>
+                                    ElementName=window}" />
         </Style>
 
         <DataTemplate DataType="{x:Type local:AuthorizationViewModel}">
@@ -39,6 +39,11 @@
 
         <DataTemplate DataType="{x:Type local:FlowersViewModel}">
             <local:FlowersView
+                Style="{StaticResource ViewModelDataTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:SpecialAbilitiesViewModel}">
+            <local:SpecialAbilitiesView
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 

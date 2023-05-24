@@ -15,7 +15,11 @@ public class FlowersViewModel : SwitchebleViewModel
 
     private bool _isCreatingOrder;
 
-    private Flower _currentFlower = null;
+    private Flower? _currentFlower = null;
+
+    private string _cardNumber = string.Empty;
+
+    private int _count = 1;
    
     public FlowersViewModel()
     {
@@ -67,6 +71,40 @@ public class FlowersViewModel : SwitchebleViewModel
         }
     }
 
+    public bool IsAnonymous
+    {
+        get => _login is null;
+    }
+
+    public int Count
+    {
+        get => _count;
+        set
+        {
+            if (value != _count)
+            {
+                _count = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int Min => 1;
+    public int Max => 100; 
+
+    public string CardNumber
+    {
+        get => _cardNumber;
+        set
+        {
+            if (_cardNumber != value)
+            {
+                _cardNumber = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public IEnumerable<Flower> Flowers
     {
         get => _model.Flowers;
@@ -78,11 +116,31 @@ public class FlowersViewModel : SwitchebleViewModel
             SwitchToPage<UserViewModel>();
     });
 
-    public ICommand TestCommand => new DelegateCommand(o =>
+    public ICommand OrderCreatingCommand => new DelegateCommand(o =>
     {
-        IsCreatingOrder = true;
+        if (IsAnonymous)
+            return;
 
-        //UpdatePage(new UserViewModel(CurrentFlower?.Name ?? "name1"));
-        //SwitchToPage<UserViewModel>();
+        IsCreatingOrder = true;
+    });
+
+    public ICommand CancelCommand => new DelegateCommand(o =>
+    {
+        Count = 1;
+        IsCreatingOrder = false;
+    });
+
+    public ICommand OrderApprovalCommand => new DelegateCommand(o =>
+    {
+        if (_login is null)
+            return;
+
+        if (CurrentFlower is null)
+            throw null;
+
+        _model.AddOrder(_login, CurrentFlower.Name, Count, CardNumber);
+
+        Count = 1;
+        IsCreatingOrder = false;
     });
 }

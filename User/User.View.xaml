@@ -43,7 +43,8 @@
             <Button 
                 Background="DarkGreen" 
                 Content="Special abilities"
-                Click="AnonymousWarning"/>
+                Click="AnonymousWarning"
+                Command="{Binding ToSpecialAbilitiesCommand}"/>
             
             <Button 
                 Background="LightGreen" 

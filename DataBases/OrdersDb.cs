@@ -10,7 +10,7 @@ namespace CourseProjectOpp;
 [Table("Orders")]
 public class Order
 {
-    [PrimaryKey, Indexed]
+    [PrimaryKey, Indexed, AutoIncrement]
     [Column("Id")]
     public int Id { get; set; }
 
@@ -22,6 +22,9 @@ public class Order
 
     [Column("Count")]
     public int Count { get; set; }
+
+    [Column("CardNumber")]
+    public string CardNumber { get; set; }
 }
 
 
@@ -38,11 +41,11 @@ public class OrdersDb
         var filePath = "Orders.db";
 
         _conn = new SQLiteConnection(filePath, flags);
-        _conn.CreateTable<Order>();
+       // _conn.CreateTable<Order>();
     }
 
-
-    public void Add(Order order) => _conn!.InsertOrReplace(order);
+    
+    public void Add(Order order) => _conn!.Insert(order);
     public void Remove(int id) => _conn!.Delete<Order>(id);
 
     public bool Contains(int id) => Orders.Count(x => x.Id == id) != 0;

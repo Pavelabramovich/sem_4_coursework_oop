@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BgR0B9HdW/tYSpFcGJXe/m/gUMZOIKlnKQ4JllP4opr3USZJ9wzVi7O/x6VkK4DcQeRmArrx+F4xhRiUPAlcbQ==",
+  "dgSpecHash": "IDE8dWz1PaOaBAIowKsnVLeU9JINJpmEhoduRI5LDb8OAdIWSCWV6MTx3/zErcN8gV1AE9C4RGy9UrCIpvgvTg==",
   "success": true,
   "projectFilePath": "E:\\NewRepos\\CourseProjectOpp\\CourseProjectOpp.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\HP\\.nuget\\packages\\extended.wpf.toolkit\\4.5.0\\extended.wpf.toolkit.4.5.0.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\sqlite-net-pcl\\1.8.116\\sqlite-net-pcl.1.8.116.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\sqlitepclraw.bundle_green\\2.0.4\\sqlitepclraw.bundle_green.2.0.4.nupkg.sha512",

@@ -16,4 +16,6 @@ public interface IUserViewModel
     ICommand ToOrdersCommand { get; }
 
     ICommand ToFlowersCommand { get; }
+
+    ICommand ToSpecialAbilitiesCommand { get; }
 } 
