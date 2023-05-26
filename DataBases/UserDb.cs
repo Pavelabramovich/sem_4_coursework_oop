@@ -31,6 +31,7 @@ public class User
     public UserRole Role { get; set; }
 }
 
+
 public class UserDb : IDisposable
 {
     private static UserDb? _instance = null;
@@ -51,10 +52,17 @@ public class UserDb : IDisposable
     public static UserDb Instance => _instance ??= new UserDb();
 
 
-    public void Add(User user) => _conn!.InsertOrReplace(user);
+    public void Add(User user) => _conn!.Insert(user);
     public void Remove(string login) => _conn!.Delete<User>(login);
 
     public bool Contains(string login) => GetName(login) is not null;
+
+
+    public void UpdateName(string login, string newName) => _conn.ExecuteScalar<string>($"UPDATE Users SET Name = '{newName}' WHERE Login = '{login}'");
+    public void UpdateRole(string login, UserRole newRole) => _conn.ExecuteScalar<string>($"UPDATE Users SET Role = '{newRole}' WHERE Login = '{login}'");
+
+
+    public IEnumerable<string> Logins => _conn.Table<User>().Select(x => x.Login);
 
 
     public IEnumerable<char> GetPassword(string login)

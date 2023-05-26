@@ -18,7 +18,4 @@ public class SwitchebleViewModel : BaseViewModel
     {
         _messenger.RaiseMessageValueChanged(new SwitchViewModelMessage(typeof(T)));
     }
-
-
-
 }

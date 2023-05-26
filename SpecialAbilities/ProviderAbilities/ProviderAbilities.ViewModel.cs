@@ -7,15 +7,15 @@ using System.Windows.Input;
 
 namespace CourseProjectOpp;
 
-public class ProviderAbilitiesViewModel : BaseAbilitiesViewModel
+public class ProviderAbilitiesViewModel : CustomerAbilitiesViewModel
 {
-    public override ICommand ChangeUserCommand => new DelegateCommand(o =>
-    {
-
-    });
+    public ProviderAbilitiesViewModel(string login)
+        : base(login)
+    { }
 
     public override ICommand ChangeProductsCommand => new DelegateCommand(o =>
     {
-
+        UpdatePage(new ProviderProductsChangingViewModel(_login));
+        SwitchToPage<ProviderProductsChangingViewModel>();
     });
 }

@@ -32,9 +32,6 @@ public class WindowViewModel : BaseViewModel
         get => _currentViewModelName;
         set
         {
-            // if (_currentViewModelName == value)
-            //    return;
-
             _currentViewModelName = value;
 
             OnPropertyChanged(nameof(CurrentViewModel));
@@ -61,7 +58,5 @@ public class WindowViewModel : BaseViewModel
                 CurrentViewModelName = viewModelName;
             }
         }
-        else
-            throw null;
     }
 }

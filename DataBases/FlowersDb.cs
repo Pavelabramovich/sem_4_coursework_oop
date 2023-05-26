@@ -43,7 +43,7 @@ public class FlowersDb : IDisposable
     public static FlowersDb Instance { get; } = new FlowersDb();
 
 
-    public void Add(Flower flower) => _conn!.InsertOrReplace(flower);
+    public void Add(Flower flower) => _conn!.Insert(flower);
     public void Remove(string name) => _conn!.Delete<User>(name);
 
     public bool Contains(string name) => Flowers.Count(x => x.Name == name) != 0;

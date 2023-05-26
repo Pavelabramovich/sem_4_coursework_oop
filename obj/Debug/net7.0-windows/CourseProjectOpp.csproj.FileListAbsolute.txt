@@ -67,3 +67,11 @@ E:\NewRepos\CourseProjectOpp\bin\Debug\net7.0-windows\sv\Xceed.Wpf.AvalonDock.NE
 E:\NewRepos\CourseProjectOpp\bin\Debug\net7.0-windows\zh-Hans\Xceed.Wpf.AvalonDock.NET5.resources.dll
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\SpecialAbilities.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\SpecialAbilities.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.baml

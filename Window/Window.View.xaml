@@ -47,6 +47,21 @@
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type local:ProviderProductsChangingViewModel}">
+            <local:ProviderProductsChangingView
+                Style="{StaticResource ViewModelDataTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:ChangeUsersViewModel}">
+            <local:ChangeUsersView
+                Style="{StaticResource ViewModelDataTemplate}"/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type local:AdminProductsChangingViewModel}">
+            <local:AdminProductsChangingView
+                Style="{StaticResource ViewModelDataTemplate}"/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Grid>

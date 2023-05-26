@@ -1,0 +1,55 @@
+﻿<UserControl 
+    x:Class="CourseProjectOpp.NameChangingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:CourseProjectOpp"
+    mc:Ignorable="d" 
+    d:DesignHeight="450" 
+    d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="boolToVis" />
+    </UserControl.Resources>
+
+    <Grid
+        Background="White"
+        Visibility="{Binding IsVisible, Converter={StaticResource boolToVis}}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52*" />
+            <RowDefinition Height="101*" />
+            <RowDefinition Height="98*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*" />
+            <ColumnDefinition Width="85*" />
+        </Grid.ColumnDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            Content="Enter new name" />
+
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="{Binding NewName}"/>
+
+        <Button
+            Grid.Column="0"
+            Grid.Row="2"
+            Content="Save changes"
+            Command="{Binding SaveChangesCommand}" />
+
+        <Button
+            Grid.Column="1"
+            Grid.Row="2"
+            Content="Cancel"
+            Command="{Binding CancelCommand}" />
+
+    </Grid>
+
+</UserControl>

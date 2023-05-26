@@ -27,11 +27,11 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
 
         _strategy = _userRole switch
         {
-            UserRole.Customer => new CustomerAbilitiesViewModel(),
-            UserRole.Provider => new ProviderAbilitiesViewModel(),
-            UserRole.Admin => new AdminAbilitiesViewModel(),
+            UserRole.Customer => new CustomerAbilitiesViewModel(_login),
+            UserRole.Provider => new ProviderAbilitiesViewModel(_login),
+            UserRole.Admin => new AdminAbilitiesViewModel(_login),
             _ => throw new ArgumentException("Unknown role"),
-        };
+        };  
     }
 
     public UserRole UserRole
@@ -47,9 +47,22 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
         }
     }
 
+    public BaseViewModel CurrentWindow => _strategy.CurrentWindow;
+
     public ICommand ChangeUserCommand => _strategy.ChangeUserCommand;
 
     public ICommand ChangeProductsCommand => _strategy.ChangeProductsCommand;
 
     public ICommand BackCommand => _strategy.BackCommand;
+
+
+
+    //private void OnMessengerValueChanged(object? sender, Messenger.MessageValueChangedEventArgs e)
+    //{
+    //    if (e.Message is WindowMessage windowMessage && windowMessage.TargetViewModelType == this.GetType())
+    //    {
+            
+    //    }
+    //}
+
 }

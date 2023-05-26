@@ -41,7 +41,7 @@ public class OrdersDb
         var filePath = "Orders.db";
 
         _conn = new SQLiteConnection(filePath, flags);
-       // _conn.CreateTable<Order>();
+        _conn.CreateTable<Order>();
     }
 
     
