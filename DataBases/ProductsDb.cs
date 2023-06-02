@@ -11,7 +11,6 @@ namespace CourseProjectOpp;
 [Flags]
 public enum ProductType
 {
-    None =   0b_0000,
     Flower = 0b_0001,
 
 }
@@ -25,7 +24,7 @@ public class Product
     public string Name { get; set; }
 
     [Column("Price")]
-    public string Price { get; set; }
+    public int Price { get; set; }
 
     [Column("Description")]
     public string Description { get; set; }
@@ -35,6 +34,9 @@ public class Product
 
     [Column("Type")]
     public ProductType Type { get; set; }
+
+    [Column("Discount")]
+    public int Discount { get; set; }
 }
 
 public class ProductsDb : IDisposable

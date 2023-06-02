@@ -17,6 +17,16 @@ public class AdminProductsChangingModel
 
     public IEnumerable<Product> Products => _db.Products;
 
+    public IEnumerable<TypeModel> Types
+    {
+        get
+        {
+            return Products.Select(p => (p.Type, p.Discount)).Distinct().Select(p => new TypeModel(p.Item1, p.Item2));
+        }
+    }
+
+
+
     public void UpdateProduct(Product product)
     {
         _db.Update(product);

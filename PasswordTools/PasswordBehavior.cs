@@ -38,13 +38,14 @@ public class PasswordBehavior : Behavior<PasswordBox>
 
             if (e.NewValue is SecureString str)
             {
-                AssociatedObject.SecurePassword.Clear();
-                AssociatedObject.SecurePassword.AddRange(str);
+                AssociatedObject.Password = str.ToUnsecureString();
             }
             else
             {
                 AssociatedObject.Password = null;
             }
+
+            base.OnPropertyChanged(e);
 
             _skipUpdate = false;     
         }

@@ -69,7 +69,7 @@
 
                         <PasswordBox
                             x:Name="PasswordHidden"
-                            MaxLength="16" 
+                            MaxLength="30" 
                             PasswordChar="•" 
                             Visibility="{Binding IsPasswordMasked, Converter = {StaticResource boolToVis}}" >
 

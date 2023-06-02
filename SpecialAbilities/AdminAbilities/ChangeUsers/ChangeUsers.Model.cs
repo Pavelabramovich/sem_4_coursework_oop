@@ -23,10 +23,13 @@ public class ChangeUsersModel
 
     public UserRole GetRole(string login) => _userDb.GetRole(login);
 
+    public int GetDiscount(string login) => _userDb.GetDiscount(login);
 
-    public void UpdateUser(string login, string newName, UserRole newRole)
+
+    public void UpdateUser(string login, string newName, UserRole newRole, int newDiscount)
     {
         _userDb.UpdateName(login, newName);
         _userDb.UpdateRole(login, newRole);
+        _userDb.UpdateDiscount(login, newDiscount);
     }
 }

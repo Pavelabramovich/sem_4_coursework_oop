@@ -19,14 +19,17 @@ public class ProductModel : ObservableObject
 
     private ProductType _type;
 
+    private int _price;
 
-    public ProductModel(string name, string description, string imagePath, ProductType type)
+
+    public ProductModel(string name, string description, string imagePath, ProductType type, int price)
     {
         _name = name;
         _description = description;
 
         _imagePath = imagePath;
         _type = type;
+        _price = price;
     }
 
     public string Name => _name;
@@ -69,8 +72,49 @@ public class ProductModel : ObservableObject
             OnPropertyChanged();
         }
     }
+
+    public int Price
+    {
+        get => _price;
+        set
+        {
+            if (_price != value)
+            {
+                _price = value;
+                OnPropertyChanged();
+            }
+        }
+    }
 }
 
+public class TypeModel : ObservableObject
+{
+    private ProductType _name;
+
+    private int _discount;
+
+    public TypeModel(ProductType name, int discount)
+    {
+        _name = name;
+        _discount = discount;
+    }
+
+    public ProductType Name => _name;
+
+    public int Discount
+    {
+        get => _discount;
+        set
+        {
+            if (_discount != value)
+            {
+                _discount = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+}
 
 
 public class AdminProductsChangingViewModel : SwitchebleViewModel
@@ -79,12 +123,16 @@ public class AdminProductsChangingViewModel : SwitchebleViewModel
 
     public ObservableCollection<ProductModel> Products { get; set; }
 
+    public ObservableCollection<TypeModel> Types { get; set; }
+
 
     public AdminProductsChangingViewModel()
     {
         _model = new AdminProductsChangingModel();
 
         Products = new( _model.Products.Select(f => CreateProductModel(f)) );
+
+        Types = new(_model.Types);
     }
 
 
@@ -112,11 +160,19 @@ public class AdminProductsChangingViewModel : SwitchebleViewModel
 
     private ProductModel CreateProductModel(Product product)
     {
-        return new ProductModel(product.Name, product.Description, product.ImagePath, product.Type);
+        return new ProductModel(product.Name, product.Description, product.ImagePath, product.Type, product.Price);
     }
 
     private Product CreateProduct(ProductModel model)
     {
-        return new Product { Name =  model.Name, Description = model.Description, ImagePath = model.ImagePath, Type = model.Type };
+        return new Product 
+        { 
+            Name =  model.Name, 
+            Description = model.Description, 
+            ImagePath = model.ImagePath, 
+            Type = model.Type, 
+            Discount = Types.FirstOrDefault(t => t.Name == model.Type)?.Discount ?? 0 , 
+            Price = model.Price
+        };
     }
 }

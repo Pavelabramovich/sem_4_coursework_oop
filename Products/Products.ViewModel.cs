@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace CourseProjectOpp;
 
+
+
+
 public class ProductsViewModel : SwitchebleViewModel
 {
     private ProductsModel _model;

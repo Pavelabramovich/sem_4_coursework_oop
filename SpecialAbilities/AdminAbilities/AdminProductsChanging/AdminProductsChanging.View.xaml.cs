@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace CourseProjectOpp;
 
@@ -39,6 +40,29 @@ public partial class AdminProductsChangingView : UserControl
                 stackPanel.DataContext is ProductModel model)
             {
                 model.ImagePath = filePath;
+            }
+        }
+    }
+
+
+    private void IntegerUpDown_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+    {
+        //if (sender is IntegerUpDown upDown &&
+        //    upDown.DataContext is TypeModel model)
+        //{
+        //    model.Discount = upDown.Value ?? 0;
+        //}
+
+        if (sender is IntegerUpDown upDown)
+        {
+            if (upDown.DataContext is TypeModel typeModel)
+            {
+                typeModel.Discount = upDown.Value ?? 0;
+            }
+
+            if (upDown.DataContext is ProductModel productModel)
+            {
+                productModel.Price = upDown.Value ?? 0;
             }
         }
     }

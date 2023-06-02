@@ -7,7 +7,8 @@
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800"
-    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <UserControl.Resources>
         <ObjectDataProvider 
@@ -22,9 +23,10 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="94*" />
-            <RowDefinition Height="301*" />
-            <RowDefinition Height="55*" />
+            <RowDefinition Height="56*" />
+            <RowDefinition Height="131*" />
+            <RowDefinition Height="230*" />
+            <RowDefinition Height="33*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -35,18 +37,59 @@
 
         <Button
             Grid.Column="2"
-            Grid.Row="2"
+            Grid.Row="3"
             Command="{Binding CancelCommand}"
             Content="Cancel" />
 
         <Button
             Grid.Column="1"
-            Grid.Row="2"
+            Grid.Row="3"
             Command="{Binding SaveChangesCommand}"
             Content="Save changes"/>
 
         <DataGrid
             Grid.Row="1"
+            Grid.Column="1"
+            ScrollViewer.CanContentScroll="False"
+            ItemsSource="{Binding Types, Mode=TwoWay}"
+            AutoGenerateColumns="False" 
+            CanUserAddRows="False"
+            CanUserDeleteRows="False" 
+            CanUserReorderColumns="False" 
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False" 
+            CanUserSortColumns="False" 
+            SelectionMode="Single">
+
+            <DataGrid.Resources>
+                <DataTemplate x:Key="DiscountTemplate" >
+                    <xctk:IntegerUpDown                                                                
+                        Value="{Binding Discount, Mode=TwoWay}"
+                        Minimum="0"
+                        Maximum="100"
+                        ValueChanged="IntegerUpDown_ValueChanged"/>
+
+                </DataTemplate>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="Name" 
+                    Binding="{Binding Name}"/>
+
+                <DataGridTemplateColumn 
+                    Header="Discount" 
+                    CellTemplate="{StaticResource DiscountTemplate}" />
+
+            </DataGrid.Columns>
+
+
+
+        </DataGrid>
+
+        <DataGrid
+            ScrollViewer.CanContentScroll="False" 
+            Grid.Row="2"
             Grid.Column="1"
             ItemsSource="{Binding Products, Mode=TwoWay}"
             AutoGenerateColumns="False" 
@@ -59,6 +102,7 @@
             SelectionMode="Single">
 
             <DataGrid.Resources>
+                
                 <DataTemplate x:Key="ImageTemplate" >
                     <StackPanel>
                         <Image 
@@ -74,19 +118,33 @@
 
                         <Button
                             Click="btnOpen_Click" />
-                        
+
                     </StackPanel>
                 </DataTemplate>
+
+                <DataTemplate x:Key="PriceTemplate" >
+                    <xctk:IntegerUpDown                                                                
+                        Value="{Binding Price, Mode=TwoWay}"
+                        Minimum="0"
+                        Maximum="100"
+                        ValueChanged="IntegerUpDown_ValueChanged"/>
+
+                </DataTemplate>
+                
             </DataGrid.Resources>
 
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Name" 
                     Binding="{Binding Name}"/>
-                
+
                 <DataGridTextColumn 
                     Header="Description" 
                     Binding="{Binding Description}"/>
+
+                <DataGridTemplateColumn
+                    Header="Price"
+                    CellTemplate="{StaticResource PriceTemplate}" />
 
                 <DataGridTemplateColumn 
                     Header="Image" 

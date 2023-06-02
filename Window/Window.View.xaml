@@ -8,7 +8,8 @@
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d"
     Title="MainWindow" Height="450" Width="786"
-    xmlns:System="clr-namespace:System;assembly=mscorlib">
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    WindowStyle="None">
 
     <Window.DataContext>
         <local:WindowViewModel/>
@@ -69,8 +70,29 @@
 
     </Window.Resources>
 
-    <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}"/>
-    </Grid>
+    <Border
+        BorderBrush="#101010"
+        BorderThickness="5">
+
+        <Border.Background>
+            <LinearGradientBrush
+                StartPoint="0,0"
+                EndPoint="1,1">
+
+                <GradientStop Color="#101010" Offset="0" />
+                <GradientStop Color="#303030" Offset="0.75" />
+                <GradientStop Color="#101010" Offset="1" />
+
+            </LinearGradientBrush>
+        </Border.Background>
+        
+        <Grid
+            
+            
+            >
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+        </Grid>
+    </Border>
+
     
 </Window>

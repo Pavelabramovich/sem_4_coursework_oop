@@ -13,15 +13,15 @@ public class EnglishValidator : IValidator<IEnumerable<char>>
     {
         foreach (char c in value)
         {
-            if ( (c > 'a' && c < 'z') ||
-                 (c > 'A' && c < 'Z') ||
-                 (c > '0' && c < '9') ||
+            if ( (c >= 'a' && c <= 'z') ||
+                 (c >= 'A' && c <= 'Z') ||
+                 (c >= '0' && c <= '9') ||
                  (c == '_') )
             {
                 continue;
             }
 
-            return new ValidationResult(false, "String must contains only latin letters, digits and backspaces");
+            return new ValidationResult(false, "String must contains only latin letters, digits and underscores");
         }
 
         return new ValidationResult(true);

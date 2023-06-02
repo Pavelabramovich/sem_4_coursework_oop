@@ -12,6 +12,8 @@
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
+        <local:DiscountToPrecentsConverter x:Key="discToPrecents" />
+        <local:PriceDiscountToTotalPriceConverter x:Key="totalPrice" />
     </UserControl.Resources>
 
     <Grid>
@@ -122,7 +124,65 @@
                                 Stretch="Fill"
                                 Margin="45"/>
 
-                            <TextBlock Text="{Binding Price}"/>
+                           
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock
+                                    Grid.Column="0" >
+
+
+                                    <TextBlock.Text>
+                                        <MultiBinding
+			                                Converter="{StaticResource totalPrice}" >
+                                            <Binding Path="Price" />
+                                            <Binding Path="Discount" />
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+
+
+                                </TextBlock>
+
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Text="{Binding Discount, 
+                                                   Converter={StaticResource discToPrecents}}"
+                                    TextDecorations="Strikethrough"
+                                    Foreground="Red">
+
+                                </TextBlock>
+
+
+
+                            </Grid>
+
+                            
+                            <!--<Grid>
+                                <ContentControl
+                                    >
+                                    <ContentControl.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <Trigger
+                                                    Property="Template">
+                                                    
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                        
+                                        
+                                    </ContentControl.Style>
+                                    
+                                    
+                                </ContentControl>
+                                
+                            </Grid>-->
+                            
+                            
                             <TextBlock Text="{Binding Description}"/>
 
                             <Button 

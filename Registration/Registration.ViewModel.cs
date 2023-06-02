@@ -25,18 +25,23 @@ class RegistrationViewModel : SwitchebleViewModel
     private RegistrationModel _model;
 
 
+    private string _invalidLoginWarning;
+    private string _invalidPasswordWarning;
+    private string _invalidRepeatedPasswordWarning;
+    private string _invalidNameWarning;
+
+
     private string _login;
+    private string _name;
+
+
+
 
     
     private IEnumerable<char> _password;
     private IEnumerable<char> _repeatedPassword;
 
-    private bool _isPasswordUnmasked;
 
-    private RegistrationWarningState _warningState;
-
-    private const string INVALID_LOGIN_WARNING = "Invalid login";
-    private const string INVALID_PASSWORD_WARNING = "Invalid password";
 
 
     public RegistrationViewModel()
@@ -44,16 +49,18 @@ class RegistrationViewModel : SwitchebleViewModel
         _model = new RegistrationModel();
 
         _login = string.Empty;
+        _name = string.Empty;
 
         _password = string.Empty;
         _repeatedPassword = string.Empty;
 
-        _isPasswordUnmasked = false;
 
-        _warningState = RegistrationWarningState.NoWarnings;
 
-        //_signInCommand = new DelegateCommand(OnSignInCommand);
-        //_backCommand = new DelegateCommand(OnBackCommand);
+
+        _invalidLoginWarning = string.Empty;
+        _invalidNameWarning = string.Empty;
+        _invalidPasswordWarning = string.Empty;
+        _invalidRepeatedPasswordWarning = string.Empty;
     }
 
 
@@ -68,7 +75,22 @@ class RegistrationViewModel : SwitchebleViewModel
             _login = value;
             OnPropertyChanged();
 
-            WarningState = RegistrationWarningState.NoWarnings;
+            InvalidLoginWarning = string.Empty;
+        }
+    }
+
+    public string Name
+    {
+        get => _name;
+        set
+        {
+            if (value == _name)
+                return;
+
+            _name = value;
+            OnPropertyChanged();
+
+            InvalidNameWarning = string.Empty;
         }
     }
 
@@ -83,7 +105,11 @@ class RegistrationViewModel : SwitchebleViewModel
             _password = value;
             OnPropertyChanged();
 
-            WarningState = RegistrationWarningState.NoWarnings;
+
+            InvalidPasswordWarning = string.Empty;
+
+            if (InvalidRepeatedPasswordWarning == "Passwords are different") 
+                InvalidRepeatedPasswordWarning = string.Empty;
         }
     }
 
@@ -98,115 +124,127 @@ class RegistrationViewModel : SwitchebleViewModel
             _repeatedPassword = value;
             OnPropertyChanged();
 
-            WarningState = RegistrationWarningState.NoWarnings;
+            InvalidRepeatedPasswordWarning = string.Empty;
         }
     }
 
-
-    //public string UnsecurePassword
-    //{
-    //    get => _unsecurePassword;
-    //    set
-    //    {
-    //        if (value == _unsecurePassword)
-    //            return;
-
-    //        _unsecurePassword = value;
-    //        OnPropertyChanged();
-
-    //        WarningState = RegistrationWarningState.NoWarnings;
-    //    }
-    //}
-
-    //private IEnumerable<char> Password
-    //{
-    //    get => IsPasswordMasked ? SecurePassword.GetCharSequance() : UnsecurePassword;
-    //}
-
-    //public bool IsPasswordUnmasked
-    //{
-    //    get => _isPasswordUnmasked;
-    //    set
-    //    {
-    //        if (value == _isPasswordUnmasked)
-    //            return;
-
-    //        _isPasswordUnmasked = value;
-
-    //        if (value)
-    //        {
-    //            UnsecurePassword = SecurePassword.ToUnsecureString();
-    //        }
-    //        else
-    //        {
-    //            SecurePassword = UnsecurePassword.ToSecureString();
-    //        }
-
-    //        OnPropertyChanged(nameof(IsPasswordMasked));
-    //        OnPropertyChanged(nameof(IsPasswordUnmasked));
-    //    }
-    //}
-    //public bool IsPasswordMasked => !IsPasswordUnmasked;
-
-    private RegistrationWarningState WarningState
-    {
-        get => _warningState;
-        set
-        {
-            if (value == _warningState)
-                return;
-
-            _warningState = value;
-
-            //OnPropertyChanged(nameof(InvalidLoginWarning));
-            //OnPropertyChanged(nameof(InvalidPasswordWarning));
-        }
-    }
 
     public string InvalidLoginWarning
     {
-        get => (WarningState == RegistrationWarningState.InvalidLogin) ? INVALID_LOGIN_WARNING : string.Empty;
+        get => _invalidLoginWarning;
+        set
+        {
+            if (_invalidLoginWarning == value)
+                return;
+
+            _invalidLoginWarning = value;
+            OnPropertyChanged();
+        }
+    }
+    public string InvalidNameWarning
+    {
+        get => _invalidNameWarning;
+        set
+        {
+            if (_invalidNameWarning == value)
+                return;
+
+            _invalidNameWarning = value;
+            OnPropertyChanged();
+        }
     }
     public string InvalidPasswordWarning
     {
-        get => (WarningState == RegistrationWarningState.InvalidPassword) ? INVALID_PASSWORD_WARNING : string.Empty;
+        get => _invalidPasswordWarning;
+        set
+        {
+            if (_invalidPasswordWarning == value)
+                return;
+
+            _invalidPasswordWarning = value;
+            OnPropertyChanged();
+        }
+    }
+    public string InvalidRepeatedPasswordWarning
+    {
+        get => _invalidRepeatedPasswordWarning;
+        set
+        {
+            if (_invalidRepeatedPasswordWarning == value)
+                return;
+
+            _invalidRepeatedPasswordWarning = value;
+            OnPropertyChanged();
+        }
     }
 
-    //public ICommand SignInCommand => _signInCommand;
 
-    //public void OnSignInCommand(object? parametr)
-    //{
-    //    if (!_model.Contains(Login))
-    //    {
-    //        WarningState = RegistrationWarningState.InvalidLogin;
-    //    }
-    //    else if (!_model.ValidatePassword(Login, Password))
-    //    {
-    //        WarningState = RegistrationWarningState.InvalidPassword;
-    //    }
-    //    else
-    //    {
-    //        UpdatePage(new UserViewModel(Login));
-    //        SwitchToPage<UserViewModel>();
-    //    }
-    //}
 
-    //public ICommand BackCommand => _backCommand;
+    public ICommand BackCommand => new DelegateCommand(o =>
+    {
+        UpdatePage(new AuthorizationViewModel());
+        SwitchToPage<AuthorizationViewModel>();
+    });
 
-    //public void OnBackCommand(object? parametr)
-    //{
-    //    SwitchToPage<UserViewModel>();
-    //}
 
 
 
     public ICommand RegistrationCommand => new DelegateCommand(o =>
     {
-        foreach (char c in Password)
+        var loginValidator = new LoginValidator();
+        var res = loginValidator.IsValid(Login);
+
+        if (!res)
         {
-            var d = c;
+            InvalidLoginWarning = res.Message!;
+            return;
         }
+
+        if (_model.ContainsLogin(Login))
+        {
+            InvalidLoginWarning = "User with this login already exists";
+            return;
+        }
+
+        var nameValidator = new NameValidator();
+        res = nameValidator.IsValid(Name);
+
+        if (!res)
+        {
+            _invalidNameWarning = res.Message!;
+            return;
+        }
+
+        var passwordValidator = new PasswordValidator();
+        res = passwordValidator.IsValid(Password);
+
+        if (!res)
+        {
+            InvalidPasswordWarning = res.Message!;
+            return;
+        }
+
+        res = passwordValidator.IsValid(RepeatedPassword);
+        if (!res)
+        {
+            InvalidRepeatedPasswordWarning = res.Message!;
+            return;
+        }
+
+        if (!Enumerable.SequenceEqual(Password, RepeatedPassword))
+        {
+            InvalidRepeatedPasswordWarning = "Passwords are different";
+            return;
+        }
+
+        _model.AddUser(Login, Password, Name);
+
+
+        UpdatePage(new UserViewModel(Login));
+        SwitchToPage<UserViewModel>();
+
     });
+    
 }
 
 

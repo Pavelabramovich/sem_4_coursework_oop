@@ -16,6 +16,8 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
 
     private string _login;
 
+    private int _discount;
+
     public SpecialAbilitiesViewModel(string login) 
     {
         _login = login;
@@ -24,6 +26,7 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
 
         _userRole = _model.GetUserRole(login);
 
+        _discount = _model.GetDiscount(login);
 
         _strategy = _userRole switch
         {
@@ -46,6 +49,20 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
             OnPropertyChanged();
         }
     }
+
+    public int Discount
+    {
+        get => _discount;
+        set
+        {
+            if (_discount != value)
+            {
+                _discount = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
 
     public BaseViewModel CurrentWindow => _strategy.CurrentWindow;
 

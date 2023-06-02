@@ -18,7 +18,7 @@
                                       ElementName=root}"/>
         </DataTemplate>
 
-        
+
         <BooleanToVisibilityConverter x:Key="boolToVis" />
 
     </UserControl.Resources>
@@ -139,6 +139,18 @@
             Grid.Row="4" 
             VerticalAlignment="Top"
             Command="{Binding BackCommand}"/>
+        
+        <TextBlock 
+            Grid.Column="2" 
+            HorizontalAlignment="Left" 
+            Margin="162,27,0,0" 
+            Grid.Row="1" 
+            TextWrapping="Wrap" 
+            Text="{Binding Discount}" 
+            VerticalAlignment="Top" 
+            Height="26" 
+            Width="77"
+            Visibility="{Binding }"/>
 
     </Grid>
 

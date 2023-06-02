@@ -17,15 +17,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="96*" />
-            <RowDefinition Height="74*" />
+            <RowDefinition Height="93*" />
+            <RowDefinition Height="254*" />
+            <RowDefinition Height="103*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="241*" />
+            <ColumnDefinition Width="311*" />
+            <ColumnDefinition Width="248*" />
         </Grid.ColumnDefinitions>
 
         <Grid
@@ -47,6 +47,18 @@
                     FontSize="10"
                     Foreground="Red"/>
 
+
+                <Label Content="Name"/>
+
+                <TextBox 
+                    MaxLength="16"
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label 
+                    Content="{Binding InvalidNameWarning, UpdateSourceTrigger=PropertyChanged}"
+                    FontSize="10"
+                    Foreground="Red"/>
+
                 <Label Content="Password" />
 
                 <DockPanel 
@@ -60,7 +72,7 @@
                         DockPanel.Dock="Left">
 
                         <PasswordBox                         
-                            MaxLength="16" 
+                            MaxLength="30" 
                             PasswordChar="•" >
 
                             <PasswordBox.Style>
@@ -68,7 +80,7 @@
                                     TargetType="PasswordBox">
                                     <Style.Triggers>
                                         <DataTrigger 
-                                            Binding="{Binding IsChecked.Not, 
+                                            Binding="{Binding IsChecked, 
                                                               ElementName=hidePasswordCheckBox}" 
                                             Value="False">
 
@@ -85,11 +97,11 @@
                                 <local:PasswordBehavior 
                                     SecurePassword="{Binding Password, 
                                                              Mode=TwoWay, 
+                                                             UpdateSourceTrigger=PropertyChanged, 
                                                              Converter={StaticResource secureStrToChars}}" />
                             </i:Interaction.Behaviors>
 
                         </PasswordBox>
-
 
                         <TextBox
                             Visibility="{Binding IsChecked, 
@@ -105,7 +117,9 @@
 
                                             <Setter
                                                 Property="Text"
-                                                Value="{Binding Password, Converter={StaticResource strToChars}}" />
+                                                Value="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
+                                                                Converter={StaticResource strToChars}}"
+                                                                />
 
 
                                         </Trigger>
@@ -115,6 +129,11 @@
                         </TextBox>
                     </Grid>
                 </DockPanel>
+
+                <Label                   
+                    Content="{Binding InvalidPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
+                    Foreground="Red"
+                    FontSize="10"/>
 
                 <Label Content="Repeat password" />
 
@@ -137,8 +156,9 @@
                                     TargetType="PasswordBox">
                                     <Style.Triggers>
                                         <DataTrigger 
-                                            Binding="{Binding IsChecked.Not, 
-                                                              ElementName=hideRepeatPasswordCheckBox}" 
+                                            Binding="{Binding IsChecked, 
+                                                              ElementName=hideRepeatPasswordCheckBox,
+                                                              Mode=TwoWay}" 
                                             Value="False">
 
                                             <Setter 
@@ -152,7 +172,7 @@
 
                             <i:Interaction.Behaviors>
                                 <local:PasswordBehavior 
-                                    SecurePassword="{Binding RepeatedPassword, 
+                                    SecurePassword="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, 
                                                              Mode=TwoWay, 
                                                              Converter={StaticResource secureStrToChars}}" />
                             </i:Interaction.Behaviors>
@@ -174,7 +194,9 @@
 
                                             <Setter
                                                 Property="Text"
-                                                Value="{Binding RepeatedPassword, Converter={StaticResource strToChars}}" />
+                                                Value="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, 
+                                                                Converter={StaticResource strToChars}, 
+                                                                Mode=TwoWay}" />
 
 
                                         </Trigger>
@@ -185,14 +207,13 @@
                     </Grid>
                 </DockPanel>
 
-                <Label 
-                    x:Name="invalidPasswordLabel"
-                    Content="{Binding InvalidPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
+                <Label                   
+                    Content="{Binding InvalidRepeatedPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
                     Foreground="Red"
                     FontSize="10"/>
 
                 <Button
-                    Content="Sign in"
+                    Content="Registrate"
                     HorizontalAlignment="Center"
                     Padding="2"
                     Command="{Binding RegistrationCommand}" />
@@ -200,6 +221,13 @@
             </StackPanel>
         </Grid>
 
+        <Button 
+            Content="Back" 
+            HorizontalAlignment="Left" 
+            Margin="86,0,0,0" 
+            Grid.Row="2" 
+            VerticalAlignment="Center"
+            Command="{Binding BackCommand}" Height="20" Width="28"/>
 
     </Grid>
 </UserControl>

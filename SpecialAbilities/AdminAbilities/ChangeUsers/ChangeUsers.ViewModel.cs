@@ -15,12 +15,16 @@ public class UserModel : ObservableObject
     private string _name;
     private UserRole _role;
 
-    public UserModel(string login, string name, UserRole role)
+    private int _discount;
+
+    public UserModel(string login, string name, UserRole role, int discount)
     {
         _login = login;
 
         _name = name;
         _role = role;
+
+        _discount = discount;
     }
 
     public string Login => _login;
@@ -47,6 +51,19 @@ public class UserModel : ObservableObject
                 return;
 
             _role = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public int Discount
+    {
+        get => _discount;
+        set
+        {
+            if (value == _discount)
+                return;
+
+            _discount = value;
             OnPropertyChanged();
         }
     }
@@ -80,7 +97,7 @@ public class ChangeUsersViewModel : SwitchebleViewModel
     {
         foreach (var model in Users)
         {
-            _model.UpdateUser(model.Login, model.Name, model.Role);
+            _model.UpdateUser(model.Login, model.Name, model.Role, model.Discount);
         }
 
         SwitchToPage<SpecialAbilitiesViewModel>();
@@ -90,6 +107,6 @@ public class ChangeUsersViewModel : SwitchebleViewModel
 
     private UserModel CreateUserModel(string login)
     {
-        return new UserModel(login, _model.GetName(login), _model.GetRole(login));
+        return new UserModel(login, _model.GetName(login), _model.GetRole(login), _model.GetDiscount(login));
     }
 }

@@ -25,4 +25,14 @@ public class RegistrationModel
     {
         return _userDb.ValidatePassword(login, password);
     }
+
+    public bool ContainsLogin(string login)
+    {
+        return _userDb.Logins.Contains(login);
+    }
+
+    public void AddUser(string login, IEnumerable<char> password, string name)
+    {
+        _userDb.Add(new User { Login = login, Password = new string(password.ToArray()), Name = name, Discount = 0, Role = UserRole.Customer });
+    }
 }

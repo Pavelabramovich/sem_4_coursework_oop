@@ -19,4 +19,9 @@ public class SpecialAbilitiesModel
     {
         return _db.GetRole(login);
     }
+
+    public int GetDiscount(string login)
+    {
+        return _db.GetDiscount(login);
+    }
 }
