@@ -17,8 +17,6 @@ public class ProductIsProvideredPair : ObservableObject
     }
 
     public string ProductName { get; init; }
-    //public bool IsProvidered { get; set; }
-
 
     private bool _isProvidered;
 
@@ -31,16 +29,6 @@ public class ProductIsProvideredPair : ObservableObject
             OnPropertyChanged();
         }
     }
-
-    //public int Id
-    //{
-    //    get { return id; }
-    //    set
-    //    {
-    //        id = value;
-    //        RaisePropertyChanged("Id");
-    //    }
-    //}
 }
 
 

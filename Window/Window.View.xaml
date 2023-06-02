@@ -27,6 +27,11 @@
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type local:RegistrationViewModel}">
+            <local:RegistrationView
+                Style="{StaticResource ViewModelDataTemplate}"/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type local:UserViewModel}">
             <local:UserView
                 Style="{StaticResource ViewModelDataTemplate}"/>
@@ -37,8 +42,8 @@
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type local:FlowersViewModel}">
-            <local:FlowersView
+        <DataTemplate DataType="{x:Type local:ProductsViewModel}">
+            <local:ProductsView
                 Style="{StaticResource ViewModelDataTemplate}"/>
         </DataTemplate>
 

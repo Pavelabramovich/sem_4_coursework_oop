@@ -9,15 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Flowers\Resources\cornflowers.png" />
-    <None Remove="Flowers\Resources\roses.png" />
-    <None Remove="Resources\153505_logo.png" />
+    <Compile Remove="Flowers\**" />
+    <EmbeddedResource Remove="Flowers\**" />
+    <None Remove="Flowers\**" />
+    <Page Remove="Flowers\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Flowers\Resources\cornflowers.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <None Remove="Resources\153505_logo.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Flowers\Resources\roses.png" />
     <Resource Include="Resources\153505_logo.png" />
   </ItemGroup>
 

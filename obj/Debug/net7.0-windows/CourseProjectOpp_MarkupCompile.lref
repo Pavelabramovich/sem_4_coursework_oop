@@ -1,8 +1,9 @@
 ﻿
 
 FE:\NewRepos\CourseProjectOpp\Authorization\Authorization.View.xaml;;
-FE:\NewRepos\CourseProjectOpp\Flowers\Flowers.View.xaml;;
 FE:\NewRepos\CourseProjectOpp\Orders\Orders.View.xaml;;
+FE:\NewRepos\CourseProjectOpp\Products\Products.View.xaml;;
+FE:\NewRepos\CourseProjectOpp\Registration\Registration.View.xaml;;
 FE:\NewRepos\CourseProjectOpp\SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.xaml;;
 FE:\NewRepos\CourseProjectOpp\SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.xaml;;
 FE:\NewRepos\CourseProjectOpp\SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.xaml;;

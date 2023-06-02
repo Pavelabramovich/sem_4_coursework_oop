@@ -104,6 +104,15 @@
             Grid.Row="2" 
             VerticalAlignment="Center"
             Command="{Binding BackCommand}"/>
+        
+        <Button 
+            Grid.Column="2" 
+            Content="Registration" 
+            HorizontalAlignment="Left" 
+            Margin="91,115,0,0" 
+            Grid.Row="1" 
+            VerticalAlignment="Top"
+            Command="{Binding RegistrationCommand}"/>
 
     </Grid>
 </UserControl>

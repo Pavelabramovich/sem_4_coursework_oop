@@ -87,6 +87,7 @@ public class ChangeUsersViewModel : SwitchebleViewModel
     });
 
 
+
     private UserModel CreateUserModel(string login)
     {
         return new UserModel(login, _model.GetName(login), _model.GetRole(login));

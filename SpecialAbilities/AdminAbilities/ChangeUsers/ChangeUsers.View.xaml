@@ -13,12 +13,11 @@
         <ObjectDataProvider 
             x:Key="roleValues"
             MethodName="GetValues" ObjectType="{x:Type System:Enum}">
-            
+
             <ObjectDataProvider.MethodParameters>
                 <x:Type TypeName="local:UserRole"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
-
     </UserControl.Resources>
     
     <Grid>
@@ -68,13 +67,6 @@
                     Header="Role"
                     SelectedItemBinding="{Binding Role}"
                     ItemsSource="{Binding Source={StaticResource roleValues}}" />
-       
-
-
-                <!--<DataGridCheckBoxColumn 
-                    Header="IsProvidered" 
-                    Binding="{Binding IsProvidered, Mode=TwoWay}"
-                    />-->
 
             </DataGrid.Columns>
 

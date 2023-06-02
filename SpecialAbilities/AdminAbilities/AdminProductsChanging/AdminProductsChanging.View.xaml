@@ -6,8 +6,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d" 
-    d:DesignHeight="450" d:DesignWidth="800">
-    
+    d:DesignHeight="450" d:DesignWidth="800"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <UserControl.Resources>
+        <ObjectDataProvider 
+            x:Key="productTypeValues"
+            MethodName="GetValues" ObjectType="{x:Type System:Enum}">
+
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:ProductType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="94*" />
@@ -26,8 +38,71 @@
             Grid.Row="2"
             Command="{Binding CancelCommand}"
             Content="Cancel" />
-        
-        
-        
+
+        <Button
+            Grid.Column="1"
+            Grid.Row="2"
+            Command="{Binding SaveChangesCommand}"
+            Content="Save changes"/>
+
+        <DataGrid
+            Grid.Row="1"
+            Grid.Column="1"
+            ItemsSource="{Binding Products, Mode=TwoWay}"
+            AutoGenerateColumns="False" 
+            CanUserAddRows="False"
+            CanUserDeleteRows="False" 
+            CanUserReorderColumns="False" 
+            CanUserResizeColumns="False"
+            CanUserResizeRows="False" 
+            CanUserSortColumns="False" 
+            SelectionMode="Single">
+
+            <DataGrid.Resources>
+                <DataTemplate x:Key="ImageTemplate" >
+                    <StackPanel>
+                        <Image 
+                            Width="100" 
+                            Height="100"
+                            Source="{Binding ImagePath}"/>
+
+                        <TextBlock 
+                            Text="{Binding ImagePath}" 
+                            FontSize="8" 
+                            FontWeight="Bold" 
+                            HorizontalAlignment="Center" />
+
+                        <Button
+                            Click="btnOpen_Click" />
+                        
+                    </StackPanel>
+                </DataTemplate>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn 
+                    Header="Name" 
+                    Binding="{Binding Name}"/>
+                
+                <DataGridTextColumn 
+                    Header="Description" 
+                    Binding="{Binding Description}"/>
+
+                <DataGridTemplateColumn 
+                    Header="Image" 
+                    CellTemplate="{StaticResource ImageTemplate}" />
+
+                <DataGridComboBoxColumn
+                    Header="Type"
+                    SelectedItemBinding="{Binding Type}"
+                    ItemsSource="{Binding Source={StaticResource productTypeValues}}" />
+
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
+
     </Grid>
 </UserControl>

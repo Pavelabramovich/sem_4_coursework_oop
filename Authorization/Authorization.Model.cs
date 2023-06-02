@@ -10,19 +10,14 @@ public class AuthorizationModel
 {
     private UserDb _db;
 
-    public AuthorizationModel(UserDb db)
+    public AuthorizationModel()
     {
-        _db = db;
+        _db = UserDb.Instance;
     }
 
     public bool Contains(string login)
     {
         return _db.Contains(login);
-    }
-
-    public string GetName(string login)
-    {
-        return _db.GetName(login);
     }
 
     public bool ValidatePassword(string login, IEnumerable<char> password)

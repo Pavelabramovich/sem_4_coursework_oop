@@ -42,8 +42,6 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Authorization\Authorizatio
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Authorization\Authorization.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Window\Window.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Window\Window.View.baml
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Flowers\Flowers.View.g.cs
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Flowers\Flowers.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\User\User.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\User\User.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Orders\Orders.View.g.cs
@@ -75,3 +73,7 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbil
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Products\Products.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Products\Products.View.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Registration\Registration.View.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Registration\Registration.View.baml

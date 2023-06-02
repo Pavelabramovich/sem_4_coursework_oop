@@ -27,8 +27,8 @@ public class CustomerViewModel : BaseUserViewModel, IUserViewModel
 
     public override ICommand ToFlowersCommand => new DelegateCommand(o =>
     {
-        UpdatePage(new FlowersViewModel(_login));
-        SwitchToPage<FlowersViewModel>();
+        UpdatePage(new ProductsViewModel(_login, ProductType.Flower));
+        SwitchToPage<ProductsViewModel>();
     });
 
     public override ICommand ToSpecialAbilitiesCommand => new DelegateCommand(o =>

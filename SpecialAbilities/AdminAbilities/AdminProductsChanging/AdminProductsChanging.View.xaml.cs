@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,4 +20,26 @@ namespace CourseProjectOpp;
 public partial class AdminProductsChangingView : UserControl
 {
     public AdminProductsChangingView() => InitializeComponent();
+
+    private void btnOpen_Click(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog op = new OpenFileDialog();
+        op.Title = "Select a picture";
+        op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+          "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+          "Portable Network Graphic (*.png)|*.png";
+
+
+        if (op.ShowDialog() == true)
+        {
+            string filePath = op.FileName;
+             
+            if (sender is Button btn && 
+                btn.Parent is StackPanel stackPanel && 
+                stackPanel.DataContext is ProductModel model)
+            {
+                model.ImagePath = filePath;
+            }
+        }
+    }
 }

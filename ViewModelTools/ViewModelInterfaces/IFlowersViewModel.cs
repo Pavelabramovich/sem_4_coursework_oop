@@ -9,7 +9,7 @@ namespace CourseProjectOpp;
 
 public interface IFlowersViewModel
 {
-    public IEnumerable<Flower> Flowers { get; }
+    public IEnumerable<Product> Flowers { get; }
 
     public ICommand BackCommand { get; }
 }

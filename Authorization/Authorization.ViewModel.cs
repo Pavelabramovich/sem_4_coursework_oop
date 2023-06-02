@@ -43,7 +43,7 @@ class AuthorizationViewModel : SwitchebleViewModel
 
     public AuthorizationViewModel()
     {
-        _model = new AuthorizationModel(UserDb.Instance);
+        _model = new AuthorizationModel();
 
 
         _login = string.Empty;
@@ -106,7 +106,7 @@ class AuthorizationViewModel : SwitchebleViewModel
 
     private IEnumerable<char> Password
     {
-        get => IsPasswordMasked ? SecurePassword.GetCharSequance() : UnsecurePassword;
+        get => IsPasswordMasked ? SecurePassword.ToCharSequance() : UnsecurePassword;
     }
 
     public bool IsPasswordUnmasked
@@ -183,6 +183,14 @@ class AuthorizationViewModel : SwitchebleViewModel
     {
         SwitchToPage<UserViewModel>();
     }
+
+
+    public ICommand RegistrationCommand => new DelegateCommand(o => 
+    {
+        UpdatePage(new RegistrationViewModel());
+        SwitchToPage<RegistrationViewModel>();
+
+    });
 }
 
 

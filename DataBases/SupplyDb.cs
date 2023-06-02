@@ -43,6 +43,7 @@ public class SupplyDb : IDisposable
     public void Add(Supply suply) => _conn.Insert(suply);
     public void Remove(int id) => _conn.Delete<Supply>(id);
 
+   
     public IEnumerable<Supply> Supplies => _conn.Table<Supply>();
 
 

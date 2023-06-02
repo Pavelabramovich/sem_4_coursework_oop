@@ -9,17 +9,17 @@ namespace CourseProjectOpp;
 public class ProviderProductsChangingModel
 {
     private SupplyDb _supplyDb;
-    private FlowersDb _flowersDb;
+    private ProductsDb _productsDb;
 
     public ProviderProductsChangingModel()
     {
         _supplyDb = SupplyDb.Instance;
-        _flowersDb = FlowersDb.Instance;
+        _productsDb = ProductsDb.Instance;
     }
 
     public IEnumerable<ProductIsProvideredPair> GetProductIsProvideredPairs(string login)
     {
-        var products = _flowersDb.Flowers.Select(f => f.Name);
+        var products = _productsDb.Products.Select(f => f.Name);
 
         var sypplies = _supplyDb.ProductsNamesByProviderLogin(login);
 
