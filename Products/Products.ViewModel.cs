@@ -121,7 +121,7 @@ public class ProductsViewModel : SwitchebleViewModel
         get => _model.GetProductsByType(_currentType);
     }
 
-    public ICommand BackCommand => new DelegateCommand(o =>
+    public override ICommand BackCommand => new DelegateCommand(o =>
     {
         if (!IsCreatingOrder)
             SwitchToPage<UserViewModel>();

@@ -53,5 +53,7 @@ public class CustomerViewModel : BaseUserViewModel, IUserViewModel
         UpdatePage(new UserViewModel());
         SwitchToPage<UserViewModel>();
     });
+
+    public override ICommand BackCommand => DelegateCommand.DoNothing;
 }
 

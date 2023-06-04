@@ -177,7 +177,7 @@ class AuthorizationViewModel : SwitchebleViewModel
         }
     }
     
-    public ICommand BackCommand => _backCommand;
+    public override ICommand BackCommand => _backCommand;
 
     public void OnBackCommand(object? parametr)
     {
@@ -191,6 +191,8 @@ class AuthorizationViewModel : SwitchebleViewModel
         SwitchToPage<RegistrationViewModel>();
 
     });
+
+   
 }
 
 

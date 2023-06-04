@@ -70,4 +70,7 @@ public class UserViewModel : SwitchebleViewModel
     public ICommand ToFlowersCommand => _strategy.ToFlowersCommand;
 
     public ICommand ToSpecialAbilitiesCommand => _strategy.ToSpecialAbilitiesCommand;
+
+
+    public override ICommand BackCommand => DelegateCommand.CantExecute;
 }

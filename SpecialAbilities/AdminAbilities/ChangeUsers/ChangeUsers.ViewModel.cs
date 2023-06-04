@@ -120,7 +120,7 @@ public class ChangeUsersViewModel : SwitchebleViewModel
         SwitchToPage<SpecialAbilitiesViewModel>();
     });
 
-
+    public override ICommand BackCommand => CancelCommand;
 
     private UserModel CreateUserModel(string login)
     {

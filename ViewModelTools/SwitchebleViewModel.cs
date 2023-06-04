@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CourseProjectOpp;
 
-public class SwitchebleViewModel : BaseViewModel
+public abstract class SwitchebleViewModel : BaseViewModel
 {
     protected void UpdatePage(BaseViewModel otherPage)
     {
@@ -18,4 +19,6 @@ public class SwitchebleViewModel : BaseViewModel
     {
         _messenger.RaiseMessageValueChanged(new SwitchViewModelMessage(typeof(T)));
     }
+
+    public abstract override ICommand BackCommand { get; }
 }

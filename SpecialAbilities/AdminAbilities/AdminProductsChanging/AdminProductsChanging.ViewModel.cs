@@ -148,7 +148,7 @@ public class AdminProductsChangingViewModel : SwitchebleViewModel
         SwitchToPage<SpecialAbilitiesViewModel>();
     });
 
-
+    public override ICommand BackCommand => CancelCommand;
 
 
 

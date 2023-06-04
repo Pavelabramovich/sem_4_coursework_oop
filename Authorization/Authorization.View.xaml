@@ -1,4 +1,5 @@
 ﻿<UserControl 
+    x:Name="root"
     x:Class="CourseProjectOpp.AuthorizationView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:CourseProjectOpp" 
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
       
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800" >
@@ -16,103 +18,231 @@
     </UserControl.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="55*" />
             <RowDefinition Height="96*" />
             <RowDefinition Height="74*" />
-        </Grid.RowDefinitions>
+        </Grid.RowDefinitions>-->
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid
-            Grid.Row="1"
+
+        <StackPanel 
             Grid.Column="1"
-            Background="White">
+            Margin="0,35,0,0" >
 
-            <StackPanel 
-                Margin="10,10,10,10">
+            <Image
+                Height="180"
+                Width="180"
+                Source="E:\NewRepos\CourseProjectOpp\Resources\Images\big_logo_negative.png" />
 
-                <Label Content="Login"/>
+            <TextBlock
+                Text="Sunflower"
+                Foreground="White"
+                FontSize="25"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                HorizontalAlignment="Center" />
+
+            <TextBlock
+                Text="We work 24/7 for your peace of mind"
+                Foreground="LightGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                HorizontalAlignment="Center" 
+                TextWrapping="Wrap"
+                Margin="0,5,0,0"/>
+
+            <TextBlock
+                Text="Login"
+                Foreground="DarkGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,33,0,0"/>
+
+
+            <Grid>
+                <fa:IconImage 
+                    Icon="User"
+                    Foreground="White"
+                    Height="14"
+                    Width="14"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    />
 
                 <TextBox 
                     x:Name="loginTextBox" 
-                    MaxLength="16"
-                    Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" />
+                    Padding="20,0,0,0"
+                    MaxLength="20"
+                    FontSize="13"
+                    FontFamily="Montserrat"
+                    Foreground="White"
+                    CaretBrush="LightGray"
+                    BorderBrush="DarkGray"
+                    
+                    BorderThickness="0,0,0,2"
+                    Background="Transparent"
+                    Height="21"
+                    VerticalAlignment="Center"
+                    Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="0,8,0,0"
+                    />
+            </Grid>
 
-                <Label 
-                    x:Name="invalidLoginLabel"
-                    Content="{Binding InvalidLoginWarning, UpdateSourceTrigger=PropertyChanged}"
-                    FontSize="10"
-                    Foreground="Red"/>
+            <Label 
+                x:Name="invalidLoginLabel"
+                Content="{Binding InvalidLoginWarning, UpdateSourceTrigger=PropertyChanged}"
+                FontSize="10"
+                Foreground="Red"
+                Margin="-4,2,0,0"/>
 
-                <Label Content="Password" />
+            <TextBlock
+                Text="Password"
+                Foreground="DarkGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,30,0,8"/>
 
-                <DockPanel 
-                    LastChildFill="True">
 
-                    <CheckBox
-                        x:Name="hidePasswordCheckBox"             
-                        DockPanel.Dock="Right" 
-                        IsChecked="{Binding IsPasswordUnmasked, UpdateSourceTrigger=PropertyChanged}" />
+            <DockPanel 
+                LastChildFill="True">
 
-                    <Grid
-                        DockPanel.Dock="Left">
+                <CheckBox
+                    x:Name="hidePasswordCheckBox" 
+                    Style="{StaticResource CheckPass}"
+                    DockPanel.Dock="Right" 
+                    IsChecked="{Binding IsPasswordUnmasked, UpdateSourceTrigger=PropertyChanged}" />
 
-                        <TextBox 
-                            x:Name="PasswordUnmask"     
-                            Visibility="{Binding IsPasswordUnmasked, Converter={StaticResource boolToVis}}"
-                            Text="{Binding UnsecurePassword, UpdateSourceTrigger=PropertyChanged}" />
+                <Grid
+                    DockPanel.Dock="Left">
 
-                        <PasswordBox
-                            x:Name="PasswordHidden"
-                            MaxLength="30" 
-                            PasswordChar="•" 
-                            Visibility="{Binding IsPasswordMasked, Converter = {StaticResource boolToVis}}" >
+                    <fa:IconImage 
+                        Icon="Key"
+                        Foreground="White"
+                        Height="14"
+                        Width="14"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="0,-8,0,0"/>
 
-                            <i:Interaction.Behaviors>
-                                <local:PasswordBehavior SecurePassword="{Binding SecurePassword, Mode=TwoWay}" />
-                            </i:Interaction.Behaviors>
+                    <TextBox 
+                        x:Name="PasswordUnmask"     
+                        Visibility="{Binding IsPasswordUnmasked, Converter={StaticResource boolToVis}}"
+                        Text="{Binding UnsecurePassword, UpdateSourceTrigger=PropertyChanged}"
+                        MaxLength="20"
+                        FontSize="13"
+                        FontFamily="Montserrat"
+                        Foreground="White"
+                        CaretBrush="LightGray"
+                        BorderBrush="DarkGray" 
+                        Padding="20,0,0,0"
+                        Background="Transparent"
+                        BorderThickness="0,0,0,2"
+                        Height="21"
+                        VerticalAlignment="Center"/>
 
-                        </PasswordBox>
+                    <PasswordBox
+                        x:Name="PasswordHidden"
+                        PasswordChar="•" 
+                        Visibility="{Binding IsPasswordMasked, Converter = {StaticResource boolToVis}}"
+                        MaxLength="20"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                        Foreground="White"
+                        CaretBrush="LightGray"
+                        BorderBrush="DarkGray"
+                        
+                        Padding="20,0,0,0"
+                        Background="Transparent"
+                        BorderThickness="0,0,0,2"
+                        Height="21"
+                        VerticalAlignment="Center">
 
-                    </Grid>
-                </DockPanel>
+                        <i:Interaction.Behaviors>
+                            <local:PasswordBehavior SecurePassword="{Binding SecurePassword, Mode=TwoWay}" />
+                        </i:Interaction.Behaviors>
 
-                <Label 
-                    x:Name="invalidPasswordLabel"
-                    Content="{Binding InvalidPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="Red"
-                    FontSize="10"/>
+                    </PasswordBox>
+
+                </Grid>
+            </DockPanel>
+
+            <Label 
+                x:Name="invalidPasswordLabel"
+                Content="{Binding InvalidPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
+                Foreground="Red"
+                FontSize="10"/>
+
+            <Button 
+                x:Name="btnLogin"                          
+                BorderThickness="0"
+                Content="SIGN IN"
+                Foreground="White"
+                FontSize="12"
+                FontFamily="Montserrat"
+                Cursor="Hand"                           
+                Margin="0,50,0,0"
+                Command="{Binding SignInCommand}">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Gray"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DarkGray"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Width="150" Height="40"
+                            CornerRadius="20"
+                            Background="{TemplateBinding Background}">
+
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <StackPanel 
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                Margin="0,15,0,0">
+
+                <TextBlock 
+                    Text="Not registered yet?"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"/>
 
                 <Button
-                    Content="Sign in"
-                    HorizontalAlignment="Center"
-                    Padding="2"
-                    Command="{Binding SignInCommand}" />
+                    Content="Register"
+                    
+                    FontSize="12"
+                    FontWeight="Medium"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Margin="5,0,0,0"              
+                   
+                  
+                    Style="{StaticResource RegistrateButtonStyle}"
+                    Command="{Binding RegistrationCommand}"/>
 
             </StackPanel>
-        </Grid>
-        
-        <Button 
-            Content="Back" 
-            HorizontalAlignment="Left" 
-            Margin="96,0,0,0" 
-            Grid.Row="2" 
-            VerticalAlignment="Center"
-            Command="{Binding BackCommand}"/>
-        
-        <Button 
-            Grid.Column="2" 
-            Content="Registration" 
-            HorizontalAlignment="Left" 
-            Margin="91,115,0,0" 
-            Grid.Row="1" 
-            VerticalAlignment="Top"
-            Command="{Binding RegistrationCommand}"/>
-
+        </StackPanel>
     </Grid>
 </UserControl>

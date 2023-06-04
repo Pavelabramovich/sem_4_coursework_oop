@@ -33,7 +33,7 @@ public class OrdersViewModel : SwitchebleViewModel
     }
 
 
-    public ICommand BackCommand => new DelegateCommand(o =>
+    public override ICommand BackCommand => new DelegateCommand(o =>
     {
         SwitchToPage<UserViewModel>();
     });

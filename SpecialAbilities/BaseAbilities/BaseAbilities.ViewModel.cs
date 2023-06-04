@@ -24,7 +24,7 @@ public abstract class BaseAbilitiesViewModel : SwitchebleViewModel
 
     public abstract ICommand ChangeProductsCommand { get; }
 
-    public virtual ICommand BackCommand => new DelegateCommand(o =>
+    public override ICommand BackCommand => new DelegateCommand(o =>
     {
         SwitchToPage<UserViewModel>();
     });

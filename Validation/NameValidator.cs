@@ -16,6 +16,9 @@ public class NameValidator : IValidator<string>
         if (login.Length < 4)
             return new ValidationResult(false, "Name length less then 4");
 
+        if (login.Length > 20)
+            return new ValidationResult(false, "Name length greather then 20");
+
         var englishValidator = new EnglishValidator();
 
         if (!englishValidator.IsValid(login))

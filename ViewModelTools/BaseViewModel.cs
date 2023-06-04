@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace CourseProjectOpp;
 
@@ -18,4 +19,6 @@ public abstract class BaseViewModel : ObservableObject
     {
         _messenger = Messenger.Instance;
     }
+
+    public abstract ICommand BackCommand { get; }
 }

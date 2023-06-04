@@ -41,4 +41,6 @@ public class AnonymousViewModel : BaseUserViewModel, IUserViewModel
         UpdatePage(new AuthorizationViewModel());
         SwitchToPage<AuthorizationViewModel>();
     });
+
+    public override ICommand BackCommand => DelegateCommand.DoNothing;
 }

@@ -66,4 +66,6 @@ public class ProviderProductsChangingViewModel : SwitchebleViewModel
     {
         SwitchToPage<SpecialAbilitiesViewModel>();
     });
+
+    public override ICommand BackCommand => CancelCommand;
 } 

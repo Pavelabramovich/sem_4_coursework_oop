@@ -37,5 +37,9 @@ public class DelegateCommand : ICommand
 
     public static Func<object?, bool> AlwaysCanExecute => ( (obj) => true );
 
+    public static Func<object?, bool> NeverCanExecute => ( (obj) => false );
+
     public static DelegateCommand DoNothing => new DelegateCommand(o => { });
+
+    public static DelegateCommand CantExecute => new DelegateCommand(o => { }, NeverCanExecute );
 }

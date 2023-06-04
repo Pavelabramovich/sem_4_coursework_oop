@@ -180,7 +180,7 @@ class RegistrationViewModel : SwitchebleViewModel
 
 
 
-    public ICommand BackCommand => new DelegateCommand(o =>
+    public override ICommand BackCommand => new DelegateCommand(o =>
     {
         UpdatePage(new AuthorizationViewModel());
         SwitchToPage<AuthorizationViewModel>();

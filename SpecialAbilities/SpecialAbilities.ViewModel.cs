@@ -70,7 +70,7 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
 
     public ICommand ChangeProductsCommand => _strategy.ChangeProductsCommand;
 
-    public ICommand BackCommand => _strategy.BackCommand;
+    public override ICommand BackCommand => _strategy.BackCommand;
 
 
 

@@ -48,7 +48,7 @@
                 Margin="15,25,0,15">
 
                 <Image 
-                    Source="E:\NewRepos\CourseProjectOpp\Resources\small_logo_negative.png" 
+                    Source="E:\NewRepos\CourseProjectOpp\Resources\Images\small_logo_negative.png" 
                     Height="60" 
                     Width="60"/>
 
@@ -262,7 +262,8 @@
                     </Grid.RowDefinitions>
 
                     <Image
-                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\coffin.png" />
+                        Margin="30"
+                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\flowers.png" />
 
                     <TextBlock
                         Style="{StaticResource ProductButtonText}"
@@ -289,6 +290,11 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
+                    <Image
+                        Margin="30"
+                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\candles.png" />
+
+
                     <TextBlock
                         Style="{StaticResource ProductButtonText}"
                         Grid.Row="1"
@@ -310,6 +316,11 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
+
+                    <Image
+                        Margin="24,24,24,18"
+                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\wreath.png" />
+
 
                     <TextBlock
                         Style="{StaticResource ProductButtonText}"
@@ -333,6 +344,10 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
+                    <Image
+                        Margin="30"
+                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\coffin.png" />
+
                     <TextBlock
                         Style="{StaticResource ProductButtonText}"
                         Grid.Row="1"
@@ -355,6 +370,10 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
+                    <Image
+                        Margin="30"
+                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\fence.png" />
+
                     <TextBlock
                         Style="{StaticResource ProductButtonText}"
                         Grid.Row="1"
@@ -376,6 +395,10 @@
                         <RowDefinition Height="4*"/>
                         <RowDefinition />
                     </Grid.RowDefinitions>
+                    
+                    <Image
+                        Margin="20"
+                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\tombstone.png" />
 
                     <TextBlock
                         Style="{StaticResource ProductButtonText}"

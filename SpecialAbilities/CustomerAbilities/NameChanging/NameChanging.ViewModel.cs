@@ -73,4 +73,6 @@ public class NameChangingViewModel : SwitchebleViewModel
 
         NewName = string.Empty;
     });
+
+    public override ICommand BackCommand => CancelCommand;
 }
