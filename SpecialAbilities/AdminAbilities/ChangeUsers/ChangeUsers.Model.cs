@@ -25,11 +25,14 @@ public class ChangeUsersModel
 
     public int GetDiscount(string login) => _userDb.GetDiscount(login);
 
+    public string GetAvatar(string login) => _userDb.GetAvatar(login);
 
-    public void UpdateUser(string login, string newName, UserRole newRole, int newDiscount)
+
+    public void UpdateUser(string login, string newName, UserRole newRole, int newDiscount, string newAvatarPath)
     {
         _userDb.UpdateName(login, newName);
         _userDb.UpdateRole(login, newRole);
         _userDb.UpdateDiscount(login, newDiscount);
+        _userDb.UpdateAvatar(login, newAvatarPath);
     }
 }

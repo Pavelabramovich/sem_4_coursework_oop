@@ -9,7 +9,11 @@
     mc:Ignorable="d"
     Title="MainWindow" Height="450" Width="786"
     xmlns:System="clr-namespace:System;assembly=mscorlib"
-    WindowStyle="None">
+    
+    WindowStyle="None"
+    WindowState="Maximized"
+      
+    >
 
     <Window.DataContext>
         <local:WindowViewModel/>
@@ -70,29 +74,78 @@
 
     </Window.Resources>
 
-    <Border
-        BorderBrush="#101010"
-        BorderThickness="5">
 
+    <Border>
         <Border.Background>
-            <LinearGradientBrush
-                StartPoint="0,0"
-                EndPoint="1,1">
-
-                <GradientStop Color="#101010" Offset="0" />
-                <GradientStop Color="#303030" Offset="0.75" />
-                <GradientStop Color="#101010" Offset="1" />
-
-            </LinearGradientBrush>
+            <ImageBrush ImageSource="E:\NewRepos\CourseProjectOpp\Resources\Images\fon.jpg"/>
         </Border.Background>
-        
-        <Grid
-            
-            
-            >
-            <ContentControl Content="{Binding CurrentViewModel}"/>
-        </Grid>
+
+
+        <Border
+            BorderBrush="#101010"
+            BorderThickness="7" >
+
+            <Border.Background>
+                <LinearGradientBrush
+                    StartPoint="0,0"
+                    EndPoint="1,1"
+                    Opacity="0.85">
+
+                    <GradientStop Color="#101010" Offset="0" />
+                    <GradientStop Color="#303030" Offset="0.75" />
+                    <GradientStop Color="#101010" Offset="1" />
+
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="3"/>
+                </Grid.ColumnDefinitions>
+
+                <Border
+                    Grid.ColumnSpan="4"
+                    Background="#101010" 
+                    Opacity="0.9"/>
+
+                <Button
+                    x:Name="btnMinimize"                   
+                    Content="-"    
+                    FontSize="16"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Grid.Column="1"
+                    Click="btnMinimize_Click"
+                    Style="{StaticResource MininizeButtonStyle}" Margin="5,5,5,5" />
+
+                <Button
+                    x:Name="btnClose"
+                    Content="X"
+                    FontSize="16"
+                    FontFamily="Montserrat"
+                    Cursor="Hand"
+                    Grid.Column="2"
+                    Click="btnClose_Click"
+                    Style="{StaticResource CloseButtonStyle}" Margin="5,5,5,5" />
+
+                <ContentControl
+                    Opacity="1"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="4"
+                    Content="{Binding CurrentViewModel}"/>
+
+            </Grid>
+        </Border>
+
     </Border>
 
-    
+
 </Window>

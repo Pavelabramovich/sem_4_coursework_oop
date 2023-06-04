@@ -1,7 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,7 +21,10 @@ namespace CourseProjectOpp;
 
 public partial class ChangeUsersView : UserControl
 {
-    public ChangeUsersView() => InitializeComponent();
+    public ChangeUsersView()
+    {
+        InitializeComponent();
+    }
 
 
 
@@ -31,4 +36,42 @@ public partial class ChangeUsersView : UserControl
             model.Discount = upDown.Value ?? 0;
         }
     }
+
+    private void btnOpen_Click(object sender, RoutedEventArgs e)
+    {
+        OpenFileDialog op = new OpenFileDialog();
+        op.Title = "Select a picture";
+        op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+          "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+          "Portable Network Graphic (*.png)|*.png";
+
+        if (op.ShowDialog() == true)
+        {
+            string filePath = op.FileName;
+
+            if (sender is Button btn &&
+                btn.Parent is StackPanel stackPanel &&
+                stackPanel.DataContext is UserModel model)
+            {
+                model.AvatarPath = filePath;
+            }
+        }
+    }
+
+
+    //public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
+    //{
+    //    var itemsSource = grid.ItemsSource;
+
+    //    if (itemsSource is null) 
+    //        yield return null;
+
+    //    foreach (var item in itemsSource)
+    //    {
+    //        var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+
+    //        if (row is not null) 
+    //            yield return row;
+    //    }
+    //}
 }

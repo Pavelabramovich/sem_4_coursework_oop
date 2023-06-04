@@ -17,7 +17,9 @@ public class UserModel : ObservableObject
 
     private int _discount;
 
-    public UserModel(string login, string name, UserRole role, int discount)
+    private string _avatarPath;
+
+    public UserModel(string login, string name, UserRole role, int discount, string avatarPath)
     {
         _login = login;
 
@@ -25,6 +27,8 @@ public class UserModel : ObservableObject
         _role = role;
 
         _discount = discount;
+
+        _avatarPath = avatarPath;
     }
 
     public string Login => _login;
@@ -67,6 +71,19 @@ public class UserModel : ObservableObject
             OnPropertyChanged();
         }
     }
+
+    public string AvatarPath
+    {
+        get => _avatarPath;
+        set
+        {
+            if (_avatarPath == value)
+                return;
+
+            _avatarPath = value;
+            OnPropertyChanged();
+        }
+    }
 }
 
 public class ChangeUsersViewModel : SwitchebleViewModel
@@ -97,7 +114,7 @@ public class ChangeUsersViewModel : SwitchebleViewModel
     {
         foreach (var model in Users)
         {
-            _model.UpdateUser(model.Login, model.Name, model.Role, model.Discount);
+            _model.UpdateUser(model.Login, model.Name, model.Role, model.Discount, model.AvatarPath); ;
         }
 
         SwitchToPage<SpecialAbilitiesViewModel>();
@@ -107,6 +124,6 @@ public class ChangeUsersViewModel : SwitchebleViewModel
 
     private UserModel CreateUserModel(string login)
     {
-        return new UserModel(login, _model.GetName(login), _model.GetRole(login), _model.GetDiscount(login));
+        return new UserModel(login, _model.GetName(login), _model.GetRole(login), _model.GetDiscount(login), _model.GetAvatar(login));
     }
 }

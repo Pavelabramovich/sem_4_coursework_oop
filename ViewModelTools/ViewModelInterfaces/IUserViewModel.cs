@@ -11,6 +11,8 @@ public interface IUserViewModel
 {
     string Name { get; }
 
+    string AvatarPath { get; }
+
     ICommand AuthorizationCommand { get; }
 
     ICommand ToOrdersCommand { get; }

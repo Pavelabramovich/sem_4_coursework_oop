@@ -17,6 +17,9 @@ public abstract class BaseUserViewModel : SwitchebleViewModel, IUserViewModel
     }
 
     public abstract string Name { get; }
+
+    public abstract string AvatarPath { get; }
+     
     public abstract ICommand AuthorizationCommand { get; }
 
     public abstract ICommand ToOrdersCommand { get; }

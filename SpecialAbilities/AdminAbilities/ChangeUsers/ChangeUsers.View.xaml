@@ -19,6 +19,10 @@
                 <x:Type TypeName="local:UserRole"/>
             </ObjectDataProvider.MethodParameters>
         </ObjectDataProvider>
+
+        <local:AvatarPathToSourceConverter x:Key="avatarToSource" />
+        <local:LoginToColorConverter x:Key="loginToColor" />
+        <local:LoginIsAdminConverter x:Key="loginIsAdmin" />
     </UserControl.Resources>
     
     <Grid>
@@ -47,6 +51,7 @@
             Content="Save changes"/>
 
         <DataGrid
+            x:Name="userTable"
             Grid.Row="1"
             Grid.Column="1"
             ItemsSource="{Binding Users, Mode=TwoWay}"
@@ -68,6 +73,48 @@
                         ValueChanged="IntegerUpDown_ValueChanged"/>
       
                 </DataTemplate>
+
+                <DataTemplate x:Key="AvatarTemplate" >
+                    <StackPanel>
+
+                        <Ellipse
+                            Height="100"
+                            Width="100" >
+
+                            <Ellipse.Fill>
+                                <DrawingBrush>
+                                    <DrawingBrush.Drawing>
+                                        <DrawingGroup>
+                                            <GeometryDrawing Brush="{Binding Login, Converter={StaticResource loginToColor}}">
+                                                <GeometryDrawing.Geometry>
+                                                    <GeometryGroup>
+                                                        <RectangleGeometry Rect="0,0,100,100" />
+
+                                                    </GeometryGroup>
+                                                </GeometryDrawing.Geometry>
+                                            </GeometryDrawing>
+
+                                            <ImageDrawing
+                                                ImageSource="{Binding AvatarPath, Converter={StaticResource avatarToSource}}"
+                                                Rect="0,0,100,100"/>
+                                            
+                                        </DrawingGroup>
+                                    </DrawingBrush.Drawing>
+                                </DrawingBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+
+                        <TextBlock 
+                            Text="{Binding AvatarPath}" 
+                            FontSize="8" 
+                            FontWeight="Bold" 
+                            HorizontalAlignment="Center" />
+
+                        <Button
+                            Click="btnOpen_Click" />
+
+                    </StackPanel>
+                </DataTemplate>
             </DataGrid.Resources>
 
 
@@ -79,11 +126,16 @@
                 <DataGridComboBoxColumn
                     Header="Role"
                     SelectedItemBinding="{Binding Role}"
-                    ItemsSource="{Binding Source={StaticResource roleValues}}" />
+                    ItemsSource="{Binding Source={StaticResource roleValues}}"
+                    />
 
                 <DataGridTemplateColumn 
                     Header="Discount" 
                     CellTemplate="{StaticResource DiscountTemplate}" />
+
+                <DataGridTemplateColumn 
+                    Header="Avatar" 
+                    CellTemplate="{StaticResource AvatarTemplate}" />
 
             </DataGrid.Columns>
 

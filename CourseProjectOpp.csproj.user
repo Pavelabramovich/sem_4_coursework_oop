@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="CustomMessageBox\CustomMessageBox.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Orders\Orders.View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -30,6 +33,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="CustomMessageBox\CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Orders\Orders.View.xaml">
       <SubType>Designer</SubType>
     </Page>

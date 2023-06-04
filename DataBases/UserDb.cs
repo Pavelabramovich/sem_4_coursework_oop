@@ -20,7 +20,7 @@ public class User
 {
     [PrimaryKey, Indexed]
     [Column("Login")]
-    public string Login { get; set; } 
+    public string Login { get; set; }
     [Column("Password")]
     public string Password { get; set; }
 
@@ -32,6 +32,9 @@ public class User
 
     [Column("Discount")]
     public int Discount { get; set; }
+
+    [Column("AvatarPath")]
+    public string AvatarPath { get; set; } = @"E:\NewRepos\CourseProjectOpp\Resources\Images\avatar_default.jpg";
 }
 
 
@@ -64,6 +67,7 @@ public class UserDb : IDisposable
     public void UpdateName(string login, string newName) => _conn.ExecuteScalar<string>($"UPDATE Users SET Name = '{newName}' WHERE Login = '{login}'");
     public void UpdateRole(string login, UserRole newRole) => _conn.ExecuteScalar<string>($"UPDATE Users SET Role = '{newRole}' WHERE Login = '{login}'");
     public void UpdateDiscount(string login, int newDiscount) => _conn.ExecuteScalar<string>($"UPDATE Users SET Discount = '{newDiscount}' WHERE Login = '{login}'");
+    public void UpdateAvatar(string login, string avatarPath) => _conn.ExecuteScalar<string>($"UPDATE Users SET AvatarPath = '{avatarPath}' WHERE Login = '{login}'");
 
     public IEnumerable<string> Logins => _conn.Table<User>().Select(x => x.Login);
 
@@ -94,6 +98,9 @@ public class UserDb : IDisposable
     public string GetName(string login) => _conn.ExecuteScalar<string>($"SELECT Name FROM Users WHERE Login = '{login}'");
 
     public UserRole GetRole(string login) => _conn.ExecuteScalar<UserRole>($"SELECT Role FROM Users WHERE Login = '{login}'");
+
+    public string GetAvatar(string login) => _conn.ExecuteScalar<string>($"SELECT AvatarPath FROM Users WHERE Login = '{login}'");
+
 
     public int GetDiscount(string login) => _conn.ExecuteScalar<int>($"SELECT Discount FROM Users WHERE Login = '{login}'");
 

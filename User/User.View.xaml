@@ -7,10 +7,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d" 
-    d:DesignHeight="450" d:DesignWidth="800" >
+    d:DesignHeight="450" d:DesignWidth="800"
+    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
+        <local:AvatarPathToSourceConverter x:Key="avatarToSource" />
+        <local:LoginToColorConverter x:Key="loginToColor" />
+        <local:LoginIsAdminConverter x:Key="loginIsAdmin" />
     </UserControl.Resources>
 
     <Grid>
@@ -21,73 +25,375 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="280"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Button 
-            Content="Flowers" 
-            HorizontalAlignment="Center" 
-            Height="114" VerticalAlignment="Center" 
-            Width="181"
+        <Border
+            CornerRadius="10,0,0,10"
             Grid.Column="0"
-            Grid.Row="1"
-            Command="{Binding ToFlowersCommand}"/>
-
-        <WrapPanel
-            Grid.ColumnSpan="3"
-            ItemHeight="50"
-            ItemWidth="100">
-
-            <Button 
-                Background="DarkGreen" 
-                Content="Special abilities"
-                Click="AnonymousWarning"
-                Command="{Binding ToSpecialAbilitiesCommand}"/>
+            Grid.Row="0"
+            Grid.RowSpan="3"
             
-            <Button 
-                Background="LightGreen" 
-                Content="My orders"
-                Command="{Binding ToOrdersCommand}"
-                Click="AnonymousWarning"/>
+            Background="#151515">
 
-            <Button 
-                Background="RosyBrown" 
+        </Border>
+
+        <StackPanel
+            Grid.RowSpan="3">
+
+            <StackPanel
+                Orientation="Horizontal"
+                Height="60"
+                Margin="15,25,0,15">
+
+                <Image 
+                    Source="E:\NewRepos\CourseProjectOpp\Resources\small_logo_negative.png" 
+                    Height="60" 
+                    Width="60"/>
+
+                <TextBlock
+                    Text="Sunflower"
+                    Foreground="White"
+                    FontSize="26"
+                    FontFamily="Montserrat"
+                    FontWeight="Medium"
+                    VerticalAlignment="Center"
+                    Margin="15,0,0,0" />
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <Ellipse
+                    Height="37"
+                    Width="37" 
+                    Margin="25,15,10,15">
+
+                    <Ellipse.Fill>
+                        <DrawingBrush>
+                            <DrawingBrush.Drawing>
+
+                                <DrawingGroup>
+
+                                    <GeometryDrawing Brush="{Binding Path=DataContext.Color, 
+                                                                     ElementName=root}">
+                                        <GeometryDrawing.Geometry>
+                                            <GeometryGroup>
+                                                <RectangleGeometry Rect="0,0,100,100" />
+                                            </GeometryGroup>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+
+                                    <ImageDrawing
+                                        ImageSource="{Binding AvatarPath, Converter={StaticResource avatarToSource}}"
+                                        Rect="0,0,100,100"/>
+
+                                </DrawingGroup>
+                            </DrawingBrush.Drawing>
+                        </DrawingBrush>
+                    </Ellipse.Fill>
+
+                    <Ellipse.Style>
+                        <Style TargetType="Ellipse">
+                            <Style.Triggers>
+                                <DataTrigger 
+                                    Binding="{Binding Path=DataContext.Login, 
+                                                      ElementName=root}"
+                                    
+                                    Value="">
+
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+
+
+                </Ellipse>
+
+
+                <TextBlock
+                    Style="{StaticResource NameText}"
+                    Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                    Margin="10,20,20,20"/>
+
+            </StackPanel>
+
+
+
+
+
+            <Button
+                Style="{StaticResource MenuButtonStyle}"
+                Tag="#F65555"
                 Command="{Binding AuthorizationCommand}">
 
-                <!-- Content = IsAnonymous ? "Sign In" : "Sign Out" -->
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsAnonymous}" Value="True">
-                                <Setter Property="Content" Value="Sign In"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding IsAnonymous}" Value="False">
-                                <Setter Property="Content" Value="Sign Out"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+
+                        <fa:IconImage 
+                            Icon="Key" 
+                            Style="{StaticResource menuButtonIcon}"/>
+
+                        <TextBlock >
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource MenuButtonText}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsAnonymous}" Value="True">
+                                            <Setter Property="Text" Value="Sign In"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding IsAnonymous}" Value="False">
+                                            <Setter Property="Text" Value="Sign Out"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+
+                    </StackPanel>
+
+                    <TextBlock
+                        Text=""
+                        Style="{StaticResource MenuButtonText}" Height="70" Margin="-62,0,-208,0"/>
+                </Grid>
+
             </Button>
 
-        </WrapPanel>
+            <Button
+                Style="{StaticResource MenuButtonStyle}"
+                Tag="#2D9EE9"
+                Command="{Binding ToOrdersCommand}"
+                Click="AnonymousWarning">
+
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+
+                        <fa:IconImage 
+                            Icon="Scroll" 
+                            Style="{StaticResource menuButtonIcon}"/>
+
+                        <TextBlock
+                            Text="Orders"
+                            Style="{StaticResource MenuButtonText}"/>
+
+                    </StackPanel>
+
+                    <TextBlock
+                        Text=""
+                        Style="{StaticResource MenuButtonText}" Height="70" Margin="-62,0,-156,0"/>
+                    
+                </Grid>
+            </Button>
+
+            <Button
+                Style="{StaticResource MenuButtonStyle}"
+                Tag="DarkGreen"
+                Command="{Binding ToSpecialAbilitiesCommand}"
+                Click="AnonymousWarning">
+
+                <Grid>
+                    <StackPanel Orientation="Horizontal">
+
+                        <fa:IconImage 
+                            Icon="Marker" 
+                            Style="{StaticResource menuButtonIcon}"/>
+
+                        <TextBlock
+                            Text="Special abilities"
+                            Style="{StaticResource MenuButtonText}"/>
+
+                    </StackPanel>
+
+                    <TextBlock
+                        Text=""
+                        Style="{StaticResource MenuButtonText}" Height="70" Margin="-62,0,-87,0"/>
+
+                </Grid>
+            </Button>
 
 
-        <Button 
-            Content="Button" 
-            HorizontalAlignment="Left" 
-            Margin="76,324,0,0" 
-            VerticalAlignment="Top" />
+        </StackPanel>
 
-        <TextBox 
-            IsReadOnly="True"
-            HorizontalAlignment="Left" 
-            Margin="134,55,0,0" 
-            TextWrapping="Wrap" 
-            Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-            VerticalAlignment="Top" 
-            Width="120" Grid.Column="2"/>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            Grid.RowSpan="3">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="74*" />
+                <RowDefinition Height="74*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="12*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.ColumnSpan="3"
+                Text="Catalog" 
+                Foreground="White"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Margin="63,30,10,10"
+                FontSize="35"
+                FontFamily="Montserrat"
+                FontWeight="Bold"/>
+
+
+
+            <Button 
+                
+                Style="{StaticResource ProductButtonStyle}"
+                Margin="60,30,30,30"
+                
+               
+                Grid.Column="0"
+                Grid.Row="1"
+                Command="{Binding ToFlowersCommand}">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Image
+                        Source="E:\NewRepos\CourseProjectOpp\Resources\Images\coffin.png" />
+
+                    <TextBlock
+                        Style="{StaticResource ProductButtonText}"
+                        Grid.Row="1"
+                        Text="Flowers"
+                        HorizontalAlignment="Center"/>
+
+
+                </Grid>
+                
+                
+            </Button>
+
+            <Button
+                Margin="30"
+                Style="{StaticResource ProductButtonStyle}"
+ 
+                Grid.Column="1"
+                Grid.Row="1" >
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Style="{StaticResource ProductButtonText}"
+                        Grid.Row="1"
+                        Text="Candles"
+                        HorizontalAlignment="Center"/>
+
+                </Grid>
+            </Button>
+
+            <Button
+                Margin="30,30,60,30"
+                Style="{StaticResource ProductButtonStyle}"
+    
+                Grid.Column="2"
+                Grid.Row="1" >
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Style="{StaticResource ProductButtonText}"
+                        Grid.Row="1"
+                        Text="Wreaths"
+                        HorizontalAlignment="Center"/>
+
+                </Grid>
+            </Button>
+
+            <Button
+                Margin="60,30,30,30"
+                Style="{StaticResource ProductButtonStyle}"
+        
+                Grid.Column="0"
+                Grid.Row="2" >
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Style="{StaticResource ProductButtonText}"
+                        Grid.Row="1"
+                        Text="Coffins"
+                        HorizontalAlignment="Center"/>
+
+                </Grid>
+            </Button>
+
+            <Button
+                Margin="30"
+                Style="{StaticResource ProductButtonStyle}"
+             
+                Grid.Column="1"
+                Grid.Row="2" >
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Style="{StaticResource ProductButtonText}"
+                        Grid.Row="1"
+                        Text="Fences"
+                        HorizontalAlignment="Center"/>
+
+                </Grid>
+            </Button>
+
+            <Button
+                Margin="30,30,60,30"
+                Style="{StaticResource ProductButtonStyle}"
+         
+                Grid.Column="2"
+                Grid.Row="2">
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Style="{StaticResource ProductButtonText}"
+                        Grid.Row="1"
+                        Text="Tombstones"
+                        HorizontalAlignment="Center"/>
+
+                </Grid>
+            </Button>
+
+
+
+
+
+
+        </Grid>
+        
+       
 
     </Grid>
 

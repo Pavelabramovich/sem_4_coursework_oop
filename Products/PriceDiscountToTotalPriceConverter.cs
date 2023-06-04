@@ -26,5 +26,4 @@ public class PriceDiscountToTotalPriceConverter : IMultiValueConverter
     {
         throw new NotImplementedException();
     }
-
 }

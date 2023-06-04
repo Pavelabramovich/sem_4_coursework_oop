@@ -20,6 +20,9 @@ public class AnonymousViewModel : BaseUserViewModel, IUserViewModel
 
     public override string Name => string.Empty;
 
+    public override string AvatarPath => string.Empty;
+
+
     public override ICommand ToOrdersCommand => DelegateCommand.DoNothing;
 
     public override ICommand ToFlowersCommand => new DelegateCommand(o =>

@@ -30,6 +30,36 @@ public class UserViewModel : SwitchebleViewModel
         get => _strategy.Name;
     }
 
+    public string Login
+    {
+        get
+        {
+            if (_strategy is CustomerViewModel customer)
+            {
+                return customer.Login;
+            }
+            else
+                return string.Empty;
+        }
+        set
+        {
+
+        }
+    }
+
+    public string Color
+    {
+        get
+        {
+            var converter = new LoginToColorConverter();
+
+            return (string)converter.Convert(Login, null, null, null);
+        }
+    }
+
+
+    public string AvatarPath => _strategy.AvatarPath;
+
     public bool IsAuthorized => _strategy is CustomerViewModel;
     public bool IsAnonymous => _strategy is AnonymousViewModel;
 
