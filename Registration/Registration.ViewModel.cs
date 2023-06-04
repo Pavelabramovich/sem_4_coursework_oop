@@ -191,6 +191,11 @@ class RegistrationViewModel : SwitchebleViewModel
 
     public ICommand RegistrationCommand => new DelegateCommand(o =>
     {
+        InvalidLoginWarning = string.Empty;
+        InvalidNameWarning = string.Empty;
+        InvalidPasswordWarning = string.Empty;
+        InvalidRepeatedPasswordWarning = string.Empty;
+
         var loginValidator = new LoginValidator();
         var res = loginValidator.IsValid(Login);
 
@@ -211,7 +216,7 @@ class RegistrationViewModel : SwitchebleViewModel
 
         if (!res)
         {
-            _invalidNameWarning = res.Message!;
+            InvalidNameWarning = res.Message!;
             return;
         }
 

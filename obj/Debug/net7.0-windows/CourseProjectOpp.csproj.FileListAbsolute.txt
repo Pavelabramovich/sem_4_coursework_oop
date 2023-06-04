@@ -60,7 +60,6 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\App.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\GeneratedInternalTypeHelper.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp_MarkupCompile.cache
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp_MarkupCompile.lref
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\App.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Authorization\Authorization.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CustomMessageBox\CustomMessageBox.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Orders\Orders.View.baml
@@ -84,3 +83,6 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\refint\CourseProjectOpp.dl
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.pdb
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.genruntimeconfig.cache
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\ref\CourseProjectOpp.dll
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\App.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CreatingOrder\CreatingOrder.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CreatingOrder\CreatingOrder.baml

@@ -130,7 +130,21 @@
                         ValueChanged="IntegerUpDown_ValueChanged"/>
 
                 </DataTemplate>
-                
+
+                <DataTemplate x:Key="DescriptionTemplate" >
+                    <TextBox
+                        Text="{Binding Description, Mode=TwoWay}"
+                        TextWrapping="Wrap"
+                        AcceptsReturn="True" 
+                        AcceptsTab="True" 
+                        HorizontalScrollBarVisibility="Disabled"
+                        TextChanged="TextBox_TextChanged"
+                        MaxLines="10"
+                        Height="250"
+                        Width="250">
+                    </TextBox>
+                </DataTemplate>
+
             </DataGrid.Resources>
 
             <DataGrid.Columns>
@@ -138,9 +152,9 @@
                     Header="Name" 
                     Binding="{Binding Name}"/>
 
-                <DataGridTextColumn 
+                <DataGridTemplateColumn
                     Header="Description" 
-                    Binding="{Binding Description}"/>
+                    CellTemplate="{StaticResource DescriptionTemplate}" />
 
                 <DataGridTemplateColumn
                     Header="Price"

@@ -92,7 +92,21 @@
                     Background="#FF698EF1" 
                     BorderBrush="{x:Null}"       
                     Foreground="White" 
-                    Height="20"/>
+                    Height="20">
+
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource baseButtonStyle}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF698EF1" />
+                                    <Setter Property="Foreground" Value="LightGray" />
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    
+                </Button>
 
                 <Button 
                     Name="btnCancel" 
@@ -106,7 +120,21 @@
                     Click="BtnCancel_Click"  
                     Background="#FFE60000" 
                     BorderBrush="{x:Null}"            
-                    Foreground="White"/>
+                    Foreground="White">
+
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource baseButtonStyle}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF698EF1" />
+                                    <Setter Property="Foreground" Value="LightGray" />
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
 
             </Grid>
         </Grid>

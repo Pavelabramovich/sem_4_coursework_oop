@@ -69,6 +69,11 @@ public class ProductsViewModel : SwitchebleViewModel
         }
     }
 
+    public int Discount
+    {
+        get => _login is null ? 0 : _model.GetDiscount(_login);
+    }
+
     public bool IsCreatingOrder
     {
         get => _isCreatingOrder;
@@ -147,7 +152,7 @@ public class ProductsViewModel : SwitchebleViewModel
             return;
 
         if (CurrentProduct is null)
-            throw null;
+            throw new ArgumentNullException("Current product is null");
 
         _model.AddOrder(_login, CurrentProduct.Name, Count, CardNumber);
 

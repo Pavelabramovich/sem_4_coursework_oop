@@ -7,11 +7,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserControl = System.Windows.Controls.UserControl;
 
 namespace CourseProjectOpp;
 
@@ -19,11 +21,18 @@ public partial class ProductsView : UserControl
 {
     public ProductsView() => InitializeComponent();
 
-    public void AnonymousWarning(object sender, RoutedEventArgs e)
+
+    public void CreateOrder(object sender, RoutedEventArgs e)
     {
         if (DataContext is not null and ProductsViewModel viewModel && viewModel.IsAnonymous)
         {
-            MessageBox.Show("Please login first", "Warning", MessageBoxButton.OK);
+            DialogResult res = CustomMessageBox.Show(
+              "Warning",
+              "Please login first",
+              CustomMessageBox.CMessageTitle.Warning,
+              CustomMessageBox.CMessageButton.Ok);
+
+            return;
         }
     }
 }

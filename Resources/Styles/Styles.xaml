@@ -16,6 +16,22 @@
         </Setter>
     </Style>
 
+    <Style x:Key="basePasswordBoxStyle" TargetType="PasswordBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Border
+                        Padding="20,0,0,0" >
+
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                        
+                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <Style 
         x:Key="windowButtonStyle" 
@@ -118,6 +134,8 @@
         
         <Setter Property="Foreground" Value="White" />
 
+        
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -136,6 +154,11 @@
         </Setter>
 
         <Style.Triggers>
+            <!--<EventTrigger 
+                RoutedEvent="Button.SizeChanged">
+                <SoundPlayerAction Source="E:\NewRepos\CourseProjectOpp\Resources\Sounds\menu_button_choiced.wav" />
+            </EventTrigger>-->
+
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Margin" Value="0,0,0,7" />
                 <Setter 
@@ -145,6 +168,7 @@
                     Property="BorderBrush" 
                     Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
                 <Setter Property="Cursor" Value="Hand" />
+                
             </Trigger>
 
             <Trigger Property="IsPressed" Value="True">
@@ -157,7 +181,11 @@
                     Property="BorderBrush" 
                     Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}" />
             </Trigger>
+
+           
+
         </Style.Triggers>
+        
     </Style>
 
     <Style x:Key="menuButtonIcon" TargetType="fa:IconImage">
@@ -356,13 +384,13 @@
                                     <Setter 
                                         Property="Icon" 
                                         Value="EyeSlash" />
-                                    
+
                                     <Style.Triggers>
                                         <DataTrigger 
                                             Binding="{Binding IsChecked, 
                                                               RelativeSource={RelativeSource AncestorType={x:Type CheckBox}}}"
                                             Value="True">
-                                            
+
                                             <Setter 
                                                 Property="Icon" 
                                                 Value="Eye" />
@@ -375,22 +403,81 @@
                                 </Style>
                             </fa:IconImage.Style>
                         </fa:IconImage>
-                        
+
                         <ContentPresenter 
                             Content="{TemplateBinding Content}" 
                             Margin="5,0,0,0" />
-                        
+
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
-        <!--<fa:IconImage 
-                        Icon="Key"-->
-
     </Style>
 
 
+    <Style TargetType="Border" x:Key="RacePitBorderStyle" >
+        <Style.Resources>
+            <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#303030" Offset="0.1" />
+                <GradientStop Color="#606060" Offset="0.9" />
+            </LinearGradientBrush>
+        </Style.Resources>
+        <Setter Property="Background" Value="{StaticResource BackBrush}"/>
+        <Setter Property="BorderBrush" Value="#252525" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="3"/>
+    </Style>
+
+    <DataTemplate x:Key="titleText">
+        <Border Style="{StaticResource RacePitBorderStyle}" Height="60">
+            <StackPanel Orientation="Horizontal">
+
+            <fa:IconImage 
+                Margin="10"
+                Foreground="White"
+                Height="20"
+                Width="20"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Icon="{Binding
+                RelativeSource={RelativeSource
+                Mode=FindAncestor,
+                AncestorType={x:Type Expander}},
+                Path=Tag}"/>
+
+            <TextBlock 
+                Text="{Binding}" 
+                Margin="10"
+                VerticalAlignment="Center"
+                Foreground="White"
+                FontSize="20"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                    
+                Width="{Binding
+                RelativeSource={RelativeSource
+                Mode=FindAncestor,
+                AncestorType={x:Type Expander}},
+                Path=ActualWidth}"
+                TextWrapping="Wrap"/>
+            
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+
+    <Style TargetType="{x:Type Expander}" x:Key="exp">
+        <Style.Resources>
+            <LinearGradientBrush x:Key="BackBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+                <GradientStop Color="#303030" Offset="0.1" />
+                <GradientStop Color="#505050" Offset="0.9" />
+            </LinearGradientBrush>
+        </Style.Resources>
+        
+        
+        <Setter Property="HeaderTemplate" Value="{StaticResource titleText}"/>
+        <Setter Property="Background" Value="{StaticResource BackBrush}" />
+    </Style>
 
 
 

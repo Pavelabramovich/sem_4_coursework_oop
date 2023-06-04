@@ -8,20 +8,27 @@ using System.Windows.Data;
 
 namespace CourseProjectOpp;
 
-public class DiscountToPrecentsConverter : IValueConverter
+public class DiscountToPrecentsConverter : IMultiValueConverter
 {
-    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+    public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
     {
-        if (value is not Int32 num)
-            throw new ArgumentException("Value must be int");
+        if (values.Length == 2)
+        {
+            int productDiscount = (int)values[0];
+            int userDiscount = (int)values[1];
 
-        if (num == 0)
+            if (productDiscount + userDiscount == 0)
+            {
+                return string.Empty;
+            }
+
+            return $"-{Math.Min(100, productDiscount + userDiscount)}%";
+        }
+        else
             return string.Empty;
-
-        return $"-{num}%";
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
     {
         throw new NotImplementedException();
     }

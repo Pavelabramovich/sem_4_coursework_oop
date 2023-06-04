@@ -13,23 +13,24 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
         <local:DiscountToPrecentsConverter x:Key="discToPrecents" />
+        <local:DiscountsToIconConverter x:Key="discToIcon" />
         <local:PriceDiscountToTotalPriceConverter x:Key="totalPrice" />
     </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="94*" />
-            <RowDefinition Height="301*" />
-            <RowDefinition Height="55*" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="50" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="102*" />
-            <ColumnDefinition Width="635*" />
-            <ColumnDefinition Width="63*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Grid 
+        <!--<Grid 
             Margin="100,65,67,57" 
             Grid.Column="1" 
             Grid.Row="1"
@@ -87,19 +88,27 @@
                 Grid.Row="2" 
                 Command="{Binding OrderApprovalCommand}"/>
 
-        </Grid>
+        </Grid>-->
 
+        
         <ListBox
+            BorderBrush="Transparent"
+            Background="Transparent"
+            Grid.Column="1" 
+            Grid.Row="1"
             ItemsSource="{Binding Products}"
             ScrollViewer.CanContentScroll="False" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            Grid.Column="1" 
-            Grid.Row="1"
+            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+           
             SelectedItem="{Binding Path=DataContext.CurrentFlower, 
                                    ElementName=root, Mode=TwoWay}">
 
             <ListBox.Resources>
-                <Style TargetType="{x:Type Expander}">
+                <Style 
+                    TargetType="{x:Type Expander}" 
+                    x:Key="oneExpanded"
+                    BasedOn="{StaticResource exp}">
                     <Style.Setters>
                         <Setter
                             Property="IsExpanded"
@@ -110,103 +119,205 @@
                 </Style>
             </ListBox.Resources>
 
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+
             <ListBox.ItemTemplate>
                 <DataTemplate 
                     DataType="local:Flower">
 
                     <Expander
-                        Header="{Binding Name}" >
+                        
+                        HorizontalAlignment="Stretch" 
+                        Header="{Binding Name}"
+                        Style="{StaticResource oneExpanded}">
+                        
+                        <Expander.Tag>
+                            <MultiBinding
+			                    Converter="{StaticResource discToIcon}" >
+                                <Binding Path="Discount" />
+                                <Binding Path="DataContext.Discount" ElementName="root" />
+                            </MultiBinding>
+                        </Expander.Tag>
 
-                        <StackPanel>
+                        <Grid   
+                            Height="450"
+                            HorizontalAlignment="Stretch">
 
-                            <Image 
-                                Source="{Binding ImagePath}"
-                                Stretch="Fill"
-                                Margin="45"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
 
-                           
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
 
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
+
+                            <Border 
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                BorderThickness="5"
+                                BorderBrush="White">
+
+                                <Image 
+                                    Source="{Binding ImagePath}"
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    Stretch="Fill"/>
+
+                            </Border>
+
+                            <StackPanel
+                                Grid.Row="1"
+                                Grid.Column="1" >
+
+                                <Label
+                                     Margin="20,0,0,0">
+
+                                    <Border
+                                        Padding="50,9,50,9"
+                                        Background="Black"
+                                        CornerRadius="21">
+                                        
+                                        <TextBlock
+                                        
+                                            Text="{Binding Name}"
+                                            Foreground="White"
+                                            FontSize="22"
+                                            FontWeight="Light"
+                                            FontFamily="Montserrat"
+                                            HorizontalAlignment="Left"
+                                            />
+
+                                    </Border>
+
+                                </Label>
 
                                 <TextBlock
-                                    Grid.Column="0" >
-
-
-                                    <TextBlock.Text>
-                                        <MultiBinding
-			                                Converter="{StaticResource totalPrice}" >
-                                            <Binding Path="Price" />
-                                            <Binding Path="Discount" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-
-
-                                </TextBlock>
-
-                                <TextBlock
-                                    Grid.Column="1"
-                                    Text="{Binding Discount, 
-                                                   Converter={StaticResource discToPrecents}}"
-                                    TextDecorations="Strikethrough"
-                                    Foreground="Red">
-
-                                </TextBlock>
-
-
-
-                            </Grid>
-
-                            
-                            <!--<Grid>
-                                <ContentControl
-                                    >
-                                    <ContentControl.Style>
-                                        <Style>
-                                            <Style.Triggers>
-                                                <Trigger
-                                                    Property="Template">
-                                                    
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                        
-                                        
-                                    </ContentControl.Style>
-                                    
-                                    
-                                </ContentControl>
+                                    Text="{Binding Description}"
+                                    Foreground="White"
+                                    FontSize="15"
+                                    FontWeight="Medium"
+                                    FontFamily="Montserrat"
+                                    HorizontalAlignment="Left"
+                                    Margin="20,20,0,0"
+                                    Width="260"
+                                    Height="260"
+                                    TextWrapping="Wrap" />
                                 
-                            </Grid>-->
-                            
-                            
-                            <TextBlock Text="{Binding Description}"/>
+                            </StackPanel>
 
-                            <Button 
-                                Content="Order"
-                                Command="{Binding Path=DataContext.OrderCreatingCommand, 
-                                                  ElementName=root}"
+
+                            <StackPanel
+                                Orientation="Vertical"
+                                Grid.Row="2"
+                                Grid.Column="1"
+                                Margin="20,40,0,0">
+
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Margin="0,0,0,20">
+
+                                    <Button
+                                        Margin="10,-10,10,-10"
+                                        Content="ORDER"
+                                        BorderThickness="0"
+                                        Foreground="White"
+                                        FontSize="15"
+                                        FontFamily="Montserrat"
+                                        Cursor="Hand"                           
+                                        Command="{Binding Path=DataContext.OrderCreatingCommand, 
+                                                      ElementName=root}"
                                 
-                                Click="AnonymousWarning"/>
+                                        Click="CreateOrder">
 
-                        </StackPanel>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Setter Property="Background" Value="Crimson"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                        
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border 
+                                                    Width="150" Height="40"
+                                                    CornerRadius="20"
+                                                    Background="{TemplateBinding Background}">
 
+                                                    <ContentPresenter 
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Center"/>  
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Button.Template>
+
+                                    </Button>
+                                    
+                                    <TextBlock
+                                        FontSize="20"
+                                        FontWeight="Medium"
+                                        FontFamily="Montserrat"
+                                        Margin="15,5,0,0">
+
+                                        <TextBlock.Text>
+                                            <MultiBinding
+			                                    Converter="{StaticResource totalPrice}" >
+                                                <Binding Path="Price" />
+                                                <Binding Path="Discount" />
+                                                <Binding Path="DataContext.Discount" ElementName="root" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+
+                                    <TextBlock
+                                        TextDecorations="Strikethrough"
+                                        Foreground="Red"
+                                        FontSize="18"
+                                        FontWeight="Medium"
+                                        FontFamily="Montserrat"
+                                        Margin="10,6,0,0">
+
+                                        <TextBlock.Text>
+                                            <MultiBinding
+			                                Converter="{StaticResource discToPrecents}" >
+                                                <Binding Path="Discount" />
+                                                <Binding Path="DataContext.Discount" ElementName="root" />
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+
+                            </StackPanel>
+
+                        </Grid>
+
+                     
+                        
                     </Expander>
 
                 </DataTemplate>
             </ListBox.ItemTemplate>
-
         </ListBox>
-
-        <Button
-            Content="Back"
-            HorizontalAlignment="Left"
-            Padding="2" Width="39" Margin="27,21,0,47"
-            Command="{Binding BackCommand}"/>
-
     </Grid>
 
 </UserControl>
+
+<!--<Button 
+                                    Content="Order"
+                                    Command="{Binding Path=DataContext.OrderCreatingCommand, 
+                                                      ElementName=root}"
+                                
+                                    Click="AnonymousWarning"/>-->

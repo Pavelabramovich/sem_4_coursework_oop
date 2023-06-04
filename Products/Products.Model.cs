@@ -8,6 +8,7 @@ namespace CourseProjectOpp;
 
 public class ProductsModel
 {
+    private UserDb _userDb;
     private ProductsDb _productsDb;
     private OrdersDb _ordersDb;
 
@@ -15,9 +16,12 @@ public class ProductsModel
     {
         _productsDb = ProductsDb.Instance;
         _ordersDb = OrdersDb.Instance;
+        _userDb = UserDb.Instance;
     }
 
     public IEnumerable<Product> Products => _productsDb.Products;
+
+    public int GetDiscount(string login) => _userDb.GetDiscount(login);
 
     public IEnumerable<Product> GetProductsByType(ProductType type)
     {

@@ -7,7 +7,8 @@
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="800"
-    xmlns:i="http://schemas.microsoft.com/xaml/behaviors">
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
@@ -15,219 +16,444 @@
         <local:StringToCharEnumerableConverter x:Key="strToChars" />
     </UserControl.Resources>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="93*" />
-            <RowDefinition Height="254*" />
-            <RowDefinition Height="103*" />
-        </Grid.RowDefinitions>
-
+    <Grid Margin="0,0,0,-58">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="241*" />
-            <ColumnDefinition Width="311*" />
-            <ColumnDefinition Width="248*" />
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid
-            Grid.Row="1"
+        <StackPanel 
             Grid.Column="1"
-            Background="White">
+            Margin="0,35,0,0" >
 
-            <StackPanel 
-                Margin="10,10,10,10">
+            <Image
+                Height="120"
+                Width="120"
+                Source="E:\NewRepos\CourseProjectOpp\Resources\Images\small_logo_negative.png" />
 
-                <Label Content="Login"/>
+            <TextBlock
+                Text="Sunflower"
+                Foreground="White"
+                FontSize="25"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                HorizontalAlignment="Center" />
+
+            <TextBlock
+                Text="Only in our store the best"
+                Foreground="LightGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                HorizontalAlignment="Center" 
+                TextWrapping="Wrap"
+                Margin="0,5,0,0"/>
+            <TextBlock
+                Text="materials and the best employees"
+                Foreground="LightGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                HorizontalAlignment="Center" 
+                TextWrapping="Wrap" />
+
+            <TextBlock
+                Text="Login"
+                Foreground="DarkGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,28,0,0"/>
+
+            <Grid>
+                <fa:IconImage 
+                    Icon="User"
+                    Foreground="White"
+                    Height="14"
+                    Width="14"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    />
 
                 <TextBox 
-                    MaxLength="16"
-                    Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" />
-
-                <Label 
-                    Content="{Binding InvalidLoginWarning, UpdateSourceTrigger=PropertyChanged}"
-                    FontSize="10"
-                    Foreground="Red"/>
-
-
-                <Label Content="Name"/>
-
-                <TextBox 
-                    MaxLength="16"
-                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
-
-                <Label 
-                    Content="{Binding InvalidNameWarning, UpdateSourceTrigger=PropertyChanged}"
-                    FontSize="10"
-                    Foreground="Red"/>
-
-                <Label Content="Password" />
-
-                <DockPanel 
-                    LastChildFill="True">
-
-                    <CheckBox
-                        x:Name="hidePasswordCheckBox"             
-                        DockPanel.Dock="Right" />
-
-                    <Grid
-                        DockPanel.Dock="Left">
-
-                        <PasswordBox                         
-                            MaxLength="30" 
-                            PasswordChar="•" >
-
-                            <PasswordBox.Style>
-                                <Style
-                                    TargetType="PasswordBox">
-                                    <Style.Triggers>
-                                        <DataTrigger 
-                                            Binding="{Binding IsChecked, 
-                                                              ElementName=hidePasswordCheckBox}" 
-                                            Value="False">
-
-                                            <Setter 
-                                                Property="Visibility" 
-                                                Value="Visible" />
-
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </PasswordBox.Style>
-
-                            <i:Interaction.Behaviors>
-                                <local:PasswordBehavior 
-                                    SecurePassword="{Binding Password, 
-                                                             Mode=TwoWay, 
-                                                             UpdateSourceTrigger=PropertyChanged, 
-                                                             Converter={StaticResource secureStrToChars}}" />
-                            </i:Interaction.Behaviors>
-
-                        </PasswordBox>
-
-                        <TextBox
-                            Visibility="{Binding IsChecked, 
-                                                 ElementName=hidePasswordCheckBox, 
-                                                 Converter={StaticResource boolToVis}}">
-                            <TextBox.Style>
-                                <Style
-                                    TargetType="TextBox">
-                                    <Style.Triggers>
-                                        <Trigger
-                                            Property="Visibility"
-                                            Value="Visible">
-
-                                            <Setter
-                                                Property="Text"
-                                                Value="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
-                                                                Converter={StaticResource strToChars}}"
-                                                                />
+                    x:Name="loginTextBox" 
+                    Padding="20,0,0,0"
+                    MaxLength="20"
+                    FontSize="13"
+                    FontFamily="Montserrat"
+                    Foreground="White"
+                    CaretBrush="LightGray"
+                    BorderBrush="DarkGray"               
+                    BorderThickness="0,0,0,2"
+                    Background="Transparent"
+                    Height="21"
+                    VerticalAlignment="Center"
+                    Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="0,8,0,0" />
+            </Grid>
 
 
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                    </Grid>
-                </DockPanel>
-
-                <Label                   
-                    Content="{Binding InvalidPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="Red"
-                    FontSize="10"/>
-
-                <Label Content="Repeat password" />
-
-                <DockPanel 
-                    LastChildFill="True">
-
-                    <CheckBox
-                        x:Name="hideRepeatPasswordCheckBox"             
-                        DockPanel.Dock="Right" />
-
-                    <Grid
-                        DockPanel.Dock="Left">
-
-                        <PasswordBox                         
-                            MaxLength="16" 
-                            PasswordChar="•" >
-
-                            <PasswordBox.Style>
-                                <Style
-                                    TargetType="PasswordBox">
-                                    <Style.Triggers>
-                                        <DataTrigger 
-                                            Binding="{Binding IsChecked, 
-                                                              ElementName=hideRepeatPasswordCheckBox,
-                                                              Mode=TwoWay}" 
-                                            Value="False">
-
-                                            <Setter 
-                                                Property="Visibility" 
-                                                Value="Visible" />
-
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </PasswordBox.Style>
-
-                            <i:Interaction.Behaviors>
-                                <local:PasswordBehavior 
-                                    SecurePassword="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, 
-                                                             Mode=TwoWay, 
-                                                             Converter={StaticResource secureStrToChars}}" />
-                            </i:Interaction.Behaviors>
-
-                        </PasswordBox>
+            <Label 
+                Content="{Binding InvalidLoginWarning, UpdateSourceTrigger=PropertyChanged}"
+                FontSize="10"
+                FontFamily="Montserrat"
+                Foreground="Crimson"
+                Margin="-4,2,0,0"/>
 
 
-                        <TextBox
-                            Visibility="{Binding IsChecked, 
-                                                 ElementName=hideRepeatPasswordCheckBox, 
-                                                 Converter={StaticResource boolToVis}}">
-                            <TextBox.Style>
-                                <Style
-                                    TargetType="TextBox">
-                                    <Style.Triggers>
-                                        <Trigger
-                                            Property="Visibility"
-                                            Value="Visible">
+            <TextBlock
+                Text="Name"
+                Foreground="DarkGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,26,0,0"/>
 
-                                            <Setter
-                                                Property="Text"
-                                                Value="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, 
-                                                                Converter={StaticResource strToChars}, 
-                                                                Mode=TwoWay}" />
+            <Grid>
+                <fa:IconImage 
+                    Icon="HatCowboySide"
+                    Foreground="White"
+                    Height="14"
+                    Width="14"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    />
+
+                <TextBox                
+                    Padding="20,0,0,0"
+                    MaxLength="20"
+                    FontSize="13"
+                    FontFamily="Montserrat"
+                    Foreground="White"
+                    CaretBrush="LightGray"
+                    BorderBrush="DarkGray"               
+                    BorderThickness="0,0,0,2"
+                    Background="Transparent"
+                    Height="21"
+                    VerticalAlignment="Center"
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="0,8,0,0" />
+            </Grid>
 
 
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBox.Style>
-                        </TextBox>
-                    </Grid>
-                </DockPanel>
+            <Label 
+                Content="{Binding InvalidNameWarning, UpdateSourceTrigger=PropertyChanged}"
+                FontSize="10"
+                FontFamily="Montserrat"
+                Foreground="Crimson"
+                Margin="-4,2,0,0"/>
 
-                <Label                   
-                    Content="{Binding InvalidRepeatedPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
-                    Foreground="Red"
-                    FontSize="10"/>
+            <TextBlock
+                Text="Password"
+                Foreground="DarkGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,26,0,8"/>
 
-                <Button
-                    Content="Registrate"
-                    HorizontalAlignment="Center"
-                    Padding="2"
-                    Command="{Binding RegistrationCommand}" />
+            <DockPanel 
+                LastChildFill="True">
 
-            </StackPanel>
-        </Grid>
+                <CheckBox
+                    x:Name="hidePasswordCheckBox"             
+                    DockPanel.Dock="Right" 
+                    Style="{StaticResource CheckPass}"/>
 
-        <Button 
-            Content="Back" 
-            HorizontalAlignment="Left" 
-            Margin="86,0,0,0" 
-            Grid.Row="2" 
-            VerticalAlignment="Center"
-            Command="{Binding BackCommand}" Height="20" Width="28"/>
+                <Grid
+                    DockPanel.Dock="Left">
 
+                    <fa:IconImage 
+                        Icon="Key"
+                        Foreground="White"
+                        Height="14"
+                        Width="14"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="0,-8,0,0"/>
+
+
+                    <PasswordBox                         
+                        PasswordChar="•"
+                        Background="Transparent"
+                        Padding="20,0,0,0"
+                        MaxLength="20"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                        
+                        CaretBrush="LightGray"
+                        BorderBrush="DarkGray"
+                        BorderThickness="0,0,0,2"
+                        Height="21"
+                        VerticalAlignment="Center">
+
+                        <PasswordBox.Style>
+                            <Style
+                                TargetType="PasswordBox">
+
+                                <Setter Property="Foreground" Value="White" />
+                                <Style.Triggers>
+                                    <DataTrigger 
+                                        Binding="{Binding IsChecked, 
+                                                            ElementName=hidePasswordCheckBox}" 
+                                        Value="False">
+
+                                        <Setter 
+                                            Property="Visibility" 
+                                            Value="Visible" />
+
+                                        <Setter Property="Padding" Value="20,0,0,0" />
+
+                                    </DataTrigger>
+
+                                    <DataTrigger 
+                                        Binding="{Binding IsChecked, 
+                                                            ElementName=hidePasswordCheckBox}" 
+                                        Value="True">
+
+                                        <Setter 
+                                            Property="Foreground" 
+                                            Value="Transparent" />
+
+                                    </DataTrigger>
+                                    
+                                    
+
+
+                                </Style.Triggers>
+                            </Style>
+                        </PasswordBox.Style>
+
+                        <i:Interaction.Behaviors>
+                            <local:PasswordBehavior 
+                                SecurePassword="{Binding Password, 
+                                                            Mode=TwoWay, 
+                                                            UpdateSourceTrigger=PropertyChanged, 
+                                                            Converter={StaticResource secureStrToChars}}" />
+                        </i:Interaction.Behaviors>
+
+                    </PasswordBox>
+
+                    <TextBox
+                        Background="Transparent"
+                        Padding="20,0,0,0"
+                        Visibility="{Binding IsChecked, 
+                                                ElementName=hidePasswordCheckBox, 
+                                                Converter={StaticResource boolToVis}}"
+                        MaxLength="20"
+                        FontSize="13"
+                        FontFamily="Montserrat"
+                        Foreground="White"
+                        CaretBrush="LightGray"
+                        BorderBrush="DarkGray" 
+                    
+                        BorderThickness="0,0,0,2"
+                        Height="21"
+                        VerticalAlignment="Center">
+                        
+                        <TextBox.Style>
+                            <Style
+                                TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger
+                                        Property="Visibility"
+                                        Value="Visible">
+
+                                        <Setter
+                                            Property="Text"
+                                            Value="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
+                                                            Converter={StaticResource strToChars}}"
+                                                            />
+                                        <Setter Property="Padding" Value="20,0,0,0" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Grid>
+            </DockPanel>
+
+            <Label                   
+                Content="{Binding InvalidPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
+                Foreground="Crimson"
+                FontFamily="Montserrat"
+                FontSize="10"/>
+
+            <TextBlock
+                Text="Repeat password"
+                Foreground="DarkGray"
+                FontSize="12"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,26,0,8"/>
+
+            <DockPanel 
+                LastChildFill="True">
+
+                <CheckBox
+                    x:Name="hideRepeatPasswordCheckBox"             
+                    DockPanel.Dock="Right" 
+                    Style="{StaticResource CheckPass}"/>
+                
+                <Grid
+                    DockPanel.Dock="Left">
+                    
+                     <fa:IconImage 
+                        Icon="Key"
+                        Foreground="White"
+                        Height="14"
+                        Width="14"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Margin="0,-8,0,0" RenderTransformOrigin="0.5,0.5">
+                        <fa:IconImage.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </fa:IconImage.RenderTransform>
+                    </fa:IconImage>
+
+
+                    <PasswordBox                         
+                        PasswordChar="•"
+                        MaxLength="20"
+                        FontSize="16"
+                        FontFamily="Montserrat"
+                       
+                        CaretBrush="LightGray"
+                        BorderBrush="DarkGray"
+                        
+                        Padding="20,0,0,0"
+                        Background="Transparent"
+                        BorderThickness="0,0,0,2"
+                        Height="21"
+                        VerticalAlignment="Center">
+
+                        <PasswordBox.Style>
+                            <Style
+                                TargetType="PasswordBox">
+
+                                <Setter Property="Foreground" Value="White" />
+
+                                <Style.Triggers>
+                                    <DataTrigger 
+                                        Binding="{Binding IsChecked, 
+                                                            ElementName=hideRepeatPasswordCheckBox,
+                                                            Mode=TwoWay}" 
+                                        Value="False">
+
+                                        <Setter 
+                                            Property="Visibility" 
+                                            Value="Visible" />
+
+                                    </DataTrigger>
+
+                                    <DataTrigger 
+                                        Binding="{Binding IsChecked, 
+                                                          ElementName=hideRepeatPasswordCheckBox}" 
+                                        Value="True">
+
+                                        <Setter 
+                                            Property="Foreground" 
+                                            Value="Transparent" />
+
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </PasswordBox.Style>
+
+                        <i:Interaction.Behaviors>
+                            <local:PasswordBehavior 
+                                SecurePassword="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, 
+                                                            Mode=TwoWay, 
+                                                            Converter={StaticResource secureStrToChars}}" />
+                        </i:Interaction.Behaviors>
+
+                    </PasswordBox>
+
+
+                    <TextBox
+                        Visibility="{Binding IsChecked, 
+                                                ElementName=hideRepeatPasswordCheckBox, 
+                                                Converter={StaticResource boolToVis}}"
+                        MaxLength="20"
+                        FontSize="13"
+                        FontFamily="Montserrat"
+                        Foreground="White"
+                        CaretBrush="LightGray"
+                        BorderBrush="DarkGray" 
+                        Padding="20,0,0,0"
+                        Background="Transparent"
+                        BorderThickness="0,0,0,2"
+                        Height="21"
+                        VerticalAlignment="Center">
+                        
+                        <TextBox.Style>
+                            <Style
+                                TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger
+                                        Property="Visibility"
+                                        Value="Visible">
+
+                                        <Setter
+                                            Property="Text"
+                                            Value="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, 
+                                                            Converter={StaticResource strToChars}, 
+                                                            Mode=TwoWay}" />
+
+
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                </Grid>
+            </DockPanel>
+
+            <Label                   
+                Content="{Binding InvalidRepeatedPasswordWarning, UpdateSourceTrigger=PropertyChanged}"
+                Foreground="Crimson"
+                FontFamily="Montserrat"
+                FontSize="10"/>
+
+            <Button                       
+                BorderThickness="0"
+                Content="REGISTRATE"
+                Foreground="White"
+                FontSize="12"
+                FontFamily="Montserrat"
+                Cursor="Hand"                           
+                Margin="0,50,0,0"
+                Command="{Binding RegistrationCommand}">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Crimson"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Width="150" Height="40"
+                            CornerRadius="20"
+                            Background="{TemplateBinding Background}">
+
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

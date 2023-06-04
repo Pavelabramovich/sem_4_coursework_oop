@@ -11,8 +11,12 @@ namespace CourseProjectOpp;
 [Flags]
 public enum ProductType
 {
-    Flower = 0b_0001,
-
+    Flower     =  0b_000001,
+    Candle     =  0b_000010,
+    Wreath     =  0b_000100,
+    Coffin     =  0b_001000,
+    Fence      =  0b_010000,
+    Tombstone  =  0b_100000,
 }
 
 
