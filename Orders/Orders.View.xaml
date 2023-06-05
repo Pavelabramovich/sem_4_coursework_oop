@@ -48,8 +48,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Product name" 
-                    FontSize="18"
-                
+                    FontSize="18"    
                     FontFamily="Montserrat"
                     IsReadOnly="True"
                     Binding="{Binding ProductName}"/>
@@ -58,7 +57,6 @@
                     Header="Customer login" 
                     IsReadOnly="True"
                     FontSize="18"
-              
                     FontFamily="Montserrat"
                     Binding="{Binding CustomerLogin}">
                 </DataGridTextColumn>

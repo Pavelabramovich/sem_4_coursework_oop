@@ -51,7 +51,6 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Products\Products.View.g.c
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Registration\Registration.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.g.cs
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\SpecialAbilities.View.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\User\User.View.g.cs
@@ -67,7 +66,6 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Products\Products.View.bam
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\Registration\Registration.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.baml
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\SpecialAbilities\SpecialAbilities.View.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\User\User.View.baml

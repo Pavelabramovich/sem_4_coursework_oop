@@ -30,7 +30,7 @@ public class BaseUserModel
         return _db.ValidatePassword(login, password);
     }
 
-    public string GetAvaterPath(string login) 
+    public string GetAvatarPath(string login) 
     {
         return _db.GetAvatar(login);
     }

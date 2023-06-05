@@ -23,44 +23,105 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="56*" />
-            <RowDefinition Height="131*" />
-            <RowDefinition Height="230*" />
-            <RowDefinition Height="33*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="102*" />
-            <ColumnDefinition Width="635*" />
-            <ColumnDefinition Width="63*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Button
-            Grid.Column="2"
-            Grid.Row="3"
-            Command="{Binding CancelCommand}"
-            Content="Cancel" />
 
-        <Button
-            Grid.Column="0"
-            Grid.Row="3"
-            Content="Add product"
-            Command="{Binding AddProductCommand}"/>
-
-
-        <Button
+        <StackPanel
             Grid.Column="1"
-            Grid.Row="3"
-            Command="{Binding SaveChangesCommand}"
-            Content="Save changes"/>
+            Grid.Row="4"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+
+            <Button
+                Margin="5"
+                Foreground="White"
+                FontSize="12"
+                FontFamily="Montserrat"
+                Content="ADD PRODUCT"
+                Command="{Binding AddProductCommand}">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Crimson"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Width="150" Height="40"
+                            CornerRadius="20"
+                            Background="{TemplateBinding Background}">
+
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button   
+                Margin="5"
+                Foreground="White"
+                FontSize="12"
+                FontFamily="Montserrat"
+                Command="{Binding SaveChangesCommand}"
+                Content="SAVE CHANGES">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Crimson"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Width="150" Height="40"
+                            CornerRadius="20"
+                            Background="{TemplateBinding Background}">
+
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+        </StackPanel>
+        
+       
 
         <DataGrid
+            Style="{StaticResource dataGridStyle}"
             Grid.Row="1"
             Grid.Column="1"
             ScrollViewer.CanContentScroll="False"
             ItemsSource="{Binding Types, Mode=TwoWay}"
             AutoGenerateColumns="False" 
             CanUserAddRows="False"
+            ColumnWidth="*"
             CanUserDeleteRows="False" 
             CanUserReorderColumns="False" 
             CanUserResizeColumns="False"
@@ -74,6 +135,8 @@
                         Value="{Binding Discount, Mode=TwoWay}"
                         Minimum="0"
                         Maximum="100"
+                        FontSize="18"    
+                        FontFamily="Montserrat"
                         ValueChanged="IntegerUpDown_ValueChanged"/>
 
                 </DataTemplate>
@@ -81,6 +144,9 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn 
+                    FontSize="18"    
+                    FontFamily="Montserrat"
+                    IsReadOnly="True"
                     Header="Name" 
                     Binding="{Binding Name}"/>
 
@@ -95,8 +161,10 @@
         </DataGrid>
 
         <DataGrid
+            Style="{StaticResource dataGridStyle}"
             ScrollViewer.CanContentScroll="False" 
-            Grid.Row="2"
+            Grid.Row="3"
+            ColumnWidth="*"
             Grid.Column="1"
             ItemsSource="{Binding Products, Mode=TwoWay}"
             AutoGenerateColumns="False" 
@@ -112,20 +180,17 @@
                 
                 <DataTemplate x:Key="ImageTemplate" >
                     <StackPanel>
-                        <Image 
-                            Width="100" 
-                            Height="100"
-                            Source="{Binding ImagePath}"/>
-
-                        <TextBlock 
-                            Text="{Binding ImagePath}" 
-                            FontSize="8" 
-                            FontWeight="Bold" 
-                            HorizontalAlignment="Center" />
 
                         <Button
-                            Click="btnOpen_Click" />
+                            Height="180"
+                            Click="btnOpen_Click">
 
+                            <Image 
+                                Width="160" 
+                                Height="160"
+                                Source="{Binding ImagePath}"/>
+
+                        </Button>
                     </StackPanel>
                 </DataTemplate>
 
@@ -133,6 +198,8 @@
                     <xctk:IntegerUpDown                                                                
                         Value="{Binding Price, Mode=TwoWay}"
                         Minimum="0"
+                        FontSize="18"    
+                        FontFamily="Montserrat"
                         Maximum="100"
                         ValueChanged="IntegerUpDown_ValueChanged"/>
 
@@ -140,6 +207,7 @@
 
                 <DataTemplate x:Key="DescriptionTemplate" >
                     <TextBox
+                        ScrollViewer.CanContentScroll="False"
                         Text="{Binding Description, Mode=TwoWay}"
                         TextWrapping="Wrap"
                         AcceptsReturn="True" 
@@ -147,8 +215,9 @@
                         HorizontalScrollBarVisibility="Disabled"
                         TextChanged="TextBox_TextChanged"
                         MaxLines="10"
-                        Height="250"
-                        Width="250">
+                        Height="180"
+                        Width="220">
+                        
                     </TextBox>
                 </DataTemplate>
 
@@ -157,26 +226,27 @@
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Name" 
+                    FontSize="18"    
+                    FontFamily="Montserrat"
                     IsReadOnly="True"
                     Binding="{Binding Name}"/>
 
+                <DataGridTemplateColumn 
+                    Header="Image" 
+                    CellTemplate="{StaticResource ImageTemplate}"/>
+
                 <DataGridTemplateColumn
                     Header="Description" 
-                    CellTemplate="{StaticResource DescriptionTemplate}" />
+                    CellTemplate="{StaticResource DescriptionTemplate}"/>
 
                 <DataGridTemplateColumn
                     Header="Price"
-                    CellTemplate="{StaticResource PriceTemplate}" />
-
-                <DataGridTemplateColumn 
-                    Header="Image" 
-                    CellTemplate="{StaticResource ImageTemplate}" />
+                    CellTemplate="{StaticResource PriceTemplate}"/>
 
                 <DataGridComboBoxColumn
                     Header="Type"
                     SelectedItemBinding="{Binding Type}"
-                    ItemsSource="{Binding Source={StaticResource productTypeValues}}" />
-
+                    ItemsSource="{Binding Source={StaticResource productTypeValues}}"/>
 
             </DataGrid.Columns>
 

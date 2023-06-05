@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET7_0;NETCOREAPP
 E:\NewRepos\CourseProjectOpp\App.xaml
-151025558511
+141089532682
 
-8024386552
+80-630441801
 221-1065054825
-Authorization\Authorization.View.xaml;ChangeName\ChangeName.xaml;CreatingOrder\CreatingOrder.xaml;CustomMessageBox\CustomMessageBox.xaml;Orders\Orders.View.xaml;Products\Products.View.xaml;Registration\Registration.View.xaml;Resources\Styles\Styles.xaml;SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.xaml;SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.xaml;SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.xaml;SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.xaml;SpecialAbilities\SpecialAbilities.View.xaml;User\User.View.xaml;Window\Window.View.xaml;
+Authorization\Authorization.View.xaml;ChangeName\ChangeName.xaml;CreatingOrder\CreatingOrder.xaml;CustomMessageBox\CustomMessageBox.xaml;Orders\Orders.View.xaml;Products\Products.View.xaml;Registration\Registration.View.xaml;Resources\Styles\Styles.xaml;SpecialAbilities\AdminAbilities\AdminProductsChanging\AdminProductsChanging.View.xaml;SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.xaml;SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.xaml;SpecialAbilities\SpecialAbilities.View.xaml;User\User.View.xaml;Window\Window.View.xaml;
 
-True
+False
 

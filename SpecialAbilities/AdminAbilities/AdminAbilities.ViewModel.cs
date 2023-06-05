@@ -9,9 +9,15 @@ namespace CourseProjectOpp;
 
 public class AdminAbilitiesViewModel : BaseAbilitiesViewModel
 {
+    private AdminAbilitiesModel _model;
+
     public AdminAbilitiesViewModel(string login) : 
         base(login)
-    { }
+    {
+        _model = new AdminAbilitiesModel();
+    }
+
+    public override ICommand ChangeAvatarCommand => DelegateCommand.DoNothing;
 
     public override ICommand ChangeUserCommand => new DelegateCommand(o =>
     {
@@ -24,6 +30,4 @@ public class AdminAbilitiesViewModel : BaseAbilitiesViewModel
         UpdatePage(new AdminProductsChangingViewModel());
         SwitchToPage<AdminProductsChangingViewModel>();
     });
-
-    public override BaseViewModel CurrentWindow => null;
 }

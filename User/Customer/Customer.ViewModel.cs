@@ -25,7 +25,7 @@ public class CustomerViewModel : BaseUserViewModel, IUserViewModel
         get => _model.GetName(_login);
     }
 
-    public override string AvatarPath => _model.GetAvaterPath(_login);
+    public override string AvatarPath => _model.GetAvatarPath(_login);
 
 
     public string Login => _login;

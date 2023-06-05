@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d"
-    Title="MessageBox" Height="150" Width="250"
+    Title="MessageBox" Height="170" Width="290"
     WindowStyle="None"
     AllowsTransparency="True"
     Topmost="True"    
@@ -52,10 +52,10 @@
 
                 <Label 
                     x:Name="invalidCardNumberLabel"
-                    FontSize="10"
+                    FontSize="8"
                     Foreground="Crimson"
                     FontFamily="Montserrat"
-                    Margin="5,0,5,2"
+                    Margin="2,0,3,2"
                     Content="   "/>
 
             </StackPanel>

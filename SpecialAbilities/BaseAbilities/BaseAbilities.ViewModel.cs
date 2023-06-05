@@ -17,8 +17,7 @@ public abstract class BaseAbilitiesViewModel : SwitchebleViewModel
     }
 
 
-    public abstract BaseViewModel CurrentWindow { get; }
-
+    public abstract ICommand ChangeAvatarCommand { get; }
 
     public abstract ICommand ChangeUserCommand { get; }
 

@@ -10,6 +10,7 @@ public class ProductsModel
 {
     private UserDb _userDb;
     private ProductsDb _productsDb;
+    private SupplyDb _supplyDb;
     private OrdersDb _ordersDb;
 
     public ProductsModel()
@@ -17,6 +18,7 @@ public class ProductsModel
         _productsDb = ProductsDb.Instance;
         _ordersDb = OrdersDb.Instance;
         _userDb = UserDb.Instance;
+        _supplyDb = SupplyDb.Instance;
     }
 
     public IEnumerable<Product> Products => _productsDb.Products;
@@ -28,6 +30,21 @@ public class ProductsModel
         foreach (Product product in _productsDb.Products)
         {
             if (type.HasFlag(product.Type))
+            {
+                yield return product;
+            }
+        }
+    }
+
+    public IEnumerable<Product> GetProvideredProducts(ProductType type)
+    {
+        var products = GetProductsByType(type);
+
+        var supplies = _supplyDb.Supplies;
+
+        foreach (Product product in products)
+        {
+            if (supplies.Count(s => s.ProductName == product.Name) > 0)
             {
                 yield return product;
             }

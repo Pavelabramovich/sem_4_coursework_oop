@@ -57,21 +57,4 @@ public partial class ChangeUsersView : UserControl
             }
         }
     }
-
-
-    //public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
-    //{
-    //    var itemsSource = grid.ItemsSource;
-
-    //    if (itemsSource is null) 
-    //        yield return null;
-
-    //    foreach (var item in itemsSource)
-    //    {
-    //        var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-
-    //        if (row is not null) 
-    //            yield return row;
-    //    }
-    //}
 }

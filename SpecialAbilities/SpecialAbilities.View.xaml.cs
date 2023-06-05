@@ -17,5 +17,10 @@ namespace CourseProjectOpp;
 
 public partial class SpecialAbilitiesView : UserControl
 {
-    public SpecialAbilitiesView() => InitializeComponent();  
+    public SpecialAbilitiesView() => InitializeComponent();
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
 }

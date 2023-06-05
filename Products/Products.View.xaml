@@ -12,7 +12,7 @@
 
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="boolToVis" />
-        <local:DiscountToPrecentsConverter x:Key="discToPrecents" />
+        <local:DiscountsToPrecentsConverter x:Key="discToPrecents" />
         <local:DiscountsToIconConverter x:Key="discToIcon" />
         <local:PriceDiscountToTotalPriceConverter x:Key="totalPrice" />
     </UserControl.Resources>

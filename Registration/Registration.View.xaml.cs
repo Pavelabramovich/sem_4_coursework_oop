@@ -18,6 +18,4 @@ namespace CourseProjectOpp;
 public partial class RegistrationView : UserControl
 {
     public RegistrationView() => InitializeComponent();
-
-    
 }

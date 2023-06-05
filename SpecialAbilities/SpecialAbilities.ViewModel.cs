@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,12 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
             UserRole.Admin => new AdminAbilitiesViewModel(_login),
             _ => throw new ArgumentException("Unknown role"),
         };  
+
+        if (_strategy is CustomerAbilitiesViewModel viewModel)
+        {
+            viewModel.NameChanged += OnNameChanged;
+            viewModel.AvatarChanged += OnAvatarChanged;
+        }
     }
 
     public UserRole UserRole
@@ -50,6 +57,10 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
         }
     }
 
+    public string Login => _login;
+
+    public string Name => _model.GetName(_login);
+
     public int Discount
     {
         get => _discount;
@@ -63,8 +74,19 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
         }
     }
 
+    public string Color
+    {
+        get
+        {
+            var converter = new LoginToColorConverter();
 
-    public BaseViewModel CurrentWindow => _strategy.CurrentWindow;
+            return (string)converter.Convert(_login, null, null, null);
+        }
+    }
+
+    public string AvatarPath => _model.GetAvatarPath(_login);
+
+    public ICommand ChangeAvatarCommand => _strategy.ChangeAvatarCommand;
 
     public ICommand ChangeUserCommand => _strategy.ChangeUserCommand;
 
@@ -72,14 +94,14 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
 
     public override ICommand BackCommand => _strategy.BackCommand;
 
+    private void OnNameChanged()
+    {
+        OnPropertyChanged(nameof(Name));
+    }
 
-
-    //private void OnMessengerValueChanged(object? sender, Messenger.MessageValueChangedEventArgs e)
-    //{
-    //    if (e.Message is WindowMessage windowMessage && windowMessage.TargetViewModelType == this.GetType())
-    //    {
-            
-    //    }
-    //}
+    private void OnAvatarChanged()
+    {
+        OnPropertyChanged(nameof(AvatarPath));
+    }
 
 }

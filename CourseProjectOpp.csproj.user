@@ -22,9 +22,6 @@
     <Compile Update="SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -52,9 +49,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SpecialAbilities\AdminAbilities\ChangeUsers\ChangeUsers.View.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="SpecialAbilities\CustomerAbilities\NameChanging\NameChanging.View.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SpecialAbilities\ProviderAbilities\ProviderProductsChanging\ProviderProductsChanging.View.xaml">

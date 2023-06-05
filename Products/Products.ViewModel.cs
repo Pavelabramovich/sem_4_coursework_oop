@@ -125,7 +125,7 @@ public class ProductsViewModel : SwitchebleViewModel
 
     public IEnumerable<Product> Products
     {
-        get => _model.GetProductsByType(_currentType);
+        get => _model.GetProvideredProducts(_currentType);
     }
 
     public override ICommand BackCommand => new DelegateCommand(o =>

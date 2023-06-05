@@ -93,8 +93,6 @@ public partial class AdminProductsChangingView : UserControl
                 {
                     var newText = textBox.Text.Remove(len + size, 1);
                     
-
-                    
                     textBox.Text = newText;
                     textBox.Select(len + size, 0);
                     break;

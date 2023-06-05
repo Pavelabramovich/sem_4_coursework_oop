@@ -7,150 +7,367 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d" 
-    d:DesignHeight="450" d:DesignWidth="800">
+    d:DesignHeight="450" d:DesignWidth="800"
+    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
 
 
     <UserControl.Resources>
-
-        <DataTemplate DataType="{x:Type local:NameChangingViewModel}">
-            <local:NameChangingView
-                DataContext="{Binding Path=DataContext.CurrentWindow, 
-                                      ElementName=root}"/>
-        </DataTemplate>
-
-
         <BooleanToVisibilityConverter x:Key="boolToVis" />
-
+        <local:AvatarPathToSourceConverter x:Key="avatarToSource" />
+        <local:LoginToColorConverter x:Key="loginToColor" />
+        <local:LoginIsAdminConverter x:Key="loginIsAdmin" />
+        <local:DiscountToPrecentsConverter x:Key="discToPrec" />
     </UserControl.Resources>
 
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="52*" />
-            <RowDefinition Height="101*" />
-            <RowDefinition Height="98*" />
-            <RowDefinition Height="99*" />
-            <RowDefinition Height="100*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="350" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="51*" />
-            <ColumnDefinition Width="85*" />
-            <ColumnDefinition Width="264*" />
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="350"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-
-        <Grid 
-            Grid.ColumnSpan="2" 
-            Margin="113,67,175,75" 
-            Grid.RowSpan="4" 
-            Grid.Column="1" 
-            Grid.Row="1"
-            Panel.ZIndex="1"
-            
-            Visibility="{Binding IsNameChanging, Converter={StaticResource boolToVis}}">
-
-            <ContentControl Content="{Binding CurrentWindow}"/>
-
-        </Grid>
-
-
-        <Button
-            Grid.Row="1"
+        <Ellipse
             Grid.Column="1"
-            Margin="10, 10, 10, 10"
-            Command="{Binding ChangeUserCommand}" >
+            Grid.Row="1">
 
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <DataTrigger 
-                            Binding="{Binding Path=DataContext.UserRole, 
-                                              ElementName=root}"
-                                
-                            Value="{x:Static local:UserRole.Admin}">
+            <Ellipse.Fill>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
 
-                            <Setter 
-                                Property="Content" 
-                                Value="Change users"/>
+                        <DrawingGroup>
 
-                        </DataTrigger>
+                            <GeometryDrawing Brush="{Binding Path=DataContext.Color, 
+                                                                     ElementName=root}">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <RectangleGeometry Rect="0,0,100,100" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
 
-                        <DataTrigger 
-                            Binding="{Binding Path=DataContext.UserRole, 
-                                              ElementName=root}"
-                                
-                            Value="{x:Static local:UserRole.Customer}">
+                            <ImageDrawing
+                                ImageSource="{Binding AvatarPath, Converter={StaticResource avatarToSource}}"
+                                Rect="0,0,100,100"/>
 
-                            <Setter 
-                                Property="Content" 
-                                Value="Change name"/>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Ellipse.Fill>
+        </Ellipse>
 
-                        </DataTrigger>
 
-                        <DataTrigger 
-                            Binding="{Binding Path=DataContext.UserRole, 
-                                              ElementName=root}"
-                                
-                            Value="{x:Static local:UserRole.Provider}">
-
-                            <Setter 
-                                Property="Content" 
-                                Value="Change name"/>
-
-                        </DataTrigger>
-
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-
-        <Button
+        <StackPanel
+            Orientation="Vertical"
             Grid.Column="1"
             Grid.Row="2"
-            Margin="10, 10, 10, 10"
-            Content="Change products"
-            Command="{Binding ChangeProductsCommand}">
+            Margin="150,58,0,0">
 
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Style.Triggers>
-                        <DataTrigger 
+            <TextBlock
+                Foreground="DarkGray"
+                FontSize="18"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Text="My discount" />
+
+            <TextBlock 
+                FontSize="16"
+                FontFamily="Montserrat"
+                Foreground="White"
+                Margin="0,8,0,0"
+                Text="{Binding Discount, Converter={StaticResource discToPrec}}"/>
+
+
+        </StackPanel>
+
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="30">
+
+            <TextBlock
+                Text="Login"
+                Foreground="DarkGray"
+                FontSize="18"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,28,0,0"/>
+
+            <Grid>
+                <fa:IconImage 
+                    Icon="User"
+                    Foreground="White"
+                    Height="14"
+                    Width="14"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center" />
+
+                <TextBlock 
+                    x:Name="loginTextBox" 
+                    Padding="20,0,0,0"
+                    FontSize="16"
+                    FontFamily="Montserrat"
+                    Foreground="White"
+                    Background="Transparent"
+                    Height="21"
+                    VerticalAlignment="Center"
+                    Text="{Binding Login}" 
+                    Margin="0,8,0,0" />
+            </Grid>
+
+            <TextBlock
+                Text="Name"
+                Foreground="DarkGray"
+                FontSize="18"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,26,0,0"/>
+
+            <Grid>
+                <fa:IconImage 
+                    Icon="HatCowboySide"
+                    Foreground="White"
+                    Height="14"
+                    Width="14"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"/>
+
+                <TextBlock                
+                    Padding="20,0,0,0"
+                    FontSize="16"
+                    FontFamily="Montserrat"
+                    Foreground="White"
+                    Background="Transparent"
+                    Height="21"
+                    VerticalAlignment="Center"
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" 
+                    Margin="0,8,0,0"/>
+
+            </Grid>
+
+            <TextBlock
+                Text="Role"
+                Foreground="DarkGray"
+                FontSize="18"
+                FontWeight="Medium"
+                FontFamily="Montserrat"
+                Margin="0,26,0,0"/>
+
+            <Grid>
+                <fa:IconImage 
+                    Icon="Star"
+                    Foreground="White"
+                    Height="14"
+                    Width="14"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"/>
+
+                <TextBlock                
+                    Padding="20,0,0,0"
+                    FontSize="16"
+                    FontFamily="Montserrat"
+                    Foreground="White"
+                    Background="Transparent"
+                    Height="21"
+                    VerticalAlignment="Center"
+                    Text="{Binding UserRole}" 
+                    Margin="0,8,0,0"/>
+
+            </Grid>
+
+        </StackPanel>
+
+
+        <StackPanel
+            Grid.Column="2"
+            Grid.Row="1"
+            Orientation="Vertical">
+
+            <Button           
+                Command="{Binding ChangeUserCommand}"
+                Foreground="White"
+                FontSize="12"
+                FontFamily="Montserrat"
+                Cursor="Hand"
+                Margin="5">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Crimson"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                Binding="{Binding Path=DataContext.UserRole, 
+                                                  ElementName=root}"
+                                
+                                Value="{x:Static local:UserRole.Admin}">
+
+                                <Setter 
+                                    Property="Content" 
+                                    Value="CHANGE USERS"/>
+
+                            </DataTrigger>
+
+                            <DataTrigger 
                                 Binding="{Binding Path=DataContext.UserRole, 
                                                   ElementName=root}"
                                 
                                 Value="{x:Static local:UserRole.Customer}">
 
-                            <Setter 
+                                <Setter 
+                                    Property="Content" 
+                                    Value="CHANGE NAME"/>
+
+                            </DataTrigger>
+
+                            <DataTrigger 
+                                Binding="{Binding Path=DataContext.UserRole, 
+                                                  ElementName=root}"
+                                
+                                Value="{x:Static local:UserRole.Provider}">
+
+                                <Setter 
+                                    Property="Content" 
+                                    Value="CHANGE NAME"/>
+
+                            </DataTrigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Width="150" Height="40"
+                            CornerRadius="20"
+                            Background="{TemplateBinding Background}">
+
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+
+            <Button
+                Content="CHANGE AVATAR"
+                Command="{Binding ChangeAvatarCommand}"
+                Foreground="White"
+                FontSize="12"
+                FontFamily="Montserrat"
+                Margin="5"
+                Cursor="Hand">
+
+                <Button.Style>
+                    <Style 
+                        TargetType="Button">
+
+                        <Setter Property="Background" Value="Crimson"/>
+                        <Style.Triggers>
+                            <DataTrigger 
+                                Binding="{Binding Path=DataContext.UserRole, 
+                                                  ElementName=root}"
+                                
+                                Value="{x:Static local:UserRole.Admin}">
+
+                                <Setter 
+                                    Property="Visibility" 
+                                    Value="Collapsed"/>
+
+                            </DataTrigger>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Width="150" Height="40"
+                            CornerRadius="20"
+                            Background="{TemplateBinding Background}">
+
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <Button
+                Content="CHANGE PRODUCTS"
+                Command="{Binding ChangeProductsCommand}"
+                Foreground="White"
+                FontSize="12"
+                FontFamily="Montserrat"
+                Margin="5"
+                Cursor="Hand">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="Crimson"/>
+                        
+                        <Style.Triggers>
+                            <DataTrigger 
+                                Binding="{Binding Path=DataContext.UserRole, 
+                                                  ElementName=root}"
+                                
+                                Value="{x:Static local:UserRole.Customer}">
+
+                                <Setter 
                                 Property="Visibility" 
                                 Value="Collapsed"/>
 
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
+                            </DataTrigger>
+                            
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </Trigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border 
+                            Width="150" Height="40"
+                            CornerRadius="20"
+                            Background="{TemplateBinding Background}">
+
+                            <ContentPresenter 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
 
 
-        <Button 
-            Content="Back" 
-            HorizontalAlignment="Left" 
-            Margin="51,30,0,0" 
-            Grid.Row="4" 
-            VerticalAlignment="Top"
-            Command="{Binding BackCommand}"/>
         
-        <TextBlock 
-            Grid.Column="2" 
-            HorizontalAlignment="Left" 
-            Margin="162,27,0,0" 
-            Grid.Row="1" 
-            TextWrapping="Wrap" 
-            Text="{Binding Discount}" 
-            VerticalAlignment="Top" 
-            Height="26" 
-            Width="77"
-            Visibility="{Binding }"/>
+
+        
+       
 
     </Grid>
 

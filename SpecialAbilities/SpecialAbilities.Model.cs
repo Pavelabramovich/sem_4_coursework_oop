@@ -24,4 +24,14 @@ public class SpecialAbilitiesModel
     {
         return _db.GetDiscount(login);
     }
+
+    public string GetAvatarPath(string login)
+    {
+        return _db.GetAvatar(login);
+    }
+
+    public string GetName(string login)
+    {
+        return _db.GetName(login);
+    }
 }
