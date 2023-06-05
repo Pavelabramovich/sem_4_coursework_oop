@@ -34,6 +34,11 @@ public partial class ProductsView : UserControl
 
             return;
         }
+
+        string login = (DataContext as ProductsViewModel)!.Login;
+        string productName = (DataContext as ProductsViewModel)!.CurrentProduct!.Name;
+
+        CreatingOrder.Show(login, productName);
     }
 }
 

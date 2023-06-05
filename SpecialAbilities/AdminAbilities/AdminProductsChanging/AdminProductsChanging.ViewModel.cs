@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Logging;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -155,6 +156,18 @@ public class AdminProductsChangingViewModel : SwitchebleViewModel
     public ICommand CancelCommand => new DelegateCommand(o =>
     {
         SwitchToPage<SpecialAbilitiesViewModel>();
+    });
+
+    public ICommand AddProductCommand => new DelegateCommand(o =>
+    {
+        var newName = ChangeNameBox.Show("Enter new product name:", new NewProductNameValidator());
+
+        if (newName is null)
+            return;
+
+
+
+        Products.Add(new ProductModel(newName, string.Empty, string.Empty, ProductType.Coffin, 0));
     });
 
 

@@ -25,6 +25,14 @@ public class Order
 
     [Column("CardNumber")]
     public string CardNumber { get; set; }
+
+    [Column("DateTime")]
+    public DateTime DateTime { get; set; }
+
+    [Column("PricePerOne")]
+    public int PricePerOne { get; set; }
+
+    public int TotalPrice => PricePerOne * Count;
 }
 
 

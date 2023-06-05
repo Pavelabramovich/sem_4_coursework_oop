@@ -18,6 +18,11 @@ public interface IUserViewModel
     ICommand ToOrdersCommand { get; }
 
     ICommand ToFlowersCommand { get; }
+    ICommand ToCandlesCommand { get; }
+    ICommand ToWreathsCommand { get; }
+    ICommand ToCoffinsCommand { get; }
+    ICommand ToFencesCommand { get; }
+    ICommand ToTombstonesCommand { get; }
 
     ICommand ToSpecialAbilitiesCommand { get; }
 } 

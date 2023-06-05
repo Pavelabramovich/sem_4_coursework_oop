@@ -68,6 +68,11 @@ public class UserViewModel : SwitchebleViewModel
     public ICommand ToOrdersCommand => _strategy.ToOrdersCommand;
 
     public ICommand ToFlowersCommand => _strategy.ToFlowersCommand;
+    public ICommand ToCandlesCommand => _strategy.ToCandlesCommand;
+    public ICommand ToWreathsCommand => _strategy.ToWreathsCommand;
+    public ICommand ToCoffinsCommand => _strategy.ToCoffinsCommand;
+    public ICommand ToFencesCommand => _strategy.ToFencesCommand;
+    public ICommand ToTombstonesCommand => _strategy.ToTombstonesCommand;
 
     public ICommand ToSpecialAbilitiesCommand => _strategy.ToSpecialAbilitiesCommand;
 

@@ -6,76 +6,84 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:local="clr-namespace:CourseProjectOpp"
     mc:Ignorable="d"
-    Title="MessageBox" Height="150" Width="250"
+    Title="MessageBox" Height="250" Width="350"
     WindowStyle="None"
     AllowsTransparency="True"
     Topmost="True"    
     WindowStartupLocation="CenterScreen"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     MouseDown="Window_MouseDown"
-    Background="Transparent">
+    Background="Transparent"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit">
 
     <Border
         CornerRadius="5"
         Background="White"
         BorderBrush="DarkGray"
         BorderThickness="4">
-        
+
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="60*"/>
+                <RowDefinition Height="90*"/>
                 <RowDefinition Height="30*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="80*"/>
-                </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="20">
 
-                <TextBlock 
-                    Name="txtTitle" 
-                    Text="Error" 
+                <TextBlock
+                    Text="Card number: "
+                    FontWeight="Medium"
+                    FontSize="20"
+                    FontFamily="Montserrat"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Margin="5"/>
+
+                <TextBox
+                    x:Name="cardNumberTextBox"
+                    Grid.Row="0"
                     Grid.Column="1"
-                    Foreground="DimGray" 
-                    VerticalAlignment="Center" 
-                    FontSize="20" 
-                    FontWeight="Bold"/>
-            </Grid>
+                    Margin="5,5,5,3"
+                    MaxLength="10" TextChanged="cardNumberTextBox_TextChanged"/>
 
+                <Label 
+                    x:Name="invalidCardNumberLabel"
+                    FontSize="10"
+                    Foreground="Crimson"
+                    FontFamily="Montserrat"
+                    Margin="5,0,5,2"
+                    Content="   "/>
+
+                <StackPanel 
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+                    <TextBlock
+                        Text="Cout: "
+                        FontWeight="Medium"
+                        FontSize="20"
+                        FontFamily="Montserrat"
+                        Margin="5"/>
+
+                    <xctk:IntegerUpDown
+                        x:Name="countUpDown"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Value="1"
+                        Minimum="1"
+                        Maximum="25"
+                        Margin="5"/>
+
+                </StackPanel>
+            </StackPanel>
+            
             <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30*"/>
-                    <ColumnDefinition Width="70*"/>
-                </Grid.ColumnDefinitions>
-            
-                <materialDesign:PackIcon 
-                    Name="msgLogo" 
-                    Kind="Error" 
-                    Grid.Column="0" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Center" 
-                    Width="50" 
-                    Height="50" 
-                    Foreground="DarkRed"
-                    />
-            
-                <TextBlock 
-                    Name="txtMessage" 
-                    Grid.Column="1" 
-                    Text="An Error Occured in the Application" 
-                    Foreground="DimGray" 
-                    FontSize="14" 
-                    VerticalAlignment="Center" 
-                    HorizontalAlignment="Left" 
-                    TextWrapping="Wrap"/>
-            </Grid>
-
-            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20*"/>
                     <ColumnDefinition Width="40*"/>
+                    <ColumnDefinition Width="5*"/>
                     <ColumnDefinition Width="40*"/>
                     <ColumnDefinition Width="20*"/>
                 </Grid.ColumnDefinitions>
@@ -83,16 +91,16 @@
                 <Button 
                     Name="btnOk" 
                     Grid.Column="1"
-                    Content="OK"  
+                    Content="Order"  
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
                     FontSize="10"
-                    Width="80"  
-                    Click="BntOk_Click" 
+                    Width="130"  
+                    Click="BntCreate_Click" 
                     Background="#FF698EF1" 
                     BorderBrush="{x:Null}"       
                     Foreground="White" 
-                    Height="20">
+                    Height="25">
 
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource baseButtonStyle}">
@@ -110,13 +118,13 @@
 
                 <Button 
                     Name="btnCancel" 
-                    Grid.Column="2" 
+                    Grid.Column="3" 
                     Content="Close" 
                     FontSize="10"
-                    Height="20"  
+                    Height="25"  
                     HorizontalAlignment="Center" 
                     VerticalAlignment="Center" 
-                    Width="80"  
+                    Width="130"  
                     Click="BtnCancel_Click"  
                     Background="#FFE60000" 
                     BorderBrush="{x:Null}"            

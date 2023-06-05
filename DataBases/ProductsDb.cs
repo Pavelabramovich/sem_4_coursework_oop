@@ -64,7 +64,7 @@ public class ProductsDb : IDisposable
     public void Add(Product product) => _conn!.Insert(product);
     public void Remove(string name) => _conn!.Delete<Product>(name);
 
-    public void Update(Product product) => _conn.Update(product);
+    public void Update(Product product) => _conn!.InsertOrReplace(product);
 
     public bool Contains(string name) => Products.Count(x => x.Name == name) != 0;
 

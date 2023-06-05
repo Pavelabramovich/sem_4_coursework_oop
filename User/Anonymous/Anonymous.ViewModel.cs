@@ -25,9 +25,9 @@ public class AnonymousViewModel : BaseUserViewModel, IUserViewModel
 
     public override ICommand ToOrdersCommand => DelegateCommand.DoNothing;
 
-    public override ICommand ToFlowersCommand => new DelegateCommand(o =>
+    private ICommand ToProductCommand(ProductType productType) => new DelegateCommand(o =>
     {
-        UpdatePage(new ProductsViewModel(ProductType.Flower));
+        UpdatePage(new ProductsViewModel(productType));
         SwitchToPage<ProductsViewModel>();
     });
 
@@ -43,4 +43,17 @@ public class AnonymousViewModel : BaseUserViewModel, IUserViewModel
     });
 
     public override ICommand BackCommand => DelegateCommand.DoNothing;
+
+
+    public override ICommand ToFlowersCommand => ToProductCommand(ProductType.Flower);
+
+    public override ICommand ToCandlesCommand => ToProductCommand(ProductType.Candle);
+
+    public override ICommand ToWreathsCommand => ToProductCommand(ProductType.Wreath);
+
+    public override ICommand ToCoffinsCommand => ToProductCommand(ProductType.Coffin);
+
+    public override ICommand ToFencesCommand => ToProductCommand(ProductType.Fence);
+
+    public override ICommand ToTombstonesCommand => ToProductCommand(ProductType.Tombstone);
 }

@@ -30,9 +30,9 @@ public class CustomerViewModel : BaseUserViewModel, IUserViewModel
 
     public string Login => _login;
 
-    public override ICommand ToFlowersCommand => new DelegateCommand(o =>
+    public ICommand ToProductCommand(ProductType productType) => new DelegateCommand(o =>
     {
-        UpdatePage(new ProductsViewModel(_login, ProductType.Flower));
+        UpdatePage(new ProductsViewModel(_login, productType));
         SwitchToPage<ProductsViewModel>();
     });
 
@@ -55,5 +55,18 @@ public class CustomerViewModel : BaseUserViewModel, IUserViewModel
     });
 
     public override ICommand BackCommand => DelegateCommand.DoNothing;
+
+
+    public override ICommand ToFlowersCommand => ToProductCommand(ProductType.Flower);
+
+    public override ICommand ToCandlesCommand => ToProductCommand(ProductType.Candle);
+
+    public override ICommand ToWreathsCommand => ToProductCommand(ProductType.Wreath);
+
+    public override ICommand ToCoffinsCommand => ToProductCommand(ProductType.Coffin);
+
+    public override ICommand ToFencesCommand => ToProductCommand(ProductType.Fence);
+
+    public override ICommand ToTombstonesCommand => ToProductCommand(ProductType.Tombstone);
 }
 

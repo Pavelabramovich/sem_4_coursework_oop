@@ -20,5 +20,15 @@ public partial class OrdersView : UserControl
     public OrdersView()
     {
         InitializeComponent();
+
+        DataContextChanged += UpdateTable;
+    }
+
+    public void UpdateTable(object sender, DependencyPropertyChangedEventArgs e)
+    {
+        if (DataContext is OrdersViewModel viewModel && !viewModel.IsAdmin)
+        {
+            ordersTable.Columns[1].Visibility = Visibility.Collapsed;
+        }
     }
 }

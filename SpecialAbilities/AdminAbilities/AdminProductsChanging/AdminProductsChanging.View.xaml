@@ -42,6 +42,13 @@
             Content="Cancel" />
 
         <Button
+            Grid.Column="0"
+            Grid.Row="3"
+            Content="Add product"
+            Command="{Binding AddProductCommand}"/>
+
+
+        <Button
             Grid.Column="1"
             Grid.Row="3"
             Command="{Binding SaveChangesCommand}"
@@ -150,6 +157,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn 
                     Header="Name" 
+                    IsReadOnly="True"
                     Binding="{Binding Name}"/>
 
                 <DataGridTemplateColumn

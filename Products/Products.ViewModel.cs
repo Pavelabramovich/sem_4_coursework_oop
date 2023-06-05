@@ -69,6 +69,8 @@ public class ProductsViewModel : SwitchebleViewModel
         }
     }
 
+    public string Login => _login ?? string.Empty;
+
     public int Discount
     {
         get => _login is null ? 0 : _model.GetDiscount(_login);
@@ -137,7 +139,7 @@ public class ProductsViewModel : SwitchebleViewModel
         if (IsAnonymous)
             return;
 
-        IsCreatingOrder = true;
+        //IsCreatingOrder = true;
     });
 
     public ICommand CancelCommand => new DelegateCommand(o =>

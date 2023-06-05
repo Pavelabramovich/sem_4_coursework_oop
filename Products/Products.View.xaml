@@ -99,9 +99,10 @@
             ItemsSource="{Binding Products}"
             ScrollViewer.CanContentScroll="False" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-            ScrollViewer.VerticalScrollBarVisibility="Disabled"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden"
            
-            SelectedItem="{Binding Path=DataContext.CurrentFlower, 
+           
+            SelectedItem="{Binding Path=DataContext.CurrentProduct, 
                                    ElementName=root, Mode=TwoWay}">
 
             <ListBox.Resources>
@@ -117,6 +118,8 @@
 
                     </Style.Setters>
                 </Style>
+
+    
             </ListBox.Resources>
 
             <ListBox.ItemContainerStyle>
@@ -165,7 +168,7 @@
                                 Grid.Column="2"
                                 Grid.Row="1"
                                 BorderThickness="5"
-                                BorderBrush="White">
+                                BorderBrush="#555555">
 
                                 <Image 
                                     Source="{Binding ImagePath}"
@@ -180,7 +183,7 @@
                                 Grid.Column="1" >
 
                                 <Label
-                                     Margin="20,0,0,0">
+                                     Margin="20,-5,0,0">
 
                                     <Border
                                         Padding="50,9,50,9"
@@ -203,7 +206,7 @@
 
                                 <TextBlock
                                     Text="{Binding Description}"
-                                    Foreground="White"
+                                    Foreground="Black"
                                     FontSize="15"
                                     FontWeight="Medium"
                                     FontFamily="Montserrat"

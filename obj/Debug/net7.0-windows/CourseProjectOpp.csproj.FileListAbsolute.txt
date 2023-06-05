@@ -86,3 +86,5 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\ref\CourseProjectOpp.dll
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\App.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CreatingOrder\CreatingOrder.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CreatingOrder\CreatingOrder.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\ChangeName\ChangeName.g.cs
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\ChangeName\ChangeName.baml

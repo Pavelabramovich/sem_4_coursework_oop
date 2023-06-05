@@ -25,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="ChangeName\ChangeName.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="CreatingOrder\CreatingOrder.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

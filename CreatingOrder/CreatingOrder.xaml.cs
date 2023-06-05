@@ -1,4 +1,5 @@
 ﻿using MaterialDesignThemes.Wpf;
+using Microsoft.VisualBasic.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,8 @@ public partial class CreatingOrder : Window
         InitializeComponent();
     }
 
-
+    static string s_login;
+    static string s_productName;
 
     static CreatingOrder s_customMessageBox;
     static DialogResult result = System.Windows.Forms.DialogResult.No;
@@ -55,41 +57,43 @@ public partial class CreatingOrder : Window
     public static void Show(string login, string productName)
     {
         s_customMessageBox = new CreatingOrder();
-        //s_customMessageBox.btnOk.Content = s_customMessageBox.GetButtonText(okButton);
-   
-        //s_customMessageBox.txtMessage.Text = message;
-        //s_customMessageBox.txtTitle.Text = top;
 
+        s_login = login;
+        s_productName = productName;
 
-        //switch (title)
-        //{
-        //    case CMessageTitle.Error:
-        //        s_customMessageBox.msgLogo.Kind = PackIconKind.Error;
-        //        s_customMessageBox.msgLogo.Foreground = Brushes.DarkRed;
-        //        break;
-        //    case CMessageTitle.Info:
-        //        s_customMessageBox.msgLogo.Kind = PackIconKind.InfoCircle;
-        //        s_customMessageBox.msgLogo.Foreground = Brushes.Blue;
-        //        s_customMessageBox.btnCancel.Visibility = Visibility.Collapsed;
-        //        s_customMessageBox.btnOk.SetValue(Grid.ColumnSpanProperty, 2);
-        //        break;
-        //    case CMessageTitle.Warning:
-        //        s_customMessageBox.msgLogo.Kind = PackIconKind.Warning;
-        //        s_customMessageBox.msgLogo.Foreground = Brushes.Yellow;
-        //        s_customMessageBox.btnCancel.Visibility = Visibility.Collapsed;
-        //        s_customMessageBox.btnOk.SetValue(Grid.ColumnSpanProperty, 2);
-        //        break;
-        //    case CMessageTitle.Confirm:
-        //        s_customMessageBox.msgLogo.Kind = PackIconKind.QuestionMark;
-        //        s_customMessageBox.msgLogo.Foreground = Brushes.Gray;
-        //        break;
-        //}
         s_customMessageBox.ShowDialog();
-        //return result;
     }
 
-    private void BntOk_Click(object sender, RoutedEventArgs e)
+    private void BntCreate_Click(object sender, RoutedEventArgs e)
     {
+        string cardNumber = cardNumberTextBox.Text;
+
+        if (cardNumber.Length != 10)
+        {
+            invalidCardNumberLabel.Content = "Card number must be 10 digits";
+            return;
+        }
+
+        if (cardNumber.Where(c => char.IsDigit(c)).Count() != 10)
+        {
+            invalidCardNumberLabel.Content = "Card number must be 10 digits";
+            return;
+        }
+
+        if (!ValidateCount())
+            return;
+
+        int count = countUpDown.Value ?? 1;
+        var orderDb = OrdersDb.Instance;
+        var productDb = ProductsDb.Instance;
+
+        int pricePerOne = productDb.Products.Where(p => p.Name == s_productName).FirstOrDefault()?.Price ?? 0;
+        int discount = productDb.Products.Where(p => p.Name == s_productName).FirstOrDefault()?.Discount ?? 0;
+
+        pricePerOne = pricePerOne - (int)((double)pricePerOne * discount / 100);
+
+        orderDb.Add(new Order { CustomerLogin = s_login, ProductName = s_productName, Count = count, CardNumber = cardNumber, DateTime=DateTime.Now, PricePerOne= pricePerOne});
+
         result = System.Windows.Forms.DialogResult.Yes;
         Border border = new Border();
 
@@ -157,5 +161,37 @@ public partial class CreatingOrder : Window
         {
             DragMove();
         }
+    }
+
+    private void cardNumberTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        invalidCardNumberLabel.Content = "  ";
+    }
+
+    private bool ValidateCount()
+    {
+        string str = countUpDown.Text;
+
+        if (str is null)
+            return false;
+
+        str = new string(str.Trim().Where(c => char.IsDigit(c)).ToArray());
+
+        int value = int.Parse(str);
+
+        if(value > 25)
+        {
+            str = "25";
+        }
+
+        if (value < 1)
+        {
+            str = "1";
+        }
+
+        if (countUpDown.Text != str)
+            return false;
+
+        return true;
     }
 }
