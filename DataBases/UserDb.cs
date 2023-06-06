@@ -21,6 +21,7 @@ public class User
     [PrimaryKey, Indexed]
     [Column("Login")]
     public string Login { get; set; }
+
     [Column("Password")]
     public string Password { get; set; }
 

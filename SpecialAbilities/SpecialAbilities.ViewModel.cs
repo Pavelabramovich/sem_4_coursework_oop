@@ -103,5 +103,4 @@ public class SpecialAbilitiesViewModel : SwitchebleViewModel
     {
         OnPropertyChanged(nameof(AvatarPath));
     }
-
 }
