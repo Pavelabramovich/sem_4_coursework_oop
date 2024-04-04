@@ -30,67 +30,6 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <!--<Grid 
-            Margin="100,65,67,57" 
-            Grid.Column="1" 
-            Grid.Row="1"
-            Panel.ZIndex="1"
-            Background="Red"
-            Visibility="{Binding Path=DataContext.IsCreatingOrder, 
-                                 ElementName=root, 
-                                 Converter={StaticResource boolToVis}}">
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="46*" />
-                <RowDefinition Height="87*" />
-                <RowDefinition Height="46*" />
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="51*" />
-                <ColumnDefinition Width="121*" />
-                <ColumnDefinition Width="62*" />
-            </Grid.ColumnDefinitions>
-
-            <TextBlock
-                Text="Card number: "
-                Grid.Column="0"
-                Grid.Row="0"/>
-            
-            <TextBlock
-                Text="Cout: "
-                Grid.Column="0"
-                Grid.Row="1"/>
-
-            <xctk:IntegerUpDown 
-                Name="myUpDownControl"
-                Grid.Column="1"
-                Grid.Row="1"
-                Value="{Binding Count}"
-                Minimum="{Binding Min}"
-                Maximum="{Binding Max}"/>
-
-            <TextBox
-                Grid.Row="0"
-                Grid.Column="1"
-                Text="{Binding CardNumber}"/>
-
-
-            <Button 
-                Content="Cancel"
-                Grid.Column="1"
-                Grid.Row="2" 
-                Command="{Binding CancelCommand}"/>
-
-            <Button 
-                Content="Create order"
-                Grid.Column="2"
-                Grid.Row="2" 
-                Command="{Binding OrderApprovalCommand}"/>
-
-        </Grid>-->
-
-        
         <ListBox
             BorderBrush="Transparent"
             Background="Transparent"
@@ -119,7 +58,7 @@
                     </Style.Setters>
                 </Style>
 
-    
+
             </ListBox.Resources>
 
             <ListBox.ItemContainerStyle>
@@ -137,7 +76,7 @@
                         HorizontalAlignment="Stretch" 
                         Header="{Binding Name}"
                         Style="{StaticResource oneExpanded}">
-                        
+
                         <Expander.Tag>
                             <MultiBinding
 			                    Converter="{StaticResource discToIcon}" >
@@ -189,7 +128,7 @@
                                         Padding="50,9,50,9"
                                         Background="Black"
                                         CornerRadius="21">
-                                        
+
                                         <TextBlock
                                         
                                             Text="{Binding Name}"
@@ -207,7 +146,7 @@
                                 <TextBlock
                                     Text="{Binding Description}"
                                     Foreground="Black"
-                                    FontSize="15"
+                                    FontSize="13"
                                     FontWeight="Medium"
                                     FontFamily="Montserrat"
                                     HorizontalAlignment="Left"
@@ -215,7 +154,7 @@
                                     Width="260"
                                     Height="260"
                                     TextWrapping="Wrap" />
-                                
+
                             </StackPanel>
 
 
@@ -252,7 +191,7 @@
                                                 </Style.Triggers>
                                             </Style>
                                         </Button.Style>
-                                        
+
                                         <Button.Template>
                                             <ControlTemplate TargetType="Button">
                                                 <Border 
@@ -262,13 +201,13 @@
 
                                                     <ContentPresenter 
                                                         VerticalAlignment="Center"
-                                                        HorizontalAlignment="Center"/>  
+                                                        HorizontalAlignment="Center"/>
                                                 </Border>
                                             </ControlTemplate>
                                         </Button.Template>
 
                                     </Button>
-                                    
+
                                     <TextBlock
                                         FontSize="20"
                                         FontWeight="Medium"
@@ -304,23 +243,10 @@
                                 </StackPanel>
 
                             </StackPanel>
-
                         </Grid>
-
-                     
-                        
                     </Expander>
-
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
-
 </UserControl>
-
-<!--<Button 
-                                    Content="Order"
-                                    Command="{Binding Path=DataContext.OrderCreatingCommand, 
-                                                      ElementName=root}"
-                                
-                                    Click="AnonymousWarning"/>-->

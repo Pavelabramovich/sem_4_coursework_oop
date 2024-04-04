@@ -75,7 +75,6 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.Generated
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.AssemblyInfoInputs.cache
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.AssemblyInfo.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.csproj.CoreCompileInputs.cache
-E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.csproj.CopyComplete
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.dll
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\refint\CourseProjectOpp.dll
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.pdb
@@ -86,3 +85,5 @@ E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CreatingOrder\CreatingOrde
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CreatingOrder\CreatingOrder.baml
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\ChangeName\ChangeName.g.cs
 E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\ChangeName\ChangeName.baml
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CourseProjectOpp.sourcelink.json
+E:\NewRepos\CourseProjectOpp\obj\Debug\net7.0-windows\CoursePr.A9D0F485.Up2Date

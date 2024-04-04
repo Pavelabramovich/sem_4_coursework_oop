@@ -244,7 +244,6 @@ class RegistrationViewModel : SwitchebleViewModel
 
         _model.AddUser(Login, Password, Name);
 
-
         UpdatePage(new UserViewModel(Login));
         SwitchToPage<UserViewModel>();
 

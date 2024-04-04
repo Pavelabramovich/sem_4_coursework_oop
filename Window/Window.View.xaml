@@ -12,9 +12,8 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     
     WindowStyle="None"
-    WindowState="Maximized"
-      
-    >
+    WindowState="Maximized"     
+ >
 
     <Window.DataContext>
         <local:WindowViewModel/>

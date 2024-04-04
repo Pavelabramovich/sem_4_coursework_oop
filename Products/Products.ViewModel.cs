@@ -139,7 +139,6 @@ public class ProductsViewModel : SwitchebleViewModel
         if (IsAnonymous)
             return;
 
-        //IsCreatingOrder = true;
     });
 
     public ICommand CancelCommand => new DelegateCommand(o =>

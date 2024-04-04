@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace CourseProjectOpp;
 
+
 public class ObservableObject : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
@@ -22,14 +23,10 @@ public class ObservableObject : INotifyPropertyChanged
     [Conditional("DEBUG")]
     private void VerifyPropertyName(string? propertyName)
     {
-        if (string.IsNullOrEmpty(propertyName))
-        {
-            throw new ArgumentNullException($"{nameof(propertyName)} is null or empty.");
-        }
+        ArgumentException
+            .ThrowIfNullOrEmpty(propertyName, nameof(propertyName));
 
-        if (TypeDescriptor.GetProperties(this)[propertyName] is null)
-        {
-            throw new ArgumentNullException($"{GetType().Name} does not contain property: {propertyName}");
-        }
+        if (TypeDescriptor.GetProperties(this)[propertyName] is null)       
+            throw new ArgumentNullException($"{GetType().Name} does not contain property: {propertyName}");      
     }
 }
