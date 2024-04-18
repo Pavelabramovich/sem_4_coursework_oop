@@ -138,7 +138,34 @@ public class ProductsViewModel : SwitchebleViewModel
     {
         if (IsAnonymous)
             return;
+    });
 
+    public ICommand FastOrderCreatingCommand => new DelegateCommand(o =>
+    {
+        if (IsAnonymous)
+            return;
+
+        //int count = countUpDown.Value ?? 1;
+        var orderDb = OrdersDb.Instance;
+        var productDb = ProductsDb.Instance;
+
+        int pricePerOne = productDb.Products.Where(p => p.Name == CurrentProduct!.Name).FirstOrDefault()?.Price ?? 0;
+
+        int discount = productDb.Products.Where(p => p.Name == CurrentProduct!.Name).FirstOrDefault()?.Discount ?? 0;
+
+        pricePerOne -= (int)((double)pricePerOne * discount / 100);
+
+        orderDb.Add(new Order 
+        { 
+            CustomerLogin = Login, 
+            ProductName = CurrentProduct!.Name, 
+            Count = 1, 
+            CardNumber = "1234567890", 
+            DateTime = DateTime.Now, 
+            PricePerOne = pricePerOne 
+        });
+
+        Task.Delay(3000);
     });
 
     public ICommand CancelCommand => new DelegateCommand(o =>

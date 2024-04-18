@@ -13,10 +13,10 @@ public class EnglishValidator : IValidator<IEnumerable<char>>
     {
         foreach (char c in value)
         {
-            if ( (c >= 'a' && c <= 'z') ||
-                 (c >= 'A' && c <= 'Z') ||
-                 (c >= '0' && c <= '9') ||
-                 (c == '_') || (c == ' ') )
+            if (c is >= 'a' and <= 'z' 
+                or >= 'A' and <= 'Z' 
+                or >= '0' and <= '9' 
+                or '_') 
             {
                 continue;
             }

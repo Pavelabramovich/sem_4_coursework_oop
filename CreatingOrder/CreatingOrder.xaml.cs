@@ -90,9 +90,17 @@ public partial class CreatingOrder : Window
         int pricePerOne = productDb.Products.Where(p => p.Name == s_productName).FirstOrDefault()?.Price ?? 0;
         int discount = productDb.Products.Where(p => p.Name == s_productName).FirstOrDefault()?.Discount ?? 0;
 
-        pricePerOne = pricePerOne - (int)((double)pricePerOne * discount / 100);
+        pricePerOne -= (int)((double)pricePerOne * discount / 100);
 
-        orderDb.Add(new Order { CustomerLogin = s_login, ProductName = s_productName, Count = count, CardNumber = cardNumber, DateTime=DateTime.Now, PricePerOne= pricePerOne});
+        orderDb.Add(new Order 
+        { 
+            CustomerLogin = s_login, 
+            ProductName = s_productName, 
+            Count = count, 
+            CardNumber = cardNumber, 
+            DateTime=DateTime.Now, 
+            PricePerOne= pricePerOne
+        });
 
         result = System.Windows.Forms.DialogResult.Yes;
         Border border = new Border();

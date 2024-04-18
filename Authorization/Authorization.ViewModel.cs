@@ -162,7 +162,10 @@ class AuthorizationViewModel : SwitchebleViewModel
 
     public void OnSignInCommand(object? parametr)
     {
-        if (!_model.Contains(Login))
+        var nameValidator = new NameValidator();
+        var res = nameValidator.IsValid(Login);
+
+        if (!res || !_model.Contains(Login))
         {
             WarningState = AuthorizationWarningState.InvalidLogin;
         }

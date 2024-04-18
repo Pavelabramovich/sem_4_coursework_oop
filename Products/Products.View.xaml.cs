@@ -40,5 +40,30 @@ public partial class ProductsView : UserControl
 
         CreatingOrder.Show(login, productName);
     }
+
+    public void CreateOrderFast(object sender, RoutedEventArgs e)
+    {
+        if (DataContext is not null and ProductsViewModel viewModel)
+        {
+            if (viewModel.IsAnonymous)
+            {
+                CustomMessageBox.Show(
+                    "Warning",
+                    "Please login first",
+                    CustomMessageBox.CMessageTitle.Warning,
+                    CustomMessageBox.CMessageButton.Ok);
+            }
+            else
+            {
+                Task.Delay(1000);
+
+                CustomMessageBox.Show(
+                    "Purchase",
+                    "Purchase completed successfully",
+                    CustomMessageBox.CMessageTitle.Info,
+                    CustomMessageBox.CMessageButton.Ok);
+            }
+        }
+    }
 }
 

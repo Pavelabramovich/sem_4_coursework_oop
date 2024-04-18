@@ -74,7 +74,7 @@
                 <TextBox 
                     x:Name="loginTextBox" 
                     Padding="20,0,0,0"
-                    MaxLength="20"
+                    MaxLength="21"
                     FontSize="13"
                     FontFamily="Montserrat"
                     Foreground="White"
